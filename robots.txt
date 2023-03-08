@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /scripts/
+Disallow: /styles/
+Disallow: /images/
+Sitemap: https://randomserver.xyz/sitemap.xml
