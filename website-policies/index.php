@@ -179,7 +179,11 @@
         </main>
         <footer>
             <p>
-                <i>Privacy Policy last modified on August 2, 2022</i>
+                <i>
+                    <?php
+                        echo "Content of Privacy Policy last modified on ".date("F d, Y", filemtime("index.php"));
+                    ?>
+                </i>
             </p>
         </footer>
         <script src="/scripts/button.js"></script>
