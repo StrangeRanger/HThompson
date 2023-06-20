@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /scripts/
-Disallow: /styles/
-Disallow: /images/
-Disallow: /chatgpt/
-Sitemap: https://randomserver.xyz/sitemap.xml
