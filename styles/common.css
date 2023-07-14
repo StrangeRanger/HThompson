@@ -1,80 +1,81 @@
 /*** Different Fonts ***/
 
 @font-face {
-    font-family: "Open Sans";
-    src: url("/styles/fonts/OpenSans.woff2") format("woff2"),
-        url("/styles/fonts/OpenSans.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Open Sans";
+  src:
+    url("/styles/fonts/OpenSans.woff2") format("woff2"),
+    url("/styles/fonts/OpenSans.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 /*** HTML Formatting ***/
 
 /** Affects entire document **/
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 a:link {
-    color: #428dff;
+  color: #428dff;
 }
 a:visited {
-    color: #78aeff;
+  color: #78aeff;
 }
 a:hover {
-    color: #b6d3ff;
+  color: #b6d3ff;
 }
 
 html,
 body {
-    background-color: #171717;
-    color: white;
-    font-family: "Open Sans", OpenSans;
-    width: 100%;
-    height: 100%;
-    margin: 0;
+  background-color: #171717;
+  color: white;
+  font-family: "Open Sans", OpenSans;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 /* Header and everything in it */
 header {
-    width: 100%;
-    padding: 6px 24px;
-    background-color: #141414;
-    font-size: 26px;
-    font-weight: bold;
-    border-bottom: 3px solid #4c4c4c;
-    min-height: 65px;
+  width: 100%;
+  padding: 6px 24px;
+  background-color: #141414;
+  font-size: 26px;
+  font-weight: bold;
+  border-bottom: 3px solid #4c4c4c;
+  min-height: 65px;
 }
 
 .logo-container {
-    padding: 6px;
-    float: left;
-    text-align: left;
+  padding: 6px;
+  float: left;
+  text-align: left;
 }
 
 img.logo {
-    width: 273px;
-    height: 33px;
+  width: 273px;
+  height: 33px;
 }
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
 /* Footer and everything in it */
 footer {
-    bottom: 0;
-    padding: 12px;
-    background-color: #141414;
-    text-align: center;
-    font-size: 12px;
-    border-top: 3px solid #4c4c4c;
+  bottom: 0;
+  padding: 12px;
+  background-color: #141414;
+  text-align: center;
+  font-size: 12px;
+  border-top: 3px solid #4c4c4c;
 }
 
 #footer-container {
-    margin: 0 auto;
-    max-width: 960px;
+  margin: 0 auto;
+  max-width: 960px;
 }

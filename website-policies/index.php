@@ -77,12 +77,8 @@
                 </li>
             </ul>
             <h2>Opting out</h2>
-            <!--<div id="matomo-opt-out"></div>
-            <script src="https://analytics.randomserver.xyz/index.php?module=CoreAdminHome&action=optOutJS&div=matomo-opt-out&language=auto&showIntro=1"></script>-->
-            <iframe
-                style="border: 10px; width: 100%"
-                src=" https://analytics.randomserver.xyz/index.php?module=CoreAdminHome&action=optOut&idsite=1&language=en "
-            ></iframe>
+            <div id="matomo-opt-out"></div>
+            <script src="https://analytics.randomserver.xyz/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=auto&showIntro=1"></script>
             <h2>Your Rights</h2>
             <p>
                 You have the right to be informed of Personal Data processed by Random Server, a
