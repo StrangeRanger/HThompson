@@ -1,17 +1,17 @@
 <template>
   <v-app>
-    <!--<span class="bg"></span>-->
-    <v-app-bar class="py-1 px-6 toolbar" :elevation="3">
+    <span class="bg"></span>
+    <v-app-bar class="py-1 px-6 toolbar" :elevation="3" color="#141414">
       <v-toolbar-title>
         <RouterLink to="/">
-          <v-icon icon="mdi-book-open-page-variant" />
-          Random Server
+          <!--<v-icon icon="mdi-book-open-page-variant" />-->
+          HThompson
         </RouterLink>
       </v-toolbar-title>
 
       <v-spacer />
 
-      <ToggleTheme />
+      <!--<ToggleTheme />-->
       <v-app-bar-nav-icon @click="menu = !menu"></v-app-bar-nav-icon>
     </v-app-bar>
 
@@ -19,9 +19,10 @@
 
     <v-main>
       <v-sheet
-        class="d-flex align-center justify-center flex-wrap text-center mx-auto pa-10"
+        class="align-center justify-center flex-wrap text-center mx-auto pa-10"
         elevation="3"
         height="100%"
+        width="100%"
         max-width="980px"
         rounded
       >
@@ -29,14 +30,14 @@
       </v-sheet>
     </v-main>
 
-    <v-footer :elevation="3">
+    <v-footer :elevation="3" color="#141414">
       <span>&copy; 2021</span>
     </v-footer>
   </v-app>
 </template>
 
 <script setup lang="ts">
-import ToggleTheme from '@/components/Header/ToggleTheme.vue'
+//import ToggleTheme from '@/components/Header/ToggleTheme.vue'
 import MenuDrawer from '@/components/Header/MenuDrawer.vue'
 import { ref } from 'vue'
 

@@ -1,10 +1,8 @@
-import './assets/main.css'
-
 // Vue.
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import { mdi } from 'vuetify/iconsets/mdi'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
 
 // Vuetify.
 import 'vuetify/styles'
@@ -12,24 +10,25 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
+// Other.
+import './assets/main.css'
+import '@mdi/font/css/materialdesignicons.css'
+
 const app = createApp(App)
-const themeInUse = localStorage.getItem('theme') || 'dark'
 const vuetify = createVuetify({
   components,
   directives,
   icons: {
     defaultSet: 'mdi',
+    aliases,
     sets: {
       mdi
     }
   },
   theme: {
-    defaultTheme: themeInUse,
+    defaultTheme: 'dark',
     themes: {
       dark: {
-        colors: {}
-      },
-      light: {
         colors: {}
       }
     }
