@@ -54,7 +54,7 @@ let array = [
   },
   {
     title: 'PDF Gallery',
-    text: 'A web app for browsing, reading and downloading eBooks I\'ve collected and stored in a Calibre database.',
+    text: 'A web app for browsing, reading and downloading eBooks I\'ve collected.',
     link: 'https://pdfs.hthompson.dev/',
     icon: 'mdi-file-pdf-box'
   },
