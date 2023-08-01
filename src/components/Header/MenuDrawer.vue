@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer location="right" temporary>
-    <v-card rounded="lg" class="mt-6" elevation="0">
+    <v-card rounded="lg" class="mt-6 button-links" elevation="0">
       <v-card-title id="card-title" elevation="6"> <v-icon icon="mdi-menu" /> Menu </v-card-title>
 
       <v-list density="compact">

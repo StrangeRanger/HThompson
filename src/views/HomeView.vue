@@ -1,7 +1,7 @@
 <template>
   <h1 class="text-h4">Welcome to my website</h1>
   <br />
-  <v-container>
+  <v-container class="button-links">
     <v-row>
       <v-col v-for="item in array" :key="item.title" cols="12" sm="6" md="4">
         <v-card

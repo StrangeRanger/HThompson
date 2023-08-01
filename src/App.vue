@@ -2,7 +2,7 @@
   <v-app>
     <span class="bg"></span>
     <v-app-bar class="py-1 px-6 toolbar" :elevation="3" color="#141414">
-      <v-toolbar-title>
+      <v-toolbar-title class="a-href-link">
         <RouterLink to="/">
           <!--<v-icon icon="mdi-book-open-page-variant" />-->
           HThompson
@@ -30,14 +30,13 @@
       </v-sheet>
     </v-main>
 
-    <v-footer :elevation="3" color="#141414">
-      <span>&copy; 2021</span>
+    <v-footer :elevation="3" color="#141414" class="text-center">
+      <span class="text-center">Hunter T. &copy; 2019-2023</span>
     </v-footer>
   </v-app>
 </template>
 
 <script setup lang="ts">
-//import ToggleTheme from '@/components/Header/ToggleTheme.vue'
 import MenuDrawer from '@/components/Header/MenuDrawer.vue'
 import { ref } from 'vue'
 

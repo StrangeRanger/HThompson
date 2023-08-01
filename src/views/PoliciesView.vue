@@ -43,6 +43,8 @@
     <v-list-item class="text-body-1">
       <v-list-item-title class="text-h5">Opting Out</v-list-item-title>
       <br />
+      <p class="font-italic">If you don't see the opt out box below, please refresh the page.</p>
+      <br />
       <div id="matomo-opt-out"></div>
     </v-list-item>
 
@@ -122,8 +124,6 @@
 </template>
 
 <script setup lang="js">
-// import { useScriptTag } from '@vueuse/core'
-
 const subprocessorsTable = [
   {
     row: 1,
@@ -133,25 +133,38 @@ const subprocessorsTable = [
   },
   {
     row: 2,
-    subprocessor: 'DigitalOcean',
-    location: 'California, USA',
-    service: 'File and cloud hosting provider.'
+    subprocessor: 'Cloudflare',
+    location: '???',
+    service: '???'
   },
   {
     row: 3,
-    subprocessor: 'DigitalOcean',
-    location: 'California, USA',
-    service: 'File and cloud hosting provider.'
+    subprocessor: '???',
+    location: '???',
+    service: '???'
   }
 ]
 
-// useScriptTag(
-//   'https://analytics.randomserver.xyz/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=auto&showIntro=1'
-// )
-
 /* ****** Matomo opt-out script. ****** */
 
-var settings = {"showIntro":true,"divId":"matomo-opt-out","useSecureCookies":true,"cookiePath":null,"cookieDomain":null,"cookieSameSite":"Lax","OptOutComplete":"Opt-out complete; your visits to this website will not be recorded by the Web Analytics tool.","OptOutCompleteBis":"Note that if you clear your cookies, delete the opt-out cookie, or if you change computers or Web browsers, you will need to perform the opt-out procedure again.","YouMayOptOut2":"You may choose to prevent this website from aggregating and analyzing the actions you take here.","YouMayOptOut3":"Doing so will protect your privacy, but will also prevent the owner from learning from your actions and creating a better experience for you and other users.","OptOutErrorNoCookies":"The tracking opt-out feature requires cookies to be enabled.","OptOutErrorNotHttps":"The tracking opt-out feature may not work because this site was not loaded over HTTPS. Please reload the page to check if your opt out status changed.","YouAreNotOptedOut":"You are not opted out.","UncheckToOptOut":"Uncheck this box to opt-out.","YouAreOptedOut":"You are currently opted out.","CheckToOptIn":"Check this box to opt-in."};
+const settings = {
+  "showIntro": true,
+  "divId": "matomo-opt-out",
+  "useSecureCookies": true,
+  "cookiePath": null,
+  "cookieDomain": null,
+  "cookieSameSite": "Lax",
+  "OptOutComplete": "Opt-out complete; your visits to this website will not be recorded by the Web Analytics tool.",
+  "OptOutCompleteBis": "Note that if you clear your cookies, delete the opt-out cookie, or if you change computers or Web browsers, you will need to perform the opt-out procedure again.",
+  "YouMayOptOut2": "You may choose to prevent this website from aggregating and analyzing the actions you take here.",
+  "YouMayOptOut3": "Doing so will protect your privacy, but will also prevent the owner from learning from your actions and creating a better experience for you and other users.",
+  "OptOutErrorNoCookies": "The tracking opt-out feature requires cookies to be enabled.",
+  "OptOutErrorNotHttps": "The tracking opt-out feature may not work because this site was not loaded over HTTPS. Please reload the page to check if your opt out status changed.",
+  "YouAreNotOptedOut": "You are not opted out.",
+  "UncheckToOptOut": "Uncheck this box to opt-out.",
+  "YouAreOptedOut": "You are currently opted out.",
+  "CheckToOptIn": "Check this box to opt-in."
+};
 document.addEventListener('DOMContentLoaded', function() {
   window.MatomoConsent.init(settings.useSecureCookies, settings.cookiePath, settings.cookieDomain, settings.cookieSameSite);
   showContent(window.MatomoConsent.hasConsent());
@@ -159,12 +172,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function showContent(consent, errorMessage = null, useTracker = false) {
 
-  var errorBlock = '<p style="color: red; font-weight: bold;">';
+  const errorBlock = "<p style=\"color: red; font-weight: bold;\">";
 
-  var div = document.getElementById(settings.divId);
+  const div = document.getElementById(settings.divId);
   if (!div) {
     const warningDiv = document.createElement("div");
-    var msg = 'Unable to find opt-out content div: "'+settings.divId+'"';
+    const msg = "Unable to find opt-out content div: \"" + settings.divId + "\"";
     warningDiv.id = settings.divId+'-warning';
     warningDiv.innerHTML = errorBlock+msg+'</p>';
     document.body.insertBefore(warningDiv, document.body.firstChild);
@@ -184,7 +197,7 @@ function showContent(consent, errorMessage = null, useTracker = false) {
     div.innerHTML = errorBlock+errorMessage+'</p>';
     return;
   }
-  var content = '';
+  let content = "";
   if (consent) {
     if (settings.showIntro) {
       content += '<p>'+settings.YouMayOptOut2+' '+settings.YouMayOptOut3+'</p>';
@@ -207,7 +220,7 @@ function showContent(consent, errorMessage = null, useTracker = false) {
     content += '<label for="trackVisits"><strong><span>'+settings.YouAreOptedOut+' '+settings.CheckToOptIn+'</span></strong></label>';
   }
   div.innerHTML = content;
-};
+}
 
 window.MatomoConsent = {
   cookiesDisabled: (!navigator || !navigator.cookieEnabled),
@@ -223,8 +236,8 @@ window.MatomoConsent = {
     }
   },
   hasConsent: function() {
-    var consentCookie = this.getCookie(this.CONSENT_COOKIE_NAME);
-    var removedCookie = this.getCookie(this.CONSENT_REMOVED_COOKIE_NAME);
+    const consentCookie = this.getCookie(this.CONSENT_COOKIE_NAME);
+    const removedCookie = this.getCookie(this.CONSENT_REMOVED_COOKIE_NAME);
     if (!consentCookie && !removedCookie) {
       return true; // No cookies set, so opted in
     }
@@ -243,11 +256,12 @@ window.MatomoConsent = {
     this.setCookie(this.CONSENT_REMOVED_COOKIE_NAME, new Date().getTime(), 946080000000);
   },
   getCookie: function(cookieName) {
-    var cookiePattern = new RegExp('(^|;)[ ]*' + cookieName + '=([^;]*)'), cookieMatch = cookiePattern.exec(document.cookie);
+    const cookiePattern = new RegExp("(^|;)[ ]*" + cookieName + "=([^;]*)"),
+      cookieMatch = cookiePattern.exec(document.cookie);
     return cookieMatch ? window.decodeURIComponent(cookieMatch[2]) : 0;
   },
   setCookie: function(cookieName, value, msToExpire) {
-    var expiryDate = new Date();
+    const expiryDate = new Date();
     expiryDate.setTime((new Date().getTime()) + msToExpire);
     document.cookie = cookieName + '=' + window.encodeURIComponent(value) +
       (msToExpire ? ';expires=' + expiryDate.toGMTString() : '') +

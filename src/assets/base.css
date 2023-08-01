@@ -7,6 +7,26 @@
   font-weight: normal;
 }
 
+a {
+  text-decoration: none;
+}
+a:link {
+  color: #428dff;
+}
+a:visited {
+  color: #78aeff;
+}
+a:hover {
+  color: #b6d3ff;
+}
+
+.button-links a {
+  color: #ffffff;
+}
+.button-links a:hover {
+  color: #b6d3ff;
+}
+
 body {
   min-height: 100vh;
   transition: color 0.5s, background-color 0.5s;
