@@ -48,13 +48,13 @@ let array = [
   },
   {
     title: 'File Server',
-    text: "Files that aren't located at the link above.",
+    text: "Files that aren't located anywhere else on my website.",
     link: 'https://files.hthompson.dev/',
     icon: 'mdi-file'
   },
   {
     title: 'PDF Gallery',
-    text: 'My wiki, containing information about me, my website, and an abundance of other things.',
+    text: 'A web app for browsing, reading and downloading eBooks I\'ve collected and stored in a Calibre database.',
     link: 'https://pdfs.hthompson.dev/',
     icon: 'mdi-file-pdf-box'
   },
