@@ -3,15 +3,11 @@
     <span class="bg"></span>
     <v-app-bar class="py-1 px-6 toolbar" :elevation="3" color="#141414">
       <v-toolbar-title class="a-href-link">
-        <RouterLink to="/">
-          <!--<v-icon icon="mdi-book-open-page-variant" />-->
-          HThompson
-        </RouterLink>
+        <RouterLink to="/">HThompson</RouterLink>
       </v-toolbar-title>
 
       <v-spacer />
 
-      <!--<ToggleTheme />-->
       <v-app-bar-nav-icon @click="menu = !menu"></v-app-bar-nav-icon>
     </v-app-bar>
 
