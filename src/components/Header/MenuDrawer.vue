@@ -15,6 +15,9 @@
           <v-btn to="/links" variant="outlined" elevation="3">My Links</v-btn>
         </v-list-item>
         <v-list-item>
+          <v-btn to="/policies" variant="outlined" elevation="3">Web Policy</v-btn>
+        </v-list-item>
+        <v-list-item>
           <v-btn
             href="https://status.hthompson.dev/status/hthompson"
             target="_blank"
@@ -31,9 +34,6 @@
             elevation="3"
             >Changelog</v-btn
           >
-        </v-list-item>
-        <v-list-item>
-          <v-btn to="/policies" variant="outlined" elevation="3">Web Policy</v-btn>
         </v-list-item>
       </v-list>
     </v-card>

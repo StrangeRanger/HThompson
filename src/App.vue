@@ -26,8 +26,8 @@
       </v-sheet>
     </v-main>
 
-    <v-footer :elevation="3" color="#141414" class="text-center">
-      <span class="text-center">Hunter T. &copy; 2019-2023</span>
+    <v-footer :elevation="3" color="#141414" class="justify-center">
+      <i>Site made by Hunter T. using <a href="https://vuejs.org/" target="_blank">Vue.js</a>. You can find the source code on my <a href="https://github.com/StrangeRanger/HThompson" target="_blank">Github.</a></i>
     </v-footer>
   </v-app>
 </template>
