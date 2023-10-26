@@ -22,21 +22,25 @@
         max-width="980px"
         rounded
       >
-        <RouterView />
+        <!-- <RouterView /> -->
       </v-sheet>
     </v-main>
 
     <v-footer :elevation="3" color="#141414" class="justify-center">
-      <i>Site made by Hunter T. using <a href="https://vuejs.org/" target="_blank">Vue.js</a>. You can find the source code on my <a href="https://github.com/StrangeRanger/HThompson" target="_blank">Github.</a></i>
+      <i
+        >Site made by Hunter T. using
+        <a href="https://vuejs.org/" target="_blank">Vue.js</a>. You can find
+        the source code on my
+        <a href="https://github.com/StrangeRanger/HThompson" target="_blank"
+          >Github.</a
+        ></i
+      >
     </v-footer>
   </v-app>
 </template>
 
 <script setup lang="ts">
-import MenuDrawer from '@/components/Header/MenuDrawer.vue'
-import { ref } from 'vue'
-
-let menu = ref(false)
+let menu = ref(false);
 </script>
 
 <style scoped>

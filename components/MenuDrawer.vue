@@ -9,13 +9,13 @@
           <v-btn to="/" variant="outlined" elevation="3">Home</v-btn>
         </v-list-item>
         <v-list-item>
-          <v-btn to="/about" variant="outlined" elevation="3">About</v-btn>
+          <v-btn href="/about" variant="outlined" elevation="3">About</v-btn>
         </v-list-item>
         <v-list-item>
-          <v-btn to="/links" variant="outlined" elevation="3">My Links</v-btn>
+          <v-btn href="/links" variant="outlined" elevation="3">My Links</v-btn>
         </v-list-item>
         <v-list-item>
-          <v-btn to="/policies" variant="outlined" elevation="3">Web Policy</v-btn>
+          <v-btn href="/policies" variant="outlined" elevation="3">Web Policy</v-btn>
         </v-list-item>
         <v-list-item>
           <v-btn
@@ -39,4 +39,3 @@
     </v-card>
   </v-navigation-drawer>
 </template>
-<script setup lang="ts"></script>
