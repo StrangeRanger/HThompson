@@ -87,7 +87,7 @@ app.use(VueMatomo, {
   // Default: 15
   heartBeatTimerInterval: 15,
 
-  // Whether or not to log debug information
+  // Whether to log debug information
   // Default: false
   debug: false,
 
@@ -129,7 +129,7 @@ app.use(VueMatomo, {
   // }
   trackSiteSearch: false,
 
-  // Set this to include crossorigin attribute on the matomo script import
+  // Set this to include cross origin attribute on the matomo script import
   // Default: undefined, possible values : 'anonymous', 'use-credentials'
   crossOrigin: undefined
 })

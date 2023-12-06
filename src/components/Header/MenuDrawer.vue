@@ -26,15 +26,6 @@
             >Status</v-btn
           >
         </v-list-item>
-        <v-list-item>
-          <v-btn
-            href="https://wiki.hthompson.dev/en/about/changelog"
-            target="_blank"
-            variant="outlined"
-            elevation="3"
-            >Changelog</v-btn
-          >
-        </v-list-item>
       </v-list>
     </v-card>
   </v-navigation-drawer>

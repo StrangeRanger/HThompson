@@ -1,6 +1,13 @@
 <template>
   <h1 class="text-h4">Welcome to my website</h1>
   <br />
+  <p class="text-left">
+    Welcome to the gateway of HThompson! This is the central hub of my website, connecting to an
+    array of subdomains, each with a unique and specific purpose. Here, you'll find links to my
+    various projects, professional portfolio, and much more. Designed to inspire and inform, this
+    website reflects my journey in the ever-evolving digital landscape.
+  </p>
+  <br />
   <v-container class="button-links">
     <v-row>
       <v-col v-for="item in array" :key="item.title" cols="12" sm="6" md="4">

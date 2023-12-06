@@ -4,36 +4,35 @@
     <v-expansion-panels>
       <v-expansion-panel title="Who am I?">
         <v-expansion-panel-text>
-          First off, hello, and welcome to my website. My name is Hunter T., and I am currently a
-          student at Eastern Washington University, majoring in Computer Science with a focus on
-          Cyber Security. I am passionate about anything related to computers and technology,
-          especially when it comes to software security. I love to make music, observe the
-          ever-expanding vastness of space, and watch anime. Before deciding to major in Computer
-          Science, I had previously wanted to go into Astrophysics due to my love of space and
-          physics.
+          My name is Hunter, a Computer Science major specializing in Cyber Security at Eastern
+          Washington University. My passion for computers and technology, particularly software
+          security, drives my academic and professional goals. Beyond my core studies, I have a deep
+          fascination with the infinite wonders of space, which once inspired me to consider a
+          career in Astrophysics. I'm also an avid music enthusiast and enjoy immersing myself in
+          the diverse worlds of anime.
         </v-expansion-panel-text>
       </v-expansion-panel>
       <v-spacer />
-      <v-expansion-panel title="What is this website? What is its purpose?">
+      <v-expansion-panel title="What is this website and what is its purpose?">
         <v-expansion-panel-text>
-          My website, hthompson.dev, previously randomserver.xyz, initially started as a small
-          project to help me learn HTML and CSS, create a website, and set up and administrate a web
-          server. Around 2019, I decided I wanted it to be more than that. It would become a
-          repository of sorts where I could archive and share different things I've created, found,
-          and liked. As time went on, HThompson (at the time being Random Server) evolved to host
-          several public and private services such as
-          <a href="https://privatebin.hthompson.dev/">PrivateBin</a>.
+          My journey with hthompson.dev, formerly known as randomserver.xyz, began as a simple
+          project aimed at honing my skills in HTML and CSS. It was more than just about building a
+          website; it was about mastering the intricacies of web server administration. In 2019, the
+          site quickly transcended its initial purpose. It morphed into a dynamic repository where I
+          could curate and showcase my creations, discoveries, and favorites.
           <br />
-          In mid-2023, a few things happened that resulted in me rebuilding not just my website, but
-          my web server from the ground up. It was then that I realized it'd be a perfect
-          opportunity to rebrand my website and make it appear more professional. So I changed the
-          website's domain from randomserver.xyz to hthompson.dev, and rebuilt the main webpage
-          using Vue.js.
+          The year 2023 marked a pivotal moment for the site. Faced with circumstances that
+          necessitated a complete overhaul of my web server, I seized this challenge as an
+          opportunity for reinvention. This led to a significant rebranding: transitioning from
+          randomserver.xyz to hthompson.dev. Embracing this change, I redeveloped the main webpage
+          with Vue.js, aligning the site’s aesthetic with a more professional outlook.
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
   </v-container>
 </template>
+
+<script setup lang="ts"></script>
 
 <style>
 h1 {

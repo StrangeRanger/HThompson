@@ -2,41 +2,38 @@
   <h1 class="text-h4">Privacy Policies</h1>
   <v-list lines="three" class="text-left">
     <v-list-item class="text-body-1">
-      This Policy describes the information we collect from you, how we use that information and our
+      This Policy describes the information I collect from you, how I use that information and my
       legal basis for doing so. It also covers whether and how that information may be shared and
-      your rights and choices regarding the information you provide to us. This Privacy Policy
-      applies to the information that we obtain through your use of Random Server websites including
-      all of its
+      your rights and choices regarding the information you provide to me. This Privacy Policy
+      applies to the information that I obtain through your use of HThompson websites including all
+      of its subdomains.
     </v-list-item>
 
     <v-list-item class="text-body-1">
-      <v-list-item-title class="text-h5">What We Collect and Receive</v-list-item-title>
+      <v-list-item-title class="text-h5">What I Collect and Receive</v-list-item-title>
       <br />
-      In order for us to provide you the best possible experience on our websites, we need to
-      collect and process certain information. Depending on your use of the Services, that may
-      include:
+      In order to provide you the best possible experience on my websites, I need to collect and
+      process certain information. Depending on your use of the Services, that may include:
       <v-list-item>
-        <!--<ul>-->
         <li>
-          Contact us via email — for example, when you ask for support, send us questions or
-          comments, or report a problem, we will collect your name, email address, message, etc. We
-          use this data solely in connection with answering the queries we receive.
+          Contact me via email — for example, when you ask for support, send me questions or
+          comments, or report a problem, I will collect your name, email address, message, etc. I
+          use this data solely in connection with answering the queries I receive.
         </li>
         <li>
-          Usage data — when you visit our site, we will store: the website from which you visited us
-          from, the parts of our site you visit, the date and duration of your visit, your
-          anonymised IP address, information from the device (device type, operating system, screen
-          resolution, language, country you are located in, and web browser type) you used during
-          your visit, and more. We process this usage data in Matomo Analytics for statistical
-          purposes, to improve our site and to recognize and stop any misuse.
+          Usage data — when you visit my site, I will store: the website from which you visited me
+          from, the parts of my site you visit, the date and duration of your visit, your anonymized
+          IP address, information from the device (device type, operating system, screen resolution,
+          language, country you are located in, and web browser type) you used during your visit,
+          and more. I process this usage data in Matomo Analytics for statistical purposes, to
+          improve my site and to recognize and stop any misuse.
         </li>
         <li>
-          Cookies — we use cookies (small data files transferred onto computers or devices by sites)
-          for record-keeping purposes and to enhance functionality on our site. You may deactivate
-          or restrict the transmission of cookies by changing the settings of your web browser.
-          Cookies that are already stored may be deleted at any time.
+          Cookies — I use cookies (small data files transferred onto computers or devices by sites)
+          for record-keeping purposes and to enhance functionality on my site. You may deactivate or
+          restrict the transmission of cookies by changing the settings of your web browser. Cookies
+          that are already stored may be deleted at any time.
         </li>
-        <!--</ul>-->
       </v-list-item>
     </v-list-item>
 
@@ -51,15 +48,15 @@
     <v-list-item class="text-body-1">
       <v-list-item-title class="text-h5">Your Rights</v-list-item-title>
       <br />
-      You have the right to be informed of Personal Data processed by Random Server, a right to
+      You have the right to be informed of Personal Data processed by HThompson, a right to
       rectification/correction, erasure and restriction of processing. You also have the right to
-      ask from us a structured, common and machine-readable format of Personal Data you provided to
-      us. We can only identify you via your email address and we can only adhere to your request and
-      provide information if we have Personal Data about you through you having made contact with us
-      directly and/or you using our site and/or service. We cannot provide, rectify or delete any
-      data that we store on behalf of our users or customers. To exercise any of the rights
-      mentioned in this Privacy Policy and/or in the event of questions or comments relating to the
-      use of Personal Data you may contact us:
+      ask from me a structured, common and machine-readable format of Personal Data you provided to
+      me. I can only identify you via your email address and I can only adhere to your request and
+      provide information if I have Personal Data about you through you having made contact with me
+      directly and/or you using my site and/or service. I cannot provide, rectify or delete any data
+      that I store on behalf of my users or customers. To exercise any of the rights mentioned in
+      this Privacy Policy and/or in the event of questions or comments relating to the use of
+      Personal Data you may contact me:
       <a href="mailto:privacy@hthompson.dev">privacy@hthompson.dev</a>. In addition, you have the
       right to lodge a complaint with the data protection authority in your jurisdiction.
     </v-list-item>
@@ -67,11 +64,11 @@
     <v-list-item class="text-body-1">
       <v-list-item-title class="text-h5">Subprocessors</v-list-item-title>
       <br />
-      We use a select number of trusted external service providers for certain technical data
+      I use a select number of trusted external service providers for certain technical data
       processing and/or service offerings. These service providers are carefully selected and meet
-      high data protection and security standards. We only share information with them that is
-      required for the services offered. Random Server uses the following subprocessors to process
-      the data collected by our websites:
+      high data protection and security standards. I only share information with them that is
+      required for the services offered. HThompson uses the following subprocessors to process the
+      data collected by our websites:
       <br /><br />
       <v-table>
         <thead>
@@ -94,31 +91,31 @@
     <v-list-item class="text-body-1">
       <v-list-item-title class="text-h5">Data Retention</v-list-item-title>
       <br />
-      We will retain your information as long as your account is active, as necessary to provide you
-      with the services or as otherwise set forth in this Policy. We will also retain and use this
+      I will retain your information as long as your account is active, as necessary to provide you
+      with the services or as otherwise set forth in this Policy. I will also retain and use this
       information as necessary for the purposes set out in this Policy and to the extent necessary
-      to comply with our legal obligations, resolve disputes, enforce our agreements and protect
-      Random Server’s legal rights. We also collect and maintain aggregated, anonymized or
-      pseudonymized information which we may retain indefinitely to protect the safety and security
-      of our Site, improve our Services or comply with legal obligations.
+      to comply with my legal obligations, resolve disputes, enforce my agreements and protect
+      HThompson’s legal rights. I also collect and maintain aggregated, anonymized or pseudonymized
+      information which I may retain indefinitely to protect the safety and security of my Site,
+      improve my Services or comply with legal obligations.
     </v-list-item>
 
     <v-list-item class="text-body-1">
-      <v-list-item-title class="text-h5">Contact Us</v-list-item-title>
+      <v-list-item-title class="text-h5">Contact Me</v-list-item-title>
       <br />
-      If you have questions or comments about this notice, you may email us at
-      <a href="mailto:privacy@hthompson.dev">privacy@hthompson.dev</a>. We will never sell your
+      If you have questions or comments about this notice, you may email me at
+      <a href="mailto:privacy@hthompson.dev">privacy@hthompson.dev</a>. I will never sell your
       personal data to anyone.
     </v-list-item>
 
     <v-list-item class="text-body-1">
       <v-list-item-title class="text-h5">Reusing this Privacy Policy</v-list-item-title>
       <br />
-      Before reading further, please, note that none of our team members are lawyers and do not
-      provide legal or business advice. You are welcome to reuse and be inspired by this Privacy
-      Policy (published under license CC BY) after making sure it complies with the way your website
-      tracks, uses and discloses users information. The accuracy, completeness, adequacy of this
-      privacy policy cannot be warranted or guaranteed.
+      Before reading further, please, note that I am not a lawyer and do not provide legal or
+      business advice. You are welcome to reuse and be inspired by this Privacy Policy (published
+      under license CC BY) after making sure it complies with the way your website tracks, uses and
+      discloses users information. The accuracy, completeness, adequacy of this privacy policy
+      cannot be warranted or guaranteed.
     </v-list-item>
   </v-list>
 </template>
@@ -136,14 +133,9 @@ const subprocessorsTable = [
   {
     row: 2,
     subprocessor: 'Cloudflare',
-    location: '???',
-    service: '???'
-  },
-  {
-    row: 3,
-    subprocessor: '???',
-    location: '???',
-    service: '???'
+    location:
+      'Cloudflare, as a subprocessor, processes and stores user data across its global network of data centers, which means the data may be held in multiple locations worldwide.',
+    service: 'Web performance and security service.'
   }
 ]
 

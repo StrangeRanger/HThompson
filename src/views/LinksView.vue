@@ -1,6 +1,7 @@
 <template>
   <h1 class="text-h4">My Links</h1>
-<!--<v-img src="/src/assets/avatar.png" alt="avatar.png" width="auto" height="125" />-->
+  <br />
+  <!--<v-img src="/src/assets/avatar.png" alt="avatar.png" width="auto" height="125" />-->
   <v-container class="button-links">
     <v-row>
       <v-col v-for="item in array" :key="item.title" cols="12" sm="6" md="4">
@@ -42,7 +43,6 @@ let array = [
     link: 'https://soundcloud.com/SubDubZero',
     icon: 'mdi-soundcloud',
     color: '#FF5500'
-
   },
   {
     title: 'GitHub',
