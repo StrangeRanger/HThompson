@@ -13,7 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@vueuse/core": "^10.3.0",
+    "@vueuse/core": "^10.7.1",
     "vue": "^3.4.3",
     "vue-material-design-icons": "^5.2.0",
     "vue-matomo": "^4.2.0",
