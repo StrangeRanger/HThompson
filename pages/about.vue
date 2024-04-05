@@ -32,9 +32,7 @@
   </v-container>
 </template>
 
-<script setup lang="ts"></script>
-
-<style>
+<style scoped>
 h1 {
   text-align: center;
   font-size: 3rem;

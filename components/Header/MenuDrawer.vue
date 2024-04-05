@@ -30,4 +30,3 @@
     </v-card>
   </v-navigation-drawer>
 </template>
-<script setup lang="ts"></script>

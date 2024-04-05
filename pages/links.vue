@@ -1,3 +1,29 @@
+<script setup lang="ts">
+let array = [
+  {
+    title: 'Twitter',
+    text: 'My Twitter account.',
+    link: 'https://twitter.com/_Hunter_T_',
+    icon: 'mdi-twitter',
+    color: '#1DA1F2'
+  },
+  {
+    title: 'SoundCloud',
+    text: 'My SoundCloud account.',
+    link: 'https://soundcloud.com/SubDubZero',
+    icon: 'mdi-soundcloud',
+    color: '#FF5500'
+  },
+  {
+    title: 'GitHub',
+    text: 'My GitHub account.',
+    link: 'https://github.com/StrangeRanger',
+    icon: 'mdi-github',
+    color: '#ffffff'
+  }
+]
+</script>
+
 <template>
   <h1 class="text-h4">My Links</h1>
   <br />
@@ -28,33 +54,7 @@
   </v-container>
 </template>
 
-<script setup lang="ts">
-let array = [
-  {
-    title: 'Twitter',
-    text: 'My Twitter account.',
-    link: 'https://twitter.com/_Hunter_T_',
-    icon: 'mdi-twitter',
-    color: '#1DA1F2'
-  },
-  {
-    title: 'SoundCloud',
-    text: 'My SoundCloud account.',
-    link: 'https://soundcloud.com/SubDubZero',
-    icon: 'mdi-soundcloud',
-    color: '#FF5500'
-  },
-  {
-    title: 'GitHub',
-    text: 'My GitHub account.',
-    link: 'https://github.com/StrangeRanger',
-    icon: 'mdi-github',
-    color: '#ffffff'
-  }
-]
-</script>
-
-<style>
+<style scoped>
 v-img {
   text-align: center;
 }

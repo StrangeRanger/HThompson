@@ -1,3 +1,27 @@
+<script setup lang="ts">
+import { useScriptTag } from '@vueuse/core'
+
+const subprocessorsTable = [
+  {
+    row: 1,
+    subprocessor: 'DigitalOcean',
+    location: 'California, USA',
+    service: 'File and cloud hosting provider.'
+  },
+  {
+    row: 2,
+    subprocessor: 'Cloudflare',
+    location:
+      'Cloudflare, as a subprocessor, processes and stores user data across its global network of data centers, which means the data may be held in multiple locations worldwide.',
+    service: 'Web performance and security service.'
+  }
+]
+
+useScriptTag(
+  'https://analytics.hthompson.dev/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=auto&showIntro=1'
+)
+</script>
+
 <template>
   <h1 class="text-h4">Privacy Policies</h1>
   <v-list lines="three" class="text-left">
@@ -120,31 +144,7 @@
   </v-list>
 </template>
 
-<script setup lang="ts">
-import { useScriptTag } from '@vueuse/core'
-
-const subprocessorsTable = [
-  {
-    row: 1,
-    subprocessor: 'DigitalOcean',
-    location: 'California, USA',
-    service: 'File and cloud hosting provider.'
-  },
-  {
-    row: 2,
-    subprocessor: 'Cloudflare',
-    location:
-      'Cloudflare, as a subprocessor, processes and stores user data across its global network of data centers, which means the data may be held in multiple locations worldwide.',
-    service: 'Web performance and security service.'
-  }
-]
-
-useScriptTag(
-  'https://analytics.hthompson.dev/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=auto&showIntro=1'
-)
-</script>
-
-<style>
+<style scoped>
 td,
 th {
   border: 1px solid #dddddd;
