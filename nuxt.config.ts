@@ -13,8 +13,8 @@ export default defineNuxtConfig({
         // @ts-expect-error
         config.plugins.push(vuetify({ autoImport: true }))
       })
-    }
-    //...
+    },
+    '@nuxtjs/eslint-module',
   ],
   plugins: [{ src: '~/plugins/vue-matomo.js', mode: 'client' }],
   vite: {
@@ -24,5 +24,5 @@ export default defineNuxtConfig({
       }
     }
   },
-  css: ['./assets/css/main.css']
+  css: ['~/assets/css/main.css']
 })
