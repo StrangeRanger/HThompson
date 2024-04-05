@@ -37,7 +37,7 @@ let menu = ref(false)
 
       <v-footer :elevation="3" color="#141414" class="justify-center">
         <i
-        >Site made by Hunter T. You can find the source code on my
+          >Site made by Hunter T. You can find the source code on my
           <a href="https://github.com/StrangeRanger/HThompson" target="_blank">Github.</a></i
         >
       </v-footer>

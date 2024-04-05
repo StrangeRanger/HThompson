@@ -96,18 +96,18 @@ useScriptTag(
       <br /><br />
       <v-table>
         <thead>
-        <tr>
-          <th class="text-left">Subprocessor</th>
-          <th class="text-left">Data location and security</th>
-          <th class="text-left">Service</th>
-        </tr>
+          <tr>
+            <th class="text-left">Subprocessor</th>
+            <th class="text-left">Data location and security</th>
+            <th class="text-left">Service</th>
+          </tr>
         </thead>
         <tbody>
-        <tr v-for="item in subprocessorsTable" :key="item.row">
-          <td>{{ item.subprocessor }}</td>
-          <td>{{ item.location }}</td>
-          <td>{{ item.service }}</td>
-        </tr>
+          <tr v-for="item in subprocessorsTable" :key="item.row">
+            <td>{{ item.subprocessor }}</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.service }}</td>
+          </tr>
         </tbody>
       </v-table>
     </v-list-item>

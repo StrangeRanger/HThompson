@@ -1,11 +1,8 @@
-import { defineNuxtPlugin } from '#app';
-import VueMatomo from 'vue-matomo';
+import { defineNuxtPlugin } from '#app'
+import VueMatomo from 'vue-matomo'
 
-export default defineNuxtPlugin(nuxtApp => {
-  //const { $router } = useNuxtApp();
-
+export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(VueMatomo, {
-    // your Matomo configuration
     host: 'https://analytics.hthompson.dev',
     siteId: 2,
     trackerFileName: 'matomo',

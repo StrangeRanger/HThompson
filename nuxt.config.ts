@@ -5,7 +5,7 @@ import type { ViteConfig } from '@nuxt/schema'
 export default defineNuxtConfig({
   devtools: { enabled: true },
   build: {
-    transpile: ['vuetify'],
+    transpile: ['vuetify']
   },
   modules: [
     (_options, nuxt) => {
@@ -13,20 +13,16 @@ export default defineNuxtConfig({
         // @ts-expect-error
         config.plugins.push(vuetify({ autoImport: true }))
       })
-    },
+    }
     //...
   ],
-  plugins: [
-    { src: '~/plugins/vue-matomo.js', mode: 'client'}
-  ],
+  plugins: [{ src: '~/plugins/vue-matomo.js', mode: 'client' }],
   vite: {
     vue: {
       template: {
-        transformAssetUrls,
-      },
-    },
+        transformAssetUrls
+      }
+    }
   },
-  css: [
-    "./assets/css/main.css",
-  ]
+  css: ['./assets/css/main.css']
 })

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  let array = [
+let array = [
   {
     title: 'Twitter',
     text: 'My Twitter account.',

@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <v-navigation-drawer location="right" temporary>
@@ -27,7 +25,7 @@
             target="_blank"
             variant="outlined"
             elevation="3"
-          >Status</v-btn
+            >Status</v-btn
           >
         </v-list-item>
       </v-list>
@@ -35,6 +33,4 @@
   </v-navigation-drawer>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
