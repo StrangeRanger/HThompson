@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <h1 class="text-h4">About Me and This Website</h1>
   <v-container class="text-body-1 text-left">

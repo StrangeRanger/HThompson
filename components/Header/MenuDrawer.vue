@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <v-navigation-drawer location="right" temporary>
     <v-card rounded="lg" class="mt-6 button-links" elevation="0">
@@ -32,5 +30,3 @@
     </v-card>
   </v-navigation-drawer>
 </template>
-
-<style scoped></style>

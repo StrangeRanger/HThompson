@@ -14,7 +14,7 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
-    '@nuxtjs/eslint-module',
+    '@nuxtjs/eslint-module'
   ],
   plugins: [{ src: '~/plugins/vue-matomo.js', mode: 'client' }],
   vite: {
