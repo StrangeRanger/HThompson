@@ -1,13 +1,32 @@
 module.exports = {
   root: true,
   env: {
-    browser: true,
     node: true
   },
-  extends: ['@nuxtjs', 'plugin:nuxt/recommended', 'plugin:vue/recommended'],
-  plugins: ['vue', 'nuxt'],
+  extends: [
+    '@nuxtjs',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:nuxt/recommended',
+    'prettier',
+    'plugin:prettier/recommended'
+  ],
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    ecmaVersion: 2020,
+    sourceType: 'module'
+  },
+  plugins: ['@typescript-eslint', 'prettier'],
   rules: {
-    'nuxt/no-cjs-in-config': 'off',
-    'vue/multi-word-component-names': 'off' // Disable multi-word component names rule.
+    'prettier/prettier': [
+      'error',
+      {
+        semi: false,
+        tabWidth: 2,
+        singleQuote: true,
+        printWidth: 100,
+        trailingComma: 'none'
+      }
+    ]
+    // Add any additional rules here
   }
 }

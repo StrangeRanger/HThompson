@@ -9,7 +9,9 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint:fix": "eslint --ext .js,.vue --ignore-path .gitignore --fix ."
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
@@ -21,7 +23,12 @@
   "devDependencies": {
     "@nuxtjs/eslint-config": "^12.0.0",
     "@nuxtjs/eslint-module": "^4.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-prettier": "^5.1.3",
     "prettier": "^3.3.2",
     "vite-plugin-vuetify": "^2.0.3",
     "vuetify": "^3.6.9"
