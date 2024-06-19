@@ -10,12 +10,15 @@
 a {
   text-decoration: none;
 }
+
 a:link {
   color: #428dff;
 }
+
 a:visited {
   color: #78aeff;
 }
+
 a:hover {
   color: #b6d3ff;
 }
@@ -23,6 +26,7 @@ a:hover {
 .button-links a {
   color: #ffffff;
 }
+
 .button-links a:hover {
   color: #b6d3ff;
 }
@@ -61,8 +65,4 @@ span.bg {
   background-size: cover;
   background-color: white;
   transform: scale(1);
-}
-
-div.v-theme--dark span.bg {
-  background: url('https://wallpaperaccess.com/full/3996769.jpg') no-repeat center center;
 }
