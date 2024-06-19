@@ -6,8 +6,8 @@ module.exports = {
   },
   extends: ['@nuxtjs', 'plugin:nuxt/recommended', 'plugin:vue/recommended'],
   plugins: ['vue', 'nuxt'],
-  // add your custom rules here
   rules: {
-    'nuxt/no-cjs-in-config': 'off'
+    'nuxt/no-cjs-in-config': 'off',
+    'vue/multi-word-component-names': 'off' // Disable multi-word component names rule.
   }
 }
