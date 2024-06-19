@@ -40,25 +40,31 @@ useScriptTag(
         In order to provide you the best possible experience on my websites, I need to collect and
         process certain information. Depending on your use of the Services, that may include:
         <v-list-item>
-          <li>
-            Contact me via email — for example, when you ask for support, send me questions or
-            comments, or report a problem, I will collect your name, email address, message, etc. I
-            use this data solely in connection with answering the queries I receive.
-          </li>
-          <li>
-            Usage data — when you visit my site, I will store: the website from which you visited me
-            from, the parts of my site you visit, the date and duration of your visit, your
-            anonymized IP address, information from the device (device type, operating system,
-            screen resolution, language, country you are located in, and web browser type) you used
-            during your visit, and more. I process this usage data in Matomo Analytics for
-            statistical purposes, to improve my site and to recognize and stop any misuse.
-          </li>
-          <li>
-            Cookies — I use cookies (small data files transferred onto computers or devices by
-            sites) for record-keeping purposes and to enhance functionality on my site. You may
-            deactivate or restrict the transmission of cookies by changing the settings of your web
-            browser. Cookies that are already stored may be deleted at any time.
-          </li>
+          <ul>
+            <li>
+              Contact me via email — for example, when you ask for support, send me questions or
+              comments, or report a problem, I will collect your name, email address, message, etc.
+              I use this data solely in connection with answering the queries I receive.
+            </li>
+          </ul>
+          <ul>
+            <li>
+              Usage data — when you visit my site, I will store: the website from which you visited
+              me from, the parts of my site you visit, the date and duration of your visit, your
+              anonymized IP address, information from the device (device type, operating system,
+              screen resolution, language, country you are located in, and web browser type) you
+              used during your visit, and more. I process this usage data in Matomo Analytics for
+              statistical purposes, to improve my site and to recognize and stop any misuse.
+            </li>
+          </ul>
+          <ul>
+            <li>
+              Cookies — I use cookies (small data files transferred onto computers or devices by
+              sites) for record-keeping purposes and to enhance functionality on my site. You may
+              deactivate or restrict the transmission of cookies by changing the settings of your
+              web browser. Cookies that are already stored may be deleted at any time.
+            </li>
+          </ul>
         </v-list-item>
       </v-list-item>
 
@@ -98,9 +104,9 @@ useScriptTag(
         <v-table>
           <thead>
             <tr>
-              <th class="text-left">Subprocessor</th>
-              <th class="text-left">Data location and security</th>
-              <th class="text-left">Service</th>
+              <th class="text-left" scope="col">Subprocessor</th>
+              <th class="text-left" scope="col">Data location and security</th>
+              <th class="text-left" scope="col">Service</th>
             </tr>
           </thead>
           <tbody>
@@ -120,7 +126,7 @@ useScriptTag(
         you with the services or as otherwise set forth in this Policy. I will also retain and use
         this information as necessary for the purposes set out in this Policy and to the extent
         necessary to comply with my legal obligations, resolve disputes, enforce my agreements and
-        protect HThompson’s legal rights. I also collect and maintain aggregated, anonymized or
+        protect HThompson's legal rights. I also collect and maintain aggregated, anonymized or
         pseudonymized information which I may retain indefinitely to protect the safety and security
         of my Site, improve my Services or comply with legal obligations.
       </v-list-item>
