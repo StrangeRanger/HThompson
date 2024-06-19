@@ -11,9 +11,7 @@ const menu = ref(false)
       <span class="bg" />
       <v-app-bar class="py-1 px-6 toolbar" :elevation="3" color="#141414">
         <v-toolbar-title class="a-href-link">
-          <NuxtLink to="/">
-            HThompson
-          </NuxtLink>
+          <NuxtLink to="/"> HThompson </NuxtLink>
         </v-toolbar-title>
 
         <v-spacer />
@@ -38,8 +36,10 @@ const menu = ref(false)
       </v-main>
 
       <v-footer :elevation="3" color="#141414" class="justify-center">
-        <i>Site made by Hunter T. You can find the source code on my
-          <a href="https://github.com/StrangeRanger/HThompson" target="_blank">Github.</a></i>
+        <i
+          >Site made by Hunter T. You can find the source code on my
+          <a href="https://github.com/StrangeRanger/HThompson" target="_blank">Github.</a></i
+        >
       </v-footer>
     </v-app>
   </NuxtLayout>

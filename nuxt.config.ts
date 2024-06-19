@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         // @ts-expect-error
         config.plugins.push(vuetify({ autoImport: true }))
       })
-    },
+    }
   ],
   plugins: [{ src: '~/plugins/vue-matomo.js', mode: 'client' }],
   vite: {
