@@ -25,7 +25,7 @@
           necessitated a complete overhaul of my web server, I seized this challenge as an
           opportunity for reinvention. This led to a significant rebranding: transitioning from
           randomserver.xyz to hthompson.dev. Embracing this change, I redeveloped the main webpage
-          with Vue.js, aligning the site’s aesthetic with a more professional outlook.
+          with Vue.js, aligning the site's aesthetic with a more professional outlook.
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>

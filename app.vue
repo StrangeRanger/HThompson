@@ -46,15 +46,20 @@ let menu = ref(false)
 </template>
 
 <style scoped>
+.v-main {
+  background-image: url('/assets/images/3996769.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  padding-top: 73px;
+}
+
 .toolbar {
   font-size: 26px;
   font-weight: bold;
   border-bottom: 1px solid #656464;
   min-height: 65px;
-}
-
-.v-main {
-  padding-top: 73px;
 }
 
 .v-footer {
