@@ -46,8 +46,7 @@ const array = [
     <p class="text-left">
       Welcome to the gateway of HThompson! This is the central hub of my website, connecting to an
       array of subdomains, each with a unique and specific purpose. Here, you'll find links to my
-      various projects, professional portfolio, and much more. Designed to inspire and inform, this
-      website reflects my journey in the ever-evolving digital landscape.
+      various projects, professional portfolio, and much more.
     </p>
     <br />
     <v-container class="button-links">
