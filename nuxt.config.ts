@@ -3,9 +3,11 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   build: {
     transpile: ['vuetify']
   },
+
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
@@ -14,7 +16,9 @@ export default defineNuxtConfig({
       })
     }
   ],
+
   plugins: [{ src: '~/plugins/vue-matomo.js', mode: 'client' }],
+
   vite: {
     vue: {
       template: {
@@ -22,5 +26,7 @@ export default defineNuxtConfig({
       }
     }
   },
-  css: ['~/assets/css/main.css']
+
+  css: ['~/assets/css/main.css'],
+  compatibilityDate: '2024-08-18'
 })
