@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import MenuDrawer from '@/components/Header/MenuDrawer.vue'
 
 const menu = ref(false)
 </script>
@@ -19,7 +18,7 @@ const menu = ref(false)
         <v-app-bar-nav-icon @click="menu = !menu" />
       </v-app-bar>
 
-      <MenuDrawer v-model="menu" />
+      <AppMenuDrawer v-model="menu" />
 
       <v-main>
         <v-sheet
