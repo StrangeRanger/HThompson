@@ -21,7 +21,6 @@ export default defineNuxtConfig({
       }
     }
   },
-  plugins: [{ src: '~/plugins/vue-matomo.js', mode: 'client' }],
   css: ['~/assets/css/main.css'],
   compatibilityDate: '2024-08-18'
 })
