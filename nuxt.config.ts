@@ -1,18 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
+import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
   build: {
-    transpile: ['vuetify'],
+    transpile: ["vuetify"],
   },
   modules: [
     (_options, nuxt) => {
-      nuxt.hooks.hook('vite:extendConfig', (config) => {
+      nuxt.hooks.hook("vite:extendConfig", (config) => {
         config.plugins.push(vuetify({ autoImport: true }));
       });
     },
-    '@nuxt/eslint',
+    "@nuxt/eslint",
   ],
   vite: {
     vue: {
@@ -21,6 +21,6 @@ export default defineNuxtConfig({
       },
     },
   },
-  css: ['~/assets/css/main.css'],
-  compatibilityDate: '2024-08-18',
+  css: ["~/assets/css/main.css"],
+  compatibilityDate: "2024-08-18",
 });

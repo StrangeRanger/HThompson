@@ -1,54 +1,55 @@
 <script setup lang="ts">
-const array = [
-  {
-    title: 'Wiki',
-    text: 'My wiki, containing information about me, my website, and an abundance of other things.',
-    link: 'https://wiki.hthompson.dev/',
-    icon: 'mdi-wikipedia'
-  },
-  {
-    title: 'Image Gallery',
-    text: 'Publicly hosts an assortment of images, videos, gifs, and so on.',
-    link: 'https://images.hthompson.dev/',
-    icon: 'mdi-view-gallery-outline'
-  },
-  {
-    title: 'Private Bin',
-    text: 'A minimalist, open source online pastebin where the server has zero knowledge of pasted data.',
-    link: 'https://privatebin.hthompson.dev/',
-    icon: 'mdi-content-paste'
-  },
-  {
-    title: 'File Server',
-    text: "Files that aren't located anywhere else on my website.",
-    link: 'https://files.hthompson.dev/',
-    icon: 'mdi-file'
-  },
-  {
-    title: 'PDF Gallery',
-    text: "A web app for browsing, reading and downloading eBooks I've collected.",
-    link: 'https://pdfs.hthompson.dev/',
-    icon: 'mdi-file-pdf-box'
-  },
-  {
-    title: 'RSS Bridge',
-    text: 'The RSS feed for websites missing it.',
-    link: 'https://rss-bridge.hthompson.dev/',
-    icon: 'mdi-rss'
-  }
-]
+  const array = [
+    {
+      title: 'Wiki',
+      text: 'My wiki, containing information about me, my website, and an abundance of other things.',
+      link: 'https://wiki.hthompson.dev/',
+      icon: 'mdi-wikipedia',
+    },
+    {
+      title: 'Image Gallery',
+      text: 'Publicly hosts an assortment of images, videos, gifs, and so on.',
+      link: 'https://images.hthompson.dev/',
+      icon: 'mdi-view-gallery-outline',
+    },
+    {
+      title: 'Private Bin',
+      text: 'A minimalist, open source online pastebin where the server has zero knowledge of pasted data.',
+      link: 'https://privatebin.hthompson.dev/',
+      icon: 'mdi-content-paste',
+    },
+    {
+      title: 'File Server',
+      text: "Files that aren't located anywhere else on my website.",
+      link: 'https://files.hthompson.dev/',
+      icon: 'mdi-file',
+    },
+    {
+      title: 'PDF Gallery',
+      text: "A web app for browsing, reading and downloading eBooks I've collected.",
+      link: 'https://pdfs.hthompson.dev/',
+      icon: 'mdi-file-pdf-box',
+    },
+    {
+      title: 'RSS Bridge',
+      text: 'The RSS feed for websites missing it.',
+      link: 'https://rss-bridge.hthompson.dev/',
+      icon: 'mdi-rss',
+    },
+  ];
 </script>
 
 <template>
   <div>
     <h1 class="text-h4">Welcome to my website</h1>
-    <br >
+    <br />
     <p class="text-left">
-      Welcome to the gateway of HThompson! This is the central hub of my website, connecting to an
-      array of subdomains, each with a unique and specific purpose. Here, you'll find links to my
-      various projects, professional portfolio, and much more.
+      Welcome to the gateway of HThompson! This is the central hub of my
+      website, connecting to an array of subdomains, each with a unique and
+      specific purpose. Here, you'll find links to my various projects,
+      professional portfolio, and much more.
     </p>
-    <br >
+    <br />
     <v-container class="button-links">
       <v-row>
         <v-col v-for="item in array" :key="item.title" cols="12" sm="6" md="4">
