@@ -4,7 +4,7 @@
       <v-card-title id="card-title" elevation="6"> <v-icon icon="mdi-menu" /> Menu </v-card-title>
 
       <v-list density="compact">
-        <br />
+        <br >
         <v-list-item>
           <v-btn to="/" variant="outlined" elevation="3"> Home </v-btn>
         </v-list-item>

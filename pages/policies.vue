@@ -36,7 +36,7 @@ useScriptTag(
 
       <v-list-item class="text-body-1">
         <v-list-item-title class="text-h5"> What I Collect and Receive </v-list-item-title>
-        <br />
+        <br >
         In order to provide you the best possible experience on my websites, I need to collect and
         process certain information. Depending on your use of the Services, that may include:
         <v-list-item>
@@ -70,15 +70,15 @@ useScriptTag(
 
       <v-list-item class="text-body-1">
         <v-list-item-title class="text-h5"> Opting Out </v-list-item-title>
-        <br />
+        <br >
         <p class="font-italic">If you don't see the opt out box below, please refresh the page.</p>
-        <br />
+        <br >
         <div id="matomo-opt-out" />
       </v-list-item>
 
       <v-list-item class="text-body-1">
         <v-list-item-title class="text-h5"> Your Rights </v-list-item-title>
-        <br />
+        <br >
         You have the right to be informed of Personal Data processed by HThompson, a right to
         rectification/correction, erasure and restriction of processing. You also have the right to
         ask from me a structured, common and machine-readable format of Personal Data you provided
@@ -94,13 +94,13 @@ useScriptTag(
 
       <v-list-item class="text-body-1">
         <v-list-item-title class="text-h5"> Subprocessors </v-list-item-title>
-        <br />
+        <br >
         I use a select number of trusted external service providers for certain technical data
         processing and/or service offerings. These service providers are carefully selected and meet
         high data protection and security standards. I only share information with them that is
         required for the services offered. HThompson uses the following subprocessors to process the
         data collected by our websites:
-        <br /><br />
+        <br ><br >
         <v-table>
           <thead>
             <tr>
@@ -121,7 +121,7 @@ useScriptTag(
 
       <v-list-item class="text-body-1">
         <v-list-item-title class="text-h5"> Data Retention </v-list-item-title>
-        <br />
+        <br >
         I will retain your information as long as your account is active, as necessary to provide
         you with the services or as otherwise set forth in this Policy. I will also retain and use
         this information as necessary for the purposes set out in this Policy and to the extent
@@ -133,7 +133,7 @@ useScriptTag(
 
       <v-list-item class="text-body-1">
         <v-list-item-title class="text-h5"> Contact Me </v-list-item-title>
-        <br />
+        <br >
         If you have questions or comments about this notice, you may email me at
         <a href="mailto:privacy@hthompson.dev">privacy@hthompson.dev</a>. I will never sell your
         personal data to anyone.
@@ -141,7 +141,7 @@ useScriptTag(
 
       <v-list-item class="text-body-1">
         <v-list-item-title class="text-h5"> Reusing this Privacy Policy </v-list-item-title>
-        <br />
+        <br >
         Before reading further, please, note that I am not a lawyer and do not provide legal or
         business advice. You are welcome to reuse and be inspired by this Privacy Policy (published
         under license CC BY) after making sure it complies with the way your website tracks, uses

@@ -42,13 +42,13 @@ const array = [
 <template>
   <div>
     <h1 class="text-h4">Welcome to my website</h1>
-    <br />
+    <br >
     <p class="text-left">
       Welcome to the gateway of HThompson! This is the central hub of my website, connecting to an
       array of subdomains, each with a unique and specific purpose. Here, you'll find links to my
       various projects, professional portfolio, and much more.
     </p>
-    <br />
+    <br >
     <v-container class="button-links">
       <v-row>
         <v-col v-for="item in array" :key="item.title" cols="12" sm="6" md="4">

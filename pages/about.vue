@@ -21,7 +21,7 @@
             a website; it was about mastering the intricacies of web server administration. In 2019,
             the site quickly transcended its initial purpose. It morphed into a dynamic repository
             where I could curate and showcase my creations, discoveries, and favorites.
-            <br />
+            <br >
             The year 2023 marked a pivotal moment for the site. Faced with circumstances that
             necessitated a complete overhaul of my web server, I seized this challenge as an
             opportunity for reinvention. This led to a significant rebranding: transitioning from

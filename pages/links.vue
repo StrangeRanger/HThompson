@@ -27,7 +27,7 @@ const array = [
 <template>
   <div>
     <h1 class="text-h4">My Links</h1>
-    <br />
+    <br >
     <v-container class="button-links">
       <v-row>
         <v-col v-for="item in array" :key="item.title" cols="12" sm="6" md="4">

@@ -1,6 +1,5 @@
 import VueMatomo from 'vue-matomo'
 
-// eslint-disable-next-line no-undef
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(VueMatomo, {
     host: 'https://analytics.hthompson.dev',
