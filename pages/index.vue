@@ -1,42 +1,42 @@
 <script setup lang="ts">
-  const array = [
-    {
-      title: 'Wiki',
-      text: 'My wiki, containing information about me, my website, and an abundance of other things.',
-      link: 'https://wiki.hthompson.dev/',
-      icon: 'mdi-wikipedia',
-    },
-    {
-      title: 'Image Gallery',
-      text: 'Publicly hosts an assortment of images, videos, gifs, and so on.',
-      link: 'https://images.hthompson.dev/',
-      icon: 'mdi-view-gallery-outline',
-    },
-    {
-      title: 'Private Bin',
-      text: 'A minimalist, open source online pastebin where the server has zero knowledge of pasted data.',
-      link: 'https://privatebin.hthompson.dev/',
-      icon: 'mdi-content-paste',
-    },
-    {
-      title: 'File Server',
-      text: "Files that aren't located anywhere else on my website.",
-      link: 'https://files.hthompson.dev/',
-      icon: 'mdi-file',
-    },
-    {
-      title: 'PDF Gallery',
-      text: "A web app for browsing, reading and downloading eBooks I've collected.",
-      link: 'https://pdfs.hthompson.dev/',
-      icon: 'mdi-file-pdf-box',
-    },
-    {
-      title: 'RSS Bridge',
-      text: 'The RSS feed for websites missing it.',
-      link: 'https://rss-bridge.hthompson.dev/',
-      icon: 'mdi-rss',
-    },
-  ];
+const array = [
+  {
+    title: "Wiki",
+    text: "My wiki, containing information about me, my website, and an abundance of other things.",
+    link: "https://wiki.hthompson.dev/",
+    icon: "mdi-wikipedia",
+  },
+  {
+    title: "Image Gallery",
+    text: "Publicly hosts an assortment of images, videos, gifs, and so on.",
+    link: "https://images.hthompson.dev/",
+    icon: "mdi-view-gallery-outline",
+  },
+  {
+    title: "Private Bin",
+    text: "A minimalist, open source online pastebin where the server has zero knowledge of pasted data.",
+    link: "https://privatebin.hthompson.dev/",
+    icon: "mdi-content-paste",
+  },
+  {
+    title: "File Server",
+    text: "Files that aren't located anywhere else on my website.",
+    link: "https://files.hthompson.dev/",
+    icon: "mdi-file",
+  },
+  {
+    title: "PDF Gallery",
+    text: "A web app for browsing, reading and downloading eBooks I've collected.",
+    link: "https://pdfs.hthompson.dev/",
+    icon: "mdi-file-pdf-box",
+  },
+  {
+    title: "RSS Bridge",
+    text: "The RSS feed for websites missing it.",
+    link: "https://rss-bridge.hthompson.dev/",
+    icon: "mdi-rss",
+  },
+];
 </script>
 
 <template>

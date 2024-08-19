@@ -43,10 +43,10 @@
 </template>
 
 <style scoped>
-  h1 {
-    text-align: center;
-    font-size: 3rem;
-    margin: 0;
-    padding: 0;
-  }
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin: 0;
+  padding: 0;
+}
 </style>
