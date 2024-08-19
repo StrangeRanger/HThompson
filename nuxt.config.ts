@@ -17,16 +17,22 @@ export default defineNuxtConfig({
   ],
   security: {
     headers: {
+      crossOriginEmbedderPolicy: 'unsafe-none',
       contentSecurityPolicy: {
         "default-src": ["'self'", "https://analytics.hthompson.dev"],
         "script-src": [
           "'self'",
+          "https:",
+          "'unsafe-inline'",
           "https://analytics.hthompson.dev",
           "https://files.hthompson.dev/scripts/tracking.js",
           "https://static.cloudflareinsights.com",
+          "'nonce-{{nonce}}'",
+          "'strict-dynamic'",
+          "'unsafe-eval'",
         ],
         "style-src": ["'self'", "'unsafe-inline'"],
-        "img-src": ["'self'", "blob:"],
+        "img-src": ["'self'", "data:", "blob:"],
         "base-uri": ["'none'"],
         "object-src": ["'none'"],
         "upgrade-insecure-requests": true
