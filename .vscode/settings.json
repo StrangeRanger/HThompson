@@ -9,6 +9,8 @@
         "pseudonymized",
         "subprocessor",
         "subprocessors",
-        "vueuse"
+        "vueuse",
+        "nosniff",
+        "SAMEORIGIN",
     ]
 }
