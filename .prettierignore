@@ -1,0 +1,71 @@
+# Node.js modules
+node_modules/
+
+# Nuxt build and output directories
+.nuxt/
+dist/
+
+# Static assets (images, fonts, etc.)
+static/
+public/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Git files
+.git/
+.gitignore
+
+# Configuration files (if you don’t want them formatted)
+.prettierrc
+.eslintrc
+.vscode/
+.editorconfig
+
+# Ignoring specific config files or directories (optional, based on your project structure)
+package-lock.json
+yarn.lock
+*.lock
+
+# Assets and other binary files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.webp
+*.mp4
+*.mp3
+*.wav
+*.ogg
+*.flac
+*.ttf
+*.woff
+*.woff2
+*.eot
+*.pdf
+*.zip
+*.tar
+*.gz
+*.bz2
+*.rar
+*.7z
+
+# Coverage reports (for test coverage tools)
+coverage/
+*.lcov
+
+# MacOS specific files
+.DS_Store
+
+# IDE specific files
+.idea/
+*.sublime-
