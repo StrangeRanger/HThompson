@@ -1,11 +1,10 @@
-import VueMatomo from 'vue-matomo'
+import VueMatomo from "vue-matomo";
 
-// eslint-disable-next-line no-undef
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(VueMatomo, {
-    host: 'https://analytics.hthompson.dev',
+    host: "https://analytics.hthompson.dev",
     siteId: 2,
-    trackerFileName: 'matomo',
+    trackerFileName: "matomo",
     router: nuxtApp.vueRouter, // Nuxt 3 provides the router instance
     enableLinkTracking: true,
     requireConsent: false,
@@ -16,10 +15,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     heartBeatTimerInterval: 15,
     debug: false,
     userId: undefined,
-    cookieDomain: '*.hthompson.dev',
+    cookieDomain: "*.hthompson.dev",
     domains: undefined,
     preInitActions: [],
     trackSiteSearch: false,
-    crossOrigin: undefined
-  })
-})
+    crossOrigin: undefined,
+  });
+});

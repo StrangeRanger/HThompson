@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import MenuDrawer from '@/components/Header/MenuDrawer.vue'
+import { ref } from "vue";
 
-const menu = ref(false)
+const menu = ref(false);
 </script>
 
 <template>
@@ -11,7 +10,7 @@ const menu = ref(false)
       <span class="bg" />
       <v-app-bar class="py-1 px-6 toolbar" :elevation="3" color="#141414">
         <v-toolbar-title class="a-href-link">
-          <NuxtLink to="/"> HThompson </NuxtLink>
+          <NuxtLink to="/">HThompson</NuxtLink>
         </v-toolbar-title>
 
         <v-spacer />
@@ -19,7 +18,7 @@ const menu = ref(false)
         <v-app-bar-nav-icon @click="menu = !menu" />
       </v-app-bar>
 
-      <MenuDrawer v-model="menu" />
+      <AppMenuDrawer v-model="menu" />
 
       <v-main>
         <v-sheet
@@ -36,10 +35,12 @@ const menu = ref(false)
       </v-main>
 
       <v-footer :elevation="3" color="#141414" class="justify-center">
-        <i
-          >Site made by Hunter T. You can find the source code on my
-          <a href="https://github.com/StrangeRanger/HThompson" target="_blank">Github.</a></i
-        >
+        <i>
+          Site made by Hunter T. You can find the source code on my
+          <a href="https://github.com/StrangeRanger/HThompson" target="_blank">
+            Github.
+          </a>
+        </i>
       </v-footer>
     </v-app>
   </NuxtLayout>
@@ -47,7 +48,7 @@ const menu = ref(false)
 
 <style scoped>
 .v-main {
-  background-image: url('/assets/images/3996769.jpg');
+  background-image: url("/assets/images/3996769.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
