@@ -2,6 +2,11 @@
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
+  nitro: {
+    prerender: {
+      autoSubfolderIndex: false
+    }
+  },
   devtools: { enabled: true },
   build: {
     transpile: ["vuetify"],
@@ -32,7 +37,7 @@ export default defineNuxtConfig({
           "'unsafe-eval'",
         ],
         "style-src": ["'self'", "'unsafe-inline'"],
-        "img-src": ["'self'", "data:", "blob:"],
+        "img-src": ["'self'", "blob:"],
         "base-uri": ["'none'"],
         "object-src": ["'none'"],
         "upgrade-insecure-requests": true
