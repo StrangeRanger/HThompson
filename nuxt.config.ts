@@ -41,6 +41,7 @@ export default defineNuxtConfig({
         "default-src": ["'self'", "https://analytics.hthompson.dev"],
         "img-src": ["'self'", "blob:"],
         "style-src": ["'self'", "https:", "'unsafe-inline'"],
+        "connect-src": ["'self'", "https://analytics.hthompson.dev"],
         "script-src": [
           "'self'",
           "https:",
