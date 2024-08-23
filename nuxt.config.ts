@@ -3,8 +3,12 @@ import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   plugins: [
-    process.env.NODE_ENV !== "development" ? "plugins/production/vue-matomo.client.js" : "",
-    process.env.NODE_ENV !== "development" ? "plugins/production/cloudflare.js" : "",
+    process.env.NODE_ENV !== "development"
+      ? "plugins/production/vue-matomo.client.js"
+      : "",
+    process.env.NODE_ENV !== "development"
+      ? "plugins/production/cloudflare.js"
+      : "",
   ].filter(Boolean),
   devtools: { enabled: true },
   build: {
@@ -26,11 +30,12 @@ export default defineNuxtConfig({
       meta: true, // Enables CSP as a meta tag in SSG mode
       hashScripts: true, // Enables CSP hash support for scripts in SSG mode
       hashStyles: false, // Disables CSP hash support for styles in SSG mode (recommended)
-      exportToPresets: true // Export security headers to Nitro presets
+      exportToPresets: true, // Export security headers to Nitro presets
     },
     sri: true,
     headers: {
-      crossOriginEmbedderPolicy: process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
+      crossOriginEmbedderPolicy:
+        process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
       contentSecurityPolicy: {
         "default-src": ["'self'", "https://analytics.hthompson.dev"],
         "img-src": ["'self'", "blob:"],
