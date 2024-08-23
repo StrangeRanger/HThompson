@@ -33,6 +33,7 @@ yarn-error.log*
 package-lock.json
 yarn.lock
 *.lock
+pnpm-lock.yaml
 
 # Assets and other binary files
 *.png
