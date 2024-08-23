@@ -38,6 +38,7 @@ export default defineNuxtConfig({
         "script-src": [
           "'self'",
           "https:",
+          "'unsafe-inline'",
           "'strict-dynamic'",
           "'nonce-{{nonce}}'",
           "https://analytics.hthompson.dev",
