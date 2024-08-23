@@ -2,11 +2,14 @@
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
-  nitro: {
-    prerender: {
-      autoSubfolderIndex: false
-    }
-  },
+  plugins: [
+    process.env.NODE_ENV !== "development"
+      ? "plugins/production/vue-matomo.client.js"
+      : "",
+    process.env.NODE_ENV !== "development"
+      ? "plugins/production/cloudflare.js"
+      : "",
+  ].filter(Boolean),
   devtools: { enabled: true },
   build: {
     transpile: ["vuetify"],
@@ -14,43 +17,35 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/eslint",
     "nuxt-security",
+    "@nuxt/devtools",
     (_options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {
+        // @ts-expect-error - Error exception specified in the Vuetify installation guide...
         config.plugins.push(vuetify({ autoImport: true }));
       });
     },
   ],
   security: {
+    strict: true,
+    nonce: true,
     headers: {
-      crossOriginEmbedderPolicy: 'unsafe-none',
+      crossOriginEmbedderPolicy: process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
+      crossOriginResourcePolicy: "same-site",
       contentSecurityPolicy: {
         "default-src": ["'self'", "https://analytics.hthompson.dev"],
+        "img-src": ["'self'", "blob:"],
+        "style-src": ["'self'", "https:", "'unsafe-inline'"],
         "script-src": [
           "'self'",
           "https:",
-          "'unsafe-inline'",
+          "'strict-dynamic'",
+          "'nonce-{{nonce}}'",
           "https://analytics.hthompson.dev",
           "https://files.hthompson.dev/scripts/tracking.js",
           "https://static.cloudflareinsights.com",
-          "'nonce-{{nonce}}'",
-          "'strict-dynamic'",
-          "'unsafe-eval'",
         ],
-        "style-src": ["'self'", "'unsafe-inline'"],
-        "img-src": ["'self'", "blob:"],
-        "base-uri": ["'none'"],
-        "object-src": ["'none'"],
-        "upgrade-insecure-requests": true
       },
-      permissionsPolicy: {
-        "camera": [],
-        "display-capture": [],
-        "fullscreen": [],
-        "geolocation": [],
-        "microphone": [],
-        "web-share": [],
-      },
-      referrerPolicy: "strict-origin",
+      referrerPolicy: "same-origin",
       strictTransportSecurity: {
         maxAge: 31536000,
         includeSubdomains: true,
