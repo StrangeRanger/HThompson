@@ -26,30 +26,34 @@ export default defineNuxtConfig({
     },
   ],
   security: {
-    ssg: {
-      meta: true, // Enables CSP as a meta tag in SSG mode
-      hashScripts: true, // Enables CSP hash support for scripts in SSG mode
-      hashStyles: false, // Disables CSP hash support for styles in SSG mode (recommended)
-      exportToPresets: true, // Export security headers to Nitro presets
-    },
-    sri: true,
+    strict: true,
+    nonce: true,
     headers: {
-      crossOriginEmbedderPolicy:
-        process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
+      crossOriginEmbedderPolicy: process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
+      crossOriginResourcePolicy: "same-site",
       contentSecurityPolicy: {
         "default-src": ["'self'", "https://analytics.hthompson.dev"],
         "img-src": ["'self'", "blob:"],
-        "script-src-attr": ["'none'"],
         "style-src": ["'self'", "https:", "'unsafe-inline'"],
         "script-src": [
           "'self'",
           "https:",
-          "strict-dynamic",
+          "'strict-dynamic'",
+          "'nonce-{{nonce}}'",
           "https://analytics.hthompson.dev",
           "https://files.hthompson.dev/scripts/tracking.js",
           "https://static.cloudflareinsights.com",
         ],
       },
+      referrerPolicy: "same-origin",
+      strictTransportSecurity: {
+        maxAge: 31536000,
+        includeSubdomains: true,
+        preload: true,
+      },
+      xContentTypeOptions: "nosniff",
+      xFrameOptions: "SAMEORIGIN",
+      xXSSProtection: "1; mode=block",
     },
   },
   vite: {
