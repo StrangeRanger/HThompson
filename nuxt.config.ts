@@ -28,9 +28,15 @@ export default defineNuxtConfig({
   security: {
     strict: true,
     nonce: true,
+    corsHandler: {
+      origin: ["https://hthompson.dev", "https://*.hthompson.dev"],
+    },
+    allowedMethodsRestricter: {
+      methods: ["GET"],
+    },
     headers: {
-      crossOriginEmbedderPolicy: process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
-      crossOriginResourcePolicy: "same-site",
+      crossOriginEmbedderPolicy:
+        process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
       contentSecurityPolicy: {
         "default-src": ["'self'", "https://analytics.hthompson.dev"],
         "img-src": ["'self'", "blob:"],
