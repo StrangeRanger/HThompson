@@ -32,7 +32,7 @@ export default defineNuxtConfig({
       origin: ["https://hthompson.dev", "https://*.hthompson.dev"],
     },
     allowedMethodsRestricter: {
-      methods: ["GET"],
+      methods: ["GET", "HEAD"],
     },
     headers: {
       crossOriginEmbedderPolicy:
