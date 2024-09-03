@@ -38,7 +38,7 @@ export default defineNuxtConfig({
       crossOriginEmbedderPolicy:
         process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
       contentSecurityPolicy: {
-        "default-src": ["'self'", "https://analytics.hthompson.dev"],
+        "default-src": ["'none'"],
         "img-src": ["'self'", "blob:"],
         "style-src": ["'self'", "https:", "'unsafe-inline'"],
         "connect-src": ["'self'", "https://analytics.hthompson.dev"],
