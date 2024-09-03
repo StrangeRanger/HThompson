@@ -21,4 +21,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     trackSiteSearch: false,
     crossOrigin: undefined,
   });
+
+  window._paq.push(["trackPageView"]);
+  window._paq.push(["enableLinkTracking"]);
 });

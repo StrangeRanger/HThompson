@@ -32,7 +32,7 @@ export default defineNuxtConfig({
       origin: ["https://hthompson.dev", "https://*.hthompson.dev"],
     },
     allowedMethodsRestricter: {
-      methods: ["GET"],
+      methods: ["GET", "HEAD", "OPTIONS"],
     },
     headers: {
       crossOriginEmbedderPolicy:
@@ -41,6 +41,7 @@ export default defineNuxtConfig({
         "default-src": ["'self'", "https://analytics.hthompson.dev"],
         "img-src": ["'self'", "blob:"],
         "style-src": ["'self'", "https:", "'unsafe-inline'"],
+        "connect-src": ["'self'", "https://analytics.hthompson.dev"],
         "script-src": [
           "'self'",
           "https:",

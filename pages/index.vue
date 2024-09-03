@@ -25,16 +25,22 @@ const array = [
     icon: "mdi-file",
   },
   {
-    title: "PDF Gallery",
-    text: "A web app for browsing, reading and downloading eBooks I've collected.",
-    link: "https://pdfs.hthompson.dev/",
-    icon: "mdi-file-pdf-box",
-  },
-  {
     title: "RSS Bridge",
     text: "The RSS feed for websites missing it.",
     link: "https://rss-bridge.hthompson.dev/",
     icon: "mdi-rss",
+  },
+  {
+    title: "Custom Unix Terminal",
+    text: "Configurations that went in to custumizing the look, feel, and functionality of my terminal.",
+    link: "https://cut.hthompson.dev/",
+    icon: "mdi-console",
+  },
+  {
+    title: "Bash Style Guide",
+    text: "A style guide for writing safe, predictable, and maintainable bash scripts.",
+    link: "https://bsg.hthompson.dev/",
+    icon: "mdi-bash",
   },
 ];
 </script>
