@@ -36,7 +36,10 @@ const menu = ref(false);
 
       <v-footer :elevation="3" color="#141414" class="justify-center">
         <i>
-          Site made by <a href="https://github.com/StrangeRanger" target="_blank">Hunter T.</a>
+          Site made by
+          <a href="https://github.com/StrangeRanger" target="_blank"
+            >Hunter T.</a
+          >
         </i>
       </v-footer>
     </v-app>
