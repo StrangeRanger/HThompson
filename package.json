@@ -16,7 +16,7 @@
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "@nuxt/eslint": "^0.5.5",
-    "nuxt": "^3.12.4",
+    "nuxt": "^3.13.1",
     "nuxt-security": "^2.0.0-rc.9",
     "vue": "latest",
     "vue-matomo": "^4.2.0"
