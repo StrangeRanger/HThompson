@@ -17,9 +17,11 @@ const subprocessorsTable = [
   },
 ];
 
-useScriptTag(
-  "https://analytics.hthompson.dev/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=auto&showIntro=1",
-);
+if (process.env.NODE_ENV !== "development") {
+  useScriptTag(
+      "https://analytics.hthompson.dev/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=auto&showIntro=1",
+  );
+}
 </script>
 
 <template>
