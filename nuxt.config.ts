@@ -63,6 +63,7 @@ export default defineNuxtConfig({
       xFrameOptions: "SAMEORIGIN",
       xXSSProtection: "1; mode=block",
     },
+    hidePoweredBy: true,
   },
   vite: {
     vue: {
@@ -73,4 +74,5 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/css/main.css"],
   compatibilityDate: "2024-08-18",
+  telemetry: false,
 });
