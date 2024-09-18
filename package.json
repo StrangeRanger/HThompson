@@ -22,7 +22,7 @@
     "vue-matomo": "^4.2.0"
   },
   "devDependencies": {
-    "@vueuse/core": "^11.0.3",
+    "@vueuse/core": "^11.1.0",
     "prettier": "^3.3.3",
     "vite-plugin-vuetify": "^2.0.4",
     "vuetify": "^3.7.1"
