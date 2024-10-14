@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
-    "@nuxt/eslint": "^0.5.7",
+    "@nuxt/eslint": "^0.6.0",
     "nuxt": "^3.13.2",
     "nuxt-security": "^2.0.0",
     "vue": "latest",
