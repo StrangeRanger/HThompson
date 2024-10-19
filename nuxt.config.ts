@@ -2,14 +2,6 @@
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
-  plugins: [
-    process.env.NODE_ENV !== "development"
-      ? "plugins/production/vue-matomo.client.js"
-      : "",
-    process.env.NODE_ENV !== "development"
-      ? "plugins/production/cloudflare.js"
-      : "",
-  ].filter(Boolean),
   devtools: { enabled: true },
   build: {
     transpile: ["vuetify"],
@@ -20,7 +12,6 @@ export default defineNuxtConfig({
     "@nuxt/devtools",
     (_options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {
-        // @ts-expect-error - Error exception specified in the Vuetify installation guide...
         config.plugins.push(vuetify({ autoImport: true }));
       });
     },
@@ -73,6 +64,5 @@ export default defineNuxtConfig({
     },
   },
   css: ["~/assets/css/main.css"],
-  compatibilityDate: "2024-08-18",
   telemetry: false,
 });
