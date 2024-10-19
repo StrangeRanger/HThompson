@@ -2,6 +2,14 @@
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
+  plugins: [
+    process.env.NODE_ENV !== "development"
+      ? "plugins/production/vue-matomo.client.js"
+      : "",
+    process.env.NODE_ENV !== "development"
+      ? "plugins/production/cloudflare.js"
+      : "",
+  ].filter(Boolean),
   devtools: { enabled: true },
   build: {
     transpile: ["vuetify"],
