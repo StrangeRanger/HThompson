@@ -7,7 +7,7 @@ export default defineNuxtConfig({
       ? "plugins/production/vue-matomo.client.js"
       : "",
     process.env.NODE_ENV !== "development"
-      ? "plugins/production/cloudflare.js"
+      ? "plugins/production/cloudflare.client.js"
       : "",
   ].filter(Boolean),
 
