@@ -31,6 +31,12 @@ const array = [
     icon: "mdi-rss",
   },
   {
+    title: "Project Tracker",
+    text: "A comprehensive list of projects I'm working on, have completed, or have abandoned.",
+    link: "https://wiki.hthompson.dev/en/project-tracker/",
+    icon: "mdi-source-branch",
+  },
+  {
     title: "Custom Unix Terminal",
     text: "Configurations that went in to custumizing the look, feel, and functionality of my terminal.",
     link: "https://cut.hthompson.dev/",
@@ -47,13 +53,13 @@ const array = [
 
 <template>
   <div>
-    <h1 class="text-h4">Welcome to my website</h1>
+    <h1 class="text-h4">Welcome to HThompson</h1>
     <br />
     <p class="text-left">
-      Welcome to the gateway of HThompson! This is the central hub of my
-      website, connecting to an array of subdomains, each with a unique and
-      specific purpose. Here, you'll find links to my various projects,
-      professional portfolio, and much more.
+      I'm Hunter, and this is the central hub of my online presence. Here, you
+      can explore my projects, view my professional portfolio, use the services
+      I host, and discover more about who I am and what I do. Feel free to
+      browse around and enjoy your visit!
     </p>
     <br />
     <v-container class="button-links">
