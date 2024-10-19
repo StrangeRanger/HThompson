@@ -13,6 +13,8 @@
             me to consider a career in Astrophysics. I'm also an avid music
             enthusiast and enjoy immersing myself in the diverse worlds of
             anime.
+            <br />
+            <i>(Outdated/to be updated)</i>
           </v-expansion-panel-text>
         </v-expansion-panel>
         <v-spacer />

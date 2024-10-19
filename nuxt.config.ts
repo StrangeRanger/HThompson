@@ -7,24 +7,27 @@ export default defineNuxtConfig({
       ? "plugins/production/vue-matomo.client.js"
       : "",
     process.env.NODE_ENV !== "development"
-      ? "plugins/production/cloudflare.js"
+      ? "plugins/production/cloudflare.client.js"
       : "",
   ].filter(Boolean),
+
   devtools: { enabled: true },
+
   build: {
     transpile: ["vuetify"],
   },
+
   modules: [
     "@nuxt/eslint",
     "nuxt-security",
     "@nuxt/devtools",
     (_options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {
-        // @ts-expect-error - Error exception specified in the Vuetify installation guide...
         config.plugins.push(vuetify({ autoImport: true }));
       });
     },
   ],
+
   security: {
     strict: true,
     nonce: true,
@@ -65,6 +68,7 @@ export default defineNuxtConfig({
     },
     hidePoweredBy: true,
   },
+
   vite: {
     vue: {
       template: {
@@ -72,7 +76,8 @@ export default defineNuxtConfig({
       },
     },
   },
+
   css: ["~/assets/css/main.css"],
-  compatibilityDate: "2024-08-18",
   telemetry: false,
+  compatibilityDate: "2024-10-19",
 });
