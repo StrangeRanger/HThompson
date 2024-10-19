@@ -10,10 +10,13 @@ export default defineNuxtConfig({
       ? "plugins/production/cloudflare.js"
       : "",
   ].filter(Boolean),
+
   devtools: { enabled: true },
+
   build: {
     transpile: ["vuetify"],
   },
+
   modules: [
     "@nuxt/eslint",
     "nuxt-security",
@@ -24,6 +27,7 @@ export default defineNuxtConfig({
       });
     },
   ],
+
   security: {
     strict: true,
     nonce: true,
@@ -64,6 +68,7 @@ export default defineNuxtConfig({
     },
     hidePoweredBy: true,
   },
+
   vite: {
     vue: {
       template: {
@@ -71,6 +76,8 @@ export default defineNuxtConfig({
       },
     },
   },
+
   css: ["~/assets/css/main.css"],
   telemetry: false,
+  compatibilityDate: "2024-10-19",
 });
