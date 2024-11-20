@@ -28,12 +28,25 @@ export default defineNuxtConfig({
     },
   ],
 
+  routeRules: {
+    "/*": {
+      headers: {
+        "Access-Control-Allow-Origin": [
+          "https://hthompson.dev",
+          "https://*.hthompson.dev",
+        ],
+      },
+    },
+  },
+
   security: {
+    enabled: true,
     strict: true,
     nonce: true,
-    corsHandler: {
-      origin: ["https://hthompson.dev", "https://*.hthompson.dev"],
-    },
+    corsHandler: false,
+    //corsHandler: {
+    //  origin: ["https://hthompson.dev", "https://*.hthompson.dev"],
+    //},
     allowedMethodsRestricter: {
       methods: ["GET", "HEAD", "OPTIONS"],
     },
@@ -41,7 +54,7 @@ export default defineNuxtConfig({
       crossOriginEmbedderPolicy:
         process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
       contentSecurityPolicy: {
-        "default-src": ["'none'"],
+        "default-src": ["'self'"],
         "img-src": ["'self'", "blob:"],
         "style-src": ["'self'", "https:", "'unsafe-inline'"],
         "connect-src": ["'self'", "https://analytics.hthompson.dev"],
