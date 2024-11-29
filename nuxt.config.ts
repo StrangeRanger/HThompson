@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "nuxt-security",
     "@nuxt/devtools",
+    "@nuxtjs/seo",
     (_options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {
         config.plugins.push(vuetify({ autoImport: true }));
