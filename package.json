@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "@nuxtjs/seo": "^2.0.2",
     "@vueuse/core": "^11.3.0",
     "nuxt": "^3.14.1592",
     "nuxt-security": "^2.1.4",
@@ -22,9 +23,9 @@
     "vue-matomo": "^4.2.0"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^0.7.1",
-    "eslint": "^9.15.0",
-    "prettier": "^3.3.3",
+    "@nuxt/eslint": "^0.7.2",
+    "eslint": "^9.16.0",
+    "prettier": "^3.4.1",
     "vite-plugin-vuetify": "^2.0.4",
     "vuetify": "^3.7.4"
   },
