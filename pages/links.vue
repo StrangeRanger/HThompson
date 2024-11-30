@@ -1,18 +1,18 @@
 <script setup lang="ts">
 const array = [
   {
-    title: "Twitter",
-    text: "My Twitter account.",
-    link: "https://twitter.com/_Hunter_T_",
-    icon: "mdi-twitter",
-    color: "#1DA1F2",
+    title: "Bluesky",
+    text: "My Bluesky account.",
+    link: "https://bsky.app/profile/hthompson.dev",
+    icon: "mdi-account",
+    color: "#4f9bd9",
   },
   {
-    title: "SoundCloud",
-    text: "My SoundCloud account.",
-    link: "https://soundcloud.com/SubDubZero",
-    icon: "mdi-soundcloud",
-    color: "#FF5500",
+    title: "Twitter (X)",
+    text: "My Twitter (X) account.",
+    link: "https://x.com/_Hunter_T_",
+    icon: "mdi-twitter",
+    color: "#1DA1F2",
   },
   {
     title: "GitHub",
@@ -20,6 +20,13 @@ const array = [
     link: "https://github.com/StrangeRanger",
     icon: "mdi-github",
     color: "#ffffff",
+  },
+  {
+    title: "SoundCloud",
+    text: "My SoundCloud account.",
+    link: "https://soundcloud.com/SubDubZero",
+    icon: "mdi-soundcloud",
+    color: "#FF5500",
   },
 ];
 </script>
