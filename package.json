@@ -23,7 +23,7 @@
     "vue-matomo": "^4.2.0"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^0.7.2",
+    "@nuxt/eslint": "^0.7.3",
     "eslint": "^9.17.0",
     "prettier": "^3.4.2",
     "vite-plugin-vuetify": "^2.0.4",
