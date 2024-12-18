@@ -22,6 +22,8 @@ export default defineNuxtConfig({
     "nuxt-security",
     "@nuxt/devtools",
     "@nuxtjs/seo",
+    "@nuxt/scripts",
+    "@nuxtjs/turnstile",
     (_options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {
         config.plugins.push(vuetify({ autoImport: true }));
@@ -81,6 +83,19 @@ export default defineNuxtConfig({
       xXSSProtection: "1; mode=block",
     },
     hidePoweredBy: true,
+  },
+
+  turnstile: {
+    siteKey: '0x4AAAAAAA3DX-6IdxB60rNn',
+  },
+
+  runtimeConfig: {
+    turnstile: {
+      // This can be overridden at runtime via the NUXT_TURNSTILE_SECRET_KEY
+      // environment variable.
+      //secretKey: '',
+      secretKeyPath: 'turnstile.secretKey',
+    },
   },
 
   vite: {
