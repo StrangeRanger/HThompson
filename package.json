@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.7.0",
-    "@nuxt/eslint": "^0.7.5",
+    "@nuxt/eslint": "^1.0.0",
     "eslint": "^9.19.0",
     "prettier": "^3.4.2",
     "vite-plugin-vuetify": "^2.0.4",
