@@ -28,7 +28,7 @@
     "eslint": "^9.23.0",
     "prettier": "^3.5.3",
     "vite-plugin-vuetify": "^2.1.0",
-    "vuetify": "^3.7.19"
+    "vuetify": "^3.8.1"
   },
   "packageManager": "pnpm@10.6.5"
 }
