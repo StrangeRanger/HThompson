@@ -33,7 +33,8 @@ export default defineNuxtConfig({
   routeRules: {
     "/*": {
       headers: {
-        "Access-Control-Allow-Origin": "https://hthompson.dev, https://*.hthompson.dev"
+        "Access-Control-Allow-Origin":
+          "https://hthompson.dev, https://*.hthompson.dev",
       },
     },
   },
@@ -51,7 +52,9 @@ export default defineNuxtConfig({
     },
     headers: {
       crossOriginEmbedderPolicy:
-        process.env.NODE_ENV === "development" ? "unsafe-none" : "credentialless",
+        process.env.NODE_ENV === "development"
+          ? "unsafe-none"
+          : "credentialless",
       contentSecurityPolicy: {
         "default-src": ["'self'"],
         "img-src": ["'self'", "blob:"],
@@ -67,6 +70,7 @@ export default defineNuxtConfig({
           "https://files.hthompson.dev/scripts/tracking.js",
           "https://static.cloudflareinsights.com",
         ],
+        "script-src-attr": ["'unsafe-inline'"],
       },
       referrerPolicy: "same-origin",
       strictTransportSecurity: {
