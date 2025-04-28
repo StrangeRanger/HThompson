@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     (_options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {
+        config.plugins = config.plugins || [];
         config.plugins.push(vuetify({ autoImport: true }));
       });
     },
@@ -32,10 +33,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/*": {
       headers: {
-        "Access-Control-Allow-Origin": [
-          "https://hthompson.dev",
-          "https://*.hthompson.dev",
-        ],
+        "Access-Control-Allow-Origin": "https://hthompson.dev, https://*.hthompson.dev"
       },
     },
   },
@@ -45,15 +43,15 @@ export default defineNuxtConfig({
     strict: true,
     nonce: true,
     corsHandler: false,
-    //corsHandler: {
+    // corsHandler: {
     //  origin: ["https://hthompson.dev", "https://*.hthompson.dev"],
-    //},
+    // },
     allowedMethodsRestricter: {
       methods: ["GET", "HEAD", "OPTIONS"],
     },
     headers: {
       crossOriginEmbedderPolicy:
-        process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
+        process.env.NODE_ENV === "development" ? "unsafe-none" : "credentialless",
       contentSecurityPolicy: {
         "default-src": ["'self'"],
         "img-src": ["'self'", "blob:"],
