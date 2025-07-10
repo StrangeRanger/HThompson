@@ -69,8 +69,12 @@ export default defineNuxtConfig({
           "https://analytics.hthompson.dev",
           "https://files.hthompson.dev/scripts/tracking.js",
           "https://static.cloudflareinsights.com",
+          "https://challenges.cloudflare.com",
         ],
         "script-src-attr": ["'unsafe-inline'"],
+      },
+      permissionsPolicy: {
+        'picture-in-picture': ['self', '"https://challenges.cloudflare.com"']
       },
       referrerPolicy: "same-origin",
       strictTransportSecurity: {
