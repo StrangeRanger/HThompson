@@ -12,6 +12,11 @@
           <v-btn to="/" variant="outlined" elevation="3">Home</v-btn>
         </v-list-item>
         <v-list-item>
+          <v-btn to="/project-tracker" variant="outlined" elevation="3"
+            >Project Tracker</v-btn
+          >
+        </v-list-item>
+        <v-list-item>
           <v-btn to="/about" variant="outlined" elevation="3">About</v-btn>
         </v-list-item>
         <v-list-item>
