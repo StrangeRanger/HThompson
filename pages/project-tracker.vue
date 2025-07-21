@@ -118,7 +118,7 @@ const badgeDescriptions = [
       plan to work on, and have completed. Next to each project, you will find
       details specifying the type of project, its current status, and the date
       of the last commit. For explanations of the badges used here, please refer
-      to the <a href="#badge-descriptions">Badge Descriptions</a> section at the
+      to the <NuxtLink :to="{ hash: '#badge-descriptions'}">Badge Descriptions</NuxtLink> section at the
       bottom of this page.
     </p>
     <br />
