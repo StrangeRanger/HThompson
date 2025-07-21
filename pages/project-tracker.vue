@@ -41,7 +41,7 @@ const headers = [
         </template>
         <template v-slot:item.status="{ item }">
           <v-chip :color="getStatusColors(item.status)" variant="outlined">{{
-            item.statusa
+            item.status
           }}</v-chip>
         </template>
         <template v-slot:item.lastCommitRelative="{ item }">
