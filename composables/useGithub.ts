@@ -4,8 +4,8 @@ const octokit = new Octokit();
 type repoStatus =
   | "personal"
   | "active"
-  | "inactive"
   | "maintained"
+  | "inactive"
   | "unsupported"
   | "concept"
   | "wip"
@@ -53,19 +53,20 @@ function formatTimeSinceLastCommit(dateString: string): string {
 
 export function getStatusColors(status: string): string {
   const colorMap: Record<string, string> = {
+    personal: "teal",
     active: "green",
+    maintained: "green-lighten-1",
     inactive: "amber-darken-2",
-    abandoned: "red",
-    archived: "grey",
-    maintained: "blue",
+    finished: "blue",
     unsupported: "deep-orange",
     concept: "purple",
     wip: "cyan",
-    suspended: "pink",
-    moved: "indigo",
-    unspecified: "grey-darken-1",
-    unknown: "grey-darken-3",
-    personal: "teal",
+    suspended: "red-darken-3",
+    abandoned: "red",
+    archived: "grey-darken-1",
+    moved: "blue-darken-2",
+    unspecified: "grey-lighten-1",
+    unknown: "blue-grey-darken-1",
   };
 
   return colorMap[status] || "grey";
