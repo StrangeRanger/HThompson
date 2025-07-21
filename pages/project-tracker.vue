@@ -95,7 +95,7 @@ const badgeDescriptions = [
     row: 13,
     statusBadge: "unspecified",
     description:
-      "The project status is not explicitly defined or documented. This status is usually reserved for projects that don't need a specific status. For example, a GitHub user's public profile page will have this status, as it's not a traditional software project.",
+      "The project status is not explicitly defined or documented. This status is usually reserved for projects that don't need a specific status. For example, a <a href='https://github.com/StrangeRanger/StrangeRanger' target='_blank'>GitHub user's public profile page</a> will have this status, as it's not a traditional software project.",
   },
   {
     row: 14,
@@ -176,7 +176,7 @@ const badgeDescriptions = [
                   {{ item.statusBadge }}
                 </v-chip>
               </td>
-              <td>{{ item.description }}</td>
+              <td v-html="item.description"></td>
             </tr>
           </tbody>
         </v-table>
