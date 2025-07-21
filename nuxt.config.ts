@@ -59,7 +59,11 @@ export default defineNuxtConfig({
         "default-src": ["'self'"],
         "img-src": ["'self'", "blob:"],
         "style-src": ["'self'", "https:", "'unsafe-inline'"],
-        "connect-src": ["'self'", "https://analytics.hthompson.dev"],
+        "connect-src": [
+          "'self'",
+          "https://analytics.hthompson.dev",
+          "https://api.github.com",
+        ],
         "script-src": [
           "'self'",
           "https:",
@@ -74,7 +78,7 @@ export default defineNuxtConfig({
         "script-src-attr": ["'unsafe-inline'"],
       },
       permissionsPolicy: {
-        'picture-in-picture': ['self', '"https://challenges.cloudflare.com"']
+        "picture-in-picture": ["self", '"https://challenges.cloudflare.com"'],
       },
       referrerPolicy: "same-origin",
       strictTransportSecurity: {
