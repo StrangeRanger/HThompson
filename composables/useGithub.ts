@@ -6,6 +6,7 @@ type repoStatus =
   | "active"
   | "maintained"
   | "inactive"
+  | "finished"
   | "unsupported"
   | "concept"
   | "wip"
