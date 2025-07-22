@@ -113,7 +113,7 @@ export function getStatusColors(status: string): string {
   return colorMap[status] || "grey";
 }
 
-export async function fetchAllPublicRepos(username: string) {
+export async function fetchAllPublicRepos(username: string): Promise<any[]> {
   const repos: Array<any> = [];
 
   try {
