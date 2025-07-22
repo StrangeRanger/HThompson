@@ -23,14 +23,54 @@ const hardCodedStatuses: Record<string, repoStatus> = {
   "identify-root-user-logins": "moved",
 };
 
-function captializeWords(str: string): string {
+const getRepoStatus = (repo: any): repoStatus => {
+  let status: repoStatus = "unknown";
+
+  if (repo.name in hardCodedStatuses) {
+      status = hardCodedStatuses[repo.name.toLowerCase()];
+    } else if (repo.topics.includes("status-personal")) {
+      status = "personal";
+    } else if (repo.topics.includes("activity-tracked")) {
+      // Represents 90 days in milliseconds:
+      //  days * hours * minutes * seconds * milliseconds
+      const INACTIVE_THRESHOLD_MS = 90 * 24 * 60 * 60 * 1000;
+      const lastCommitDate = new Date(repo.pushed_at);
+      const currentDate = new Date();
+      const timeSinceLastCommit =
+        currentDate.getTime() - lastCommitDate.getTime();
+      status =
+        timeSinceLastCommit > INACTIVE_THRESHOLD_MS ? "inactive" : "active";
+    } else if (repo.topics.includes("status-maintained")) {
+      status = "maintained";
+    } else if (repo.topics.includes("status-unsupported")) {
+      status = "unsupported";
+    } else if (repo.topics.includes("status-concept")) {
+      status = "concept";
+    } else if (repo.topics.includes("status-wip")) {
+      status = "wip";
+    } else if (repo.topics.includes("status-suspended")) {
+      status = "suspended";
+    } else if (repo.topics.includes("status-abandoned")) {
+      status = "abandoned";
+    } else if (repo.archived || repo.topics.includes("status-archived")) {
+      status = "archived";
+    } else if (repo.topics.includes("status-moved")) {
+      status = "moved";
+    } else if (repo.topics.includes("status-unspecified")) {
+      status = "unspecified";
+    }
+
+    return status;
+};
+
+const captializeWords = (str: string): string => {
   return str
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
 
-function formatTimeSinceLastCommit(dateString: string): string {
+const formatTimeSinceLastCommit = (dateString: string): string => {
   const lastCommitDate = new Date(dateString);
   const currentDate = new Date();
   const timeDiffMs = currentDate.getTime() - lastCommitDate.getTime();
@@ -97,41 +137,7 @@ export async function fetchAllPublicRepos(username: string) {
 
   return repos
     .map((repo) => {
-      let status: repoStatus = "unknown";
-
-      if (repo.name in hardCodedStatuses) {
-        status = hardCodedStatuses[repo.name.toLowerCase()];
-      } else if (repo.topics.includes("status-personal")) {
-        status = "personal";
-      } else if (repo.topics.includes("activity-tracked")) {
-        // Represents 90 days in milliseconds:
-        //  days * hours * minutes * seconds * milliseconds
-        const INACTIVE_THRESHOLD_MS = 90 * 24 * 60 * 60 * 1000;
-        const lastCommitDate = new Date(repo.pushed_at);
-        const currentDate = new Date();
-        const timeSinceLastCommit =
-          currentDate.getTime() - lastCommitDate.getTime();
-        status =
-          timeSinceLastCommit > INACTIVE_THRESHOLD_MS ? "inactive" : "active";
-      } else if (repo.topics.includes("status-maintained")) {
-        status = "maintained";
-      } else if (repo.topics.includes("status-unsupported")) {
-        status = "unsupported";
-      } else if (repo.topics.includes("status-concept")) {
-        status = "concept";
-      } else if (repo.topics.includes("status-wip")) {
-        status = "wip";
-      } else if (repo.topics.includes("status-suspended")) {
-        status = "suspended";
-      } else if (repo.topics.includes("status-abandoned")) {
-        status = "abandoned";
-      } else if (repo.archived || repo.topics.includes("status-archived")) {
-        status = "archived";
-      } else if (repo.topics.includes("status-moved")) {
-        status = "moved";
-      } else if (repo.topics.includes("status-unspecified")) {
-        status = "unspecified";
-      }
+      const status: repoStatus = getRepoStatus(repo);
 
       return {
         name: captializeWords(repo.name.replace(/-/g, " ")),
