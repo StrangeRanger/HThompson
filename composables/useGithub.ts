@@ -63,7 +63,7 @@ const getRepoStatus = (repo: any): repoStatus => {
     return status;
 };
 
-const captializeWords = (str: string): string => {
+const capitalizeWords = (str: string): string => {
   return str
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -140,7 +140,7 @@ export async function fetchAllPublicRepos(username: string) {
       const status: repoStatus = getRepoStatus(repo);
 
       return {
-        name: captializeWords(repo.name.replace(/-/g, " ")),
+        name: capitalizeWords(repo.name.replace(/-/g, " ")),
         private: repo.private,
         url: repo.html_url,
         description: repo.description || "No description",
