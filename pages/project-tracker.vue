@@ -38,7 +38,6 @@ const badgeDescriptions = [
       "Development on the project has paused, but it remains in a stable and usable state. Future work may resume, but there are currently no active updates or enhancements.",
   },
   {
-    // TODO: Add this badge to the project tracker, as it's not currently used or defined here or in 'useGithub.ts'.
     row: 5,
     statusBadge: "finished",
     description:
@@ -162,8 +161,8 @@ const badgeDescriptions = [
         <v-table class="text-left elevation-3 table-border">
           <thead>
             <tr>
-              <th>Repo Status</th>
-              <th>Description</th>
+              <th scope="col">Repo Status</th>
+              <th scope="col">Description</th>
             </tr>
           </thead>
           <tbody>
