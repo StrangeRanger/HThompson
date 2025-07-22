@@ -151,5 +151,5 @@ export async function fetchAllPublicRepos(username: string) {
         lastCommitRelative: formatTimeSinceLastCommit(repo.pushed_at),
       };
     })
-    .filter((repo) => !repo.private); // Filter out private and archived repositories.
+    .filter((repo) => !repo.private); // Filter out private repositories.
 }
