@@ -41,7 +41,7 @@ const badgeDescriptions = [
     row: 5,
     statusBadge: "finished",
     description:
-      "The project is complete and fully functional. While no active development is planned, updates may occur if essential fixes or changes are necessary. Combines aspects of both Maintained and Unsupported statuses",
+      "The project is complete and fully functional. While no active development is planned, updates may occur if essential fixes or changes are necessary. Combines aspects of both Maintained and Unsupported statuses.",
   },
   {
     row: 6,
