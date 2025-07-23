@@ -76,13 +76,18 @@ export async function fetchAllPublicGists(username: string): Promise<any[]> {
     .map((gist) => {
       const status: repoStatus = getGistStatus(gist);
       const files: string[] = Object.keys(gist.files || "");
-      const firstFile: string | null = files.length > 0 ? files[0] : null;
+      const firstFile: string = files.length > 0 ? files[0] : "No files found";
       const cleanedDescription = gist.description
         ? gist.description.replace(/\s*\(status:\s*[^)]*\)\s*$/i, "").trim()
         : "No description";
 
       return {
-        name: firstFile ?? gist.id,
+        name: capitalizeWords(
+          firstFile
+            .replace(/-/g, " ")
+            .replace(/_/g, " ")
+            .replace(/\.(py|md|bash|sh)/g, ""),
+        ),
         public: gist.public,
         url: gist.html_url,
         description: cleanedDescription,
