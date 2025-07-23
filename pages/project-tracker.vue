@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const username = "StrangeRanger";
-const repoProjects = await fetchAllPublicRepos(username);
+const repoProjects: any[] = await fetchAllPublicRepos(username);
+const gists: any[] = await fetchAllPublicGists(username);
+const githubProjects = [...repoProjects, ...gists];
 
 const headers = [
   { title: "Project Name", key: "name", sortable: true },
@@ -102,8 +104,9 @@ const badgeDescriptions = [
   },
 ];
 
-// For debugging purposes, you can log the fetched repositories.
+// For debugging purposes, you can log the fetched repositories and gists.
 // console.log(repoProjects);
+// console.log(gists);
 </script>
 
 <template>
@@ -122,7 +125,7 @@ const badgeDescriptions = [
     <div class="text-left">
       <v-data-table
         :headers="headers"
-        :items="repoProjects"
+        :items="githubProjects"
         :sort-by="[{ key: 'type', order: 'asc' }]"
         :items-per-page="-1"
         class="elevation-3 table-border"
@@ -141,13 +144,6 @@ const badgeDescriptions = [
           }}</v-chip>
         </template>
       </v-data-table>
-    </div>
-    <br />
-    <div>
-      <p>
-        <strong>NOTE:</strong> The list above does not currently track any Gists
-        or Contributions. These will be added at a later date.
-      </p>
     </div>
     <br />
     <v-divider></v-divider>
