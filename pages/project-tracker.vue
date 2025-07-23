@@ -119,40 +119,45 @@ const badgeDescriptions = [
       details specifying the type of project, its current status, and the date
       of the last commit. For explanations of the badges used here, please refer
       to the
-      <NuxtLink :to="{ hash: '#badge-descriptions' }"
-        >Badge Descriptions</NuxtLink
-      >
+      <NuxtLink to="#badge-descriptions">
+        <span>Badge Descriptions</span>
+      </NuxtLink>
       section at the bottom of this page.
     </p>
     <br />
     <div class="text-left">
-      <v-data-table
-        :headers="headers"
-        :items="githubProjects"
-        :sort-by="[{ key: 'type', order: 'asc' }]"
-        :items-per-page="-1"
-        class="elevation-3 table-border"
-      >
-        <template v-slot:item.name="{ item }">
-          <a :href="item.url" target="_blank">{{ item.name }}</a>
+      <ClientOnly>
+        <v-data-table
+          :headers="headers"
+          :items="githubProjects"
+          :sort-by="[{ key: 'type', order: 'asc' }]"
+          :items-per-page="-1"
+          class="elevation-3 table-border"
+        >
+          <template v-slot:item.name="{ item }">
+            <a :href="item.url" target="_blank">{{ item.name }}</a>
+          </template>
+          <template v-slot:item.status="{ item }">
+            <v-chip :color="getStatusColors(item.status)" variant="outlined">{{
+              item.status
+            }}</v-chip>
+          </template>
+          <template v-slot:item.lastCommitRelative="{ item }">
+            <v-chip color="white" variant="outlined">{{
+              item.lastCommitRelative
+            }}</v-chip>
+          </template>
+        </v-data-table>
+        <template #fallback>
+          <p>Loading data table...</p>
         </template>
-        <template v-slot:item.status="{ item }">
-          <v-chip :color="getStatusColors(item.status)" variant="outlined">{{
-            item.status
-          }}</v-chip>
-        </template>
-        <template v-slot:item.lastCommitRelative="{ item }">
-          <v-chip color="white" variant="outlined">{{
-            item.lastCommitRelative
-          }}</v-chip>
-        </template>
-      </v-data-table>
+      </ClientOnly>
     </div>
     <br />
     <v-divider></v-divider>
     <br />
     <div>
-      <template>
+      <ClientOnly>
         <h2 class="text-h5" id="badge-descriptions">Badge Descriptions</h2>
         <br />
         <v-table class="text-left elevation-3 table-border">
@@ -176,7 +181,7 @@ const badgeDescriptions = [
             </tr>
           </tbody>
         </v-table>
-      </template>
+      </ClientOnly>
     </div>
   </div>
 </template>
