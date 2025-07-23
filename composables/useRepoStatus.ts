@@ -40,6 +40,8 @@ export const getRepoStatus = (repo: any): repoStatus => {
       timeSinceLastCommit > INACTIVE_THRESHOLD_MS ? "inactive" : "active";
   } else if (repo.topics.includes("status-maintained")) {
     status = "maintained";
+  } else if (repo.topics.includes("status-finished")) {
+    status = "finished";
   } else if (repo.topics.includes("status-unsupported")) {
     status = "unsupported";
   } else if (repo.topics.includes("status-concept")) {
