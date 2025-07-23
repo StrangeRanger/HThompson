@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { fetchAllPublicRepos, getStatusColors } from "~/composables/useGithub";
-
 const username = "StrangeRanger";
 const repoProjects = await fetchAllPublicRepos(username);
 
