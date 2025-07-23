@@ -1,6 +1,6 @@
 import { Octokit } from "@octokit/rest";
-import {getRepoStatus} from "~/composables/useRepoStatus";
-import {getGistStatus} from "~/composables/useGistStatus";
+import { getRepoStatus } from "~/composables/useRepoStatus";
+import { getGistStatus } from "~/composables/useGistStatus";
 import type { repoStatus } from "~/composables/useRepoStatus";
 import { capitalizeWords } from "~/utils/stringUtils";
 import { formatTimeSinceLastCommit } from "~/utils/dateUtils";
@@ -77,7 +77,9 @@ export async function fetchAllPublicGists(username: string): Promise<any[]> {
       const status: repoStatus = getGistStatus(gist);
       const files: string[] = Object.keys(gist.files || "");
       const firstFile: string | null = files.length > 0 ? files[0] : null;
-      const cleanedDescription = gist.description ? gist.description.replace(/\s*\(status:\s*[^)]*\)\s*$/i, "").trim() : "No description";
+      const cleanedDescription = gist.description
+        ? gist.description.replace(/\s*\(status:\s*[^)]*\)\s*$/i, "").trim()
+        : "No description";
 
       return {
         name: firstFile ?? gist.id,
@@ -88,5 +90,6 @@ export async function fetchAllPublicGists(username: string): Promise<any[]> {
         status: status,
         lastCommitRelative: formatTimeSinceLastCommit(gist.updated_at),
       };
-    }).filter((gist) => gist.public); // Filter out private gists.
+    })
+    .filter((gist) => gist.public); // Filter out private gists.
 }

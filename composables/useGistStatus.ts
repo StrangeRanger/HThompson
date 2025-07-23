@@ -1,4 +1,4 @@
-import type {repoStatus} from "~/composables/useRepoStatus";
+import type { repoStatus } from "~/composables/useRepoStatus";
 
 // NOTE: Many of the statuses aren't used in gists, but this is kept for consistency and future-proofing.
 export const getGistStatus = (gist: any): repoStatus => {

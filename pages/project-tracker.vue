@@ -2,7 +2,7 @@
 const username = "StrangeRanger";
 const repoProjects: any[] = await fetchAllPublicRepos(username);
 const gists: any[] = await fetchAllPublicGists(username);
-const githubProjects = [...repoProjects, ...gists];
+const githubProjects: any[] = [...repoProjects, ...gists];
 
 const headers = [
   { title: "Project Name", key: "name", sortable: true },
@@ -118,8 +118,11 @@ const badgeDescriptions = [
       plan to work on, and have completed. Next to each project, you will find
       details specifying the type of project, its current status, and the date
       of the last commit. For explanations of the badges used here, please refer
-      to the <NuxtLink :to="{ hash: '#badge-descriptions'}">Badge Descriptions</NuxtLink> section at the
-      bottom of this page.
+      to the
+      <NuxtLink :to="{ hash: '#badge-descriptions' }"
+        >Badge Descriptions</NuxtLink
+      >
+      section at the bottom of this page.
     </p>
     <br />
     <div class="text-left">

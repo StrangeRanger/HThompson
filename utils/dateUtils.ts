@@ -17,4 +17,4 @@ export const formatTimeSinceLastCommit = (dateString: string): string => {
 
   const years: number = Math.floor(timeDiffDays / 365);
   return years === 1 ? "1 year ago" : `${years} years ago`;
-}
+};
