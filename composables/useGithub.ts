@@ -41,7 +41,7 @@ export async function fetchAllPublicRepos(username: string): Promise<any[]> {
         description: repo.description || "No description",
         archived: repo.archived,
         topics: repo.topics || [],
-        type: repo.fork ? "Repo/Fork" : "Repo",
+        type: repo.fork ? "Fork" : "Repo",
         status: status,
         lastCommitRelative: formatTimeSinceLastCommit(repo.pushed_at),
       };
