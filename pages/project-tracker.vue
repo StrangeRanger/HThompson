@@ -110,80 +110,77 @@ const badgeDescriptions = [
 </script>
 
 <template>
-  <div>
-    <h1 class="text-h4">Project Tracker</h1>
-    <br />
-    <p class="text-left">
-      This page offers a comprehensive list of all the projects I am working on,
-      plan to work on, and have completed. Next to each project, you will find
-      details specifying the type of project, its current status, and the date
-      of the last commit. For explanations of the badges used here, please refer
-      to the
-      <NuxtLink to="#badge-descriptions">
-        <span>Badge Descriptions</span>
-      </NuxtLink>
-      section at the bottom of this page.
-    </p>
-    <br />
-    <div class="text-left">
-      <ClientOnly>
-        <v-data-table
-          :headers="headers"
-          :items="githubProjects"
-          :sort-by="[{ key: 'type', order: 'asc' }]"
-          :items-per-page="-1"
-          class="elevation-3 table-border"
-        >
-          <template v-slot:item.name="{ item }">
-            <a :href="item.url" target="_blank">{{ item.name }}</a>
-          </template>
-          <template v-slot:item.status="{ item }">
-            <v-chip :color="getStatusColors(item.status)" variant="outlined">{{
-              item.status
-            }}</v-chip>
-          </template>
-          <template v-slot:item.lastCommitRelative="{ item }">
-            <v-chip color="white" variant="outlined">{{
-              item.lastCommitRelative
-            }}</v-chip>
-          </template>
-        </v-data-table>
-        <template #fallback>
-          <p>Loading data table...</p>
+  <v-container>
+    <v-sheet class="rounded">
+      <h2 class="text-h4 mb-5">Project Tracker</h2>
+      <p class="text-body-1 text-left mb-4">
+        This page offers a comprehensive list of all the projects I am working
+        on, plan to work on, and have completed. Next to each project, you will
+        find details specifying the type of project, its current status, and the
+        date of the last commit. For explanations of the badges used here,
+        please refer to the
+        <NuxtLink to="#badge-descriptions">
+          <span>Badge Descriptions</span>
+        </NuxtLink>
+        section at the bottom of this page.
+      </p>
+    </v-sheet>
+
+    <v-sheet class="rounded">
+      <v-data-table-virtual
+        :headers="headers"
+        :items="githubProjects"
+        :sort-by="[{ key: 'type', order: 'desc' }]"
+        :items-per-page="-1"
+        :loading="!githubProjects.length"
+        :loading-text="'Loading projects...'"
+        class="table-border text-left"
+        striped="even"
+        hide-default-footer
+      >
+        <template v-slot:item.name="{ item }">
+          <a :href="item.url" target="_blank">{{ item.name }}</a>
         </template>
-      </ClientOnly>
-    </div>
-    <br />
-    <v-divider></v-divider>
-    <br />
-    <div>
-      <ClientOnly>
-        <h2 class="text-h5" id="badge-descriptions">Badge Descriptions</h2>
-        <br />
-        <v-table class="text-left elevation-3 table-border">
-          <thead>
-            <tr>
-              <th scope="col">Repo Status</th>
-              <th scope="col">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in badgeDescriptions" :key="item.row">
-              <td>
-                <v-chip
-                  :color="getStatusColors(item.statusBadge)"
-                  variant="outlined"
-                >
-                  {{ item.statusBadge }}
-                </v-chip>
-              </td>
-              <td v-html="item.description"></td>
-            </tr>
-          </tbody>
-        </v-table>
-      </ClientOnly>
-    </div>
-  </div>
+        <template v-slot:item.status="{ item }">
+          <v-chip :color="getStatusColors(item.status)" variant="outlined">{{
+            item.status
+          }}</v-chip>
+        </template>
+        <template v-slot:item.lastCommitRelative="{ item }">
+          <v-chip color="white" variant="outlined">{{
+            item.lastCommitRelative
+          }}</v-chip>
+        </template>
+      </v-data-table-virtual>
+    </v-sheet>
+
+    <v-divider class="mb-12 mt-12"></v-divider>
+
+    <v-sheet class="rounded">
+      <h2 class="text-h4 mb-5" id="badge-descriptions">Badge Descriptions</h2>
+      <v-table class="text-left elevation-3 table-border" striped="even">
+        <thead>
+          <tr>
+            <th scope="col">Repo Status</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in badgeDescriptions" :key="item.row">
+            <td>
+              <v-chip
+                :color="getStatusColors(item.statusBadge)"
+                variant="outlined"
+              >
+                {{ item.statusBadge }}
+              </v-chip>
+            </td>
+            <td v-html="item.description"></td>
+          </tr>
+        </tbody>
+      </v-table>
+    </v-sheet>
+  </v-container>
 </template>
 
 <style scoped>

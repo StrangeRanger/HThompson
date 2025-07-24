@@ -119,7 +119,7 @@ if (process.env.NODE_ENV !== "development") {
         process the data collected by our websites:
         <br />
         <br />
-        <v-table>
+        <v-table class="table-border" striped="even">
           <thead>
             <tr>
               <th class="text-left" scope="col">Subprocessor</th>
@@ -137,7 +137,7 @@ if (process.env.NODE_ENV !== "development") {
         </v-table>
       </v-list-item>
 
-      <v-list-item class="text-body-1">
+      <v-list-item class="text-body-1" striped="even">
         <v-list-item-title class="text-h5">Data Retention</v-list-item-title>
         <br />
         I will retain your information as long as your account is active, as
@@ -176,14 +176,7 @@ if (process.env.NODE_ENV !== "development") {
 </template>
 
 <style scoped>
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #43494b;
+.table-border {
+  border: 1px solid #666464;
 }
 </style>

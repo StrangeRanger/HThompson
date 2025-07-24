@@ -41,7 +41,7 @@ export async function fetchAllPublicRepos(username: string): Promise<any[]> {
         description: repo.description || "No description",
         archived: repo.archived,
         topics: repo.topics || [],
-        type: repo.fork ? "Repo/Fork" : "Repo",
+        type: repo.fork ? "Fork" : "Repo",
         status: status,
         lastCommitRelative: formatTimeSinceLastCommit(repo.pushed_at),
       };
@@ -76,13 +76,18 @@ export async function fetchAllPublicGists(username: string): Promise<any[]> {
     .map((gist) => {
       const status: repoStatus = getGistStatus(gist);
       const files: string[] = Object.keys(gist.files || "");
-      const firstFile: string | null = files.length > 0 ? files[0] : null;
+      const firstFile: string = files.length > 0 ? files[0] : "No files found";
       const cleanedDescription = gist.description
         ? gist.description.replace(/\s*\(status:\s*[^)]*\)\s*$/i, "").trim()
         : "No description";
 
       return {
-        name: firstFile ?? gist.id,
+        name: capitalizeWords(
+          firstFile
+            .replace(/-/g, " ")
+            .replace(/_/g, " ")
+            .replace(/\.(py|md|bash|sh)/g, ""),
+        ),
         public: gist.public,
         url: gist.html_url,
         description: cleanedDescription,
