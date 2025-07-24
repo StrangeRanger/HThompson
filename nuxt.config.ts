@@ -4,10 +4,10 @@ import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 export default defineNuxtConfig({
   plugins: [
     process.env.NODE_ENV !== "development"
-      ? "plugins/production/vue-matomo.client.js"
+      ? "app/plugins/production/vue-matomo.client.js"
       : "",
     process.env.NODE_ENV !== "development"
-      ? "plugins/production/cloudflare.client.js"
+      ? "app/plugins/production/cloudflare.client.js"
       : "",
   ].filter(Boolean),
 
