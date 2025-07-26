@@ -16,7 +16,6 @@
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "@nuxtjs/seo": "^3.0.3",
-    "@octokit/rest": "^22.0.0",
     "@vueuse/core": "^13.3.0",
     "nuxt": "^4.0.1",
     "nuxt-security": "^2.3.0",
