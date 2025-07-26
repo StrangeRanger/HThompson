@@ -48,7 +48,7 @@ const menu = ref(false);
 
 <style scoped>
 .v-main {
-  background-image: url("/assets/images/3996769.jpg");
+  background-image: url("assets/images/3996769.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
