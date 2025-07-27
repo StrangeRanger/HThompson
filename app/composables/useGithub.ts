@@ -17,7 +17,6 @@ export async function fetchAllPublicRepos(username: string): Promise<any[]> {
           per_page: 100,
           page,
         },
-        server: false,
         transform: (response: any) => {
           return response.map((repo: any) => {
             const status: repoStatus = getRepoStatus(repo);
@@ -61,7 +60,6 @@ export async function fetchAllPublicGists(username: string): Promise<any[]> {
           per_page: 100,
           page,
         },
-        server: false,
         transform: (response: any) => {
           return response.map((gist: any) => {
                 const status: repoStatus = getGistStatus(gist);
