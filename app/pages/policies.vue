@@ -177,4 +177,14 @@ if (process.env.NODE_ENV !== "development") {
 .table-border {
   border: 1px solid #666464;
 }
+
+ul {
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 0.75rem;
+  list-style-type: disc;
+}
 </style>
