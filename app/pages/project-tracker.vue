@@ -166,10 +166,10 @@ const badgeDescriptions: BadgeDescription[] = [
       </v-data-table-virtual>
     </v-sheet>
 
-    <v-divider class="my-12"></v-divider>
+    <v-divider class="my-12" />
 
     <v-sheet class="rounded pb-6 mt-6">
-      <h2 class="text-h4 mb-5" id="badge-descriptions">Badge Descriptions</h2>
+      <h2 id="badge-descriptions" class="text-h4 mb-5">Badge Descriptions</h2>
       <v-table class="text-left elevation-3 table-border" striped="even">
         <thead>
           <tr>
@@ -187,7 +187,7 @@ const badgeDescriptions: BadgeDescription[] = [
                 {{ item.statusBadge }}
               </v-chip>
             </td>
-            <td v-html="item.description"></td>
+            <td v-html="item.description" />
           </tr>
         </tbody>
       </v-table>

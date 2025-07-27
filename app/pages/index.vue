@@ -79,7 +79,7 @@ const array: ServiceCard[] = [
       </p>
     </v-sheet>
 
-    <v-divider class="my-12"></v-divider>
+    <v-divider class="my-12" />
 
     <v-sheet class="button-links rounded pb-6 mt-6">
       <h2 class="text-h5 mb-4">Documentation & Tools</h2>
@@ -119,7 +119,7 @@ const array: ServiceCard[] = [
       </v-row>
     </v-sheet>
 
-    <v-divider class="my-12"></v-divider>
+    <v-divider class="my-12" />
 
     <v-sheet class="button-links rounded pb-6 mt-6">
       <h2 class="text-h5 mb-4">Self-Hosted Services</h2>
