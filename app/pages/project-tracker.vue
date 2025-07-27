@@ -1,10 +1,16 @@
 <script setup lang="ts">
-const username = "StrangeRanger";
-const repoProjects: any[] = await fetchAllPublicRepos(username);
-const gists: any[] = await fetchAllPublicGists(username);
-const githubProjects: any[] = [...repoProjects, ...gists];
+import type {
+  GithubProject,
+  TableHeader,
+  BadgeDescription,
+} from "~~/types/github";
 
-const headers = [
+const username = "StrangeRanger";
+const repoProjects: GithubProject[] = await fetchAllPublicRepos(username);
+const gists: GithubProject[] = await fetchAllPublicGists(username);
+const githubProjects: GithubProject[] = [...repoProjects, ...gists];
+
+const headers: TableHeader[] = [
   { title: "Project Name", key: "name", sortable: true },
   { title: "Type", key: "type", sortable: true },
   { title: "Status", key: "status", sortable: true },
@@ -12,7 +18,7 @@ const headers = [
   { title: "Description", key: "description", sortable: true },
 ];
 
-const badgeDescriptions = [
+const badgeDescriptions: BadgeDescription[] = [
   {
     row: 1,
     statusBadge: "personal",
@@ -111,8 +117,8 @@ const badgeDescriptions = [
 
 <template>
   <v-container>
-    <v-sheet class="rounded">
-      <h2 class="text-h4 mb-5">Project Tracker</h2>
+    <v-sheet class="rounded pb-3">
+      <h1 class="text-h4 mb-5">Project Tracker</h1>
       <p class="text-body-1 text-left mb-4">
         This page offers a comprehensive list of all the projects I am working
         on, plan to work on, and have completed. Next to each project, you will
@@ -126,27 +132,33 @@ const badgeDescriptions = [
       </p>
     </v-sheet>
 
-    <v-sheet class="rounded">
+    <v-sheet class="rounded pb-6 mt-3">
       <v-data-table-virtual
         :headers="headers"
         :items="githubProjects"
         :sort-by="[{ key: 'type', order: 'desc' }]"
         :items-per-page="-1"
         :loading="!githubProjects.length"
-        :loading-text="'Loading projects...'"
+        loading-text="Loading projects..."
         class="table-border text-left"
         striped="even"
         hide-default-footer
       >
-        <template v-slot:item.name="{ item }">
-          <a :href="item.url" target="_blank">{{ item.name }}</a>
+        <template #item.name="{ item }">
+          <a
+            :href="item.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-decoration-none"
+            >{{ item.name }}</a
+          >
         </template>
-        <template v-slot:item.status="{ item }">
+        <template #item.status="{ item }">
           <v-chip :color="getStatusColors(item.status)" variant="outlined">{{
             item.status
           }}</v-chip>
         </template>
-        <template v-slot:item.lastCommitRelative="{ item }">
+        <template #item.lastCommitRelative="{ item }">
           <v-chip color="white" variant="outlined">{{
             item.lastCommitRelative
           }}</v-chip>
@@ -154,10 +166,10 @@ const badgeDescriptions = [
       </v-data-table-virtual>
     </v-sheet>
 
-    <v-divider class="mb-12 mt-12"></v-divider>
+    <v-divider class="my-12" />
 
-    <v-sheet class="rounded">
-      <h2 class="text-h4 mb-5" id="badge-descriptions">Badge Descriptions</h2>
+    <v-sheet class="rounded pb-6 mt-6">
+      <h2 id="badge-descriptions" class="text-h4 mb-5">Badge Descriptions</h2>
       <v-table class="text-left elevation-3 table-border" striped="even">
         <thead>
           <tr>
@@ -175,7 +187,7 @@ const badgeDescriptions = [
                 {{ item.statusBadge }}
               </v-chip>
             </td>
-            <td v-html="item.description"></td>
+            <td v-html="item.description" />
           </tr>
         </tbody>
       </v-table>
