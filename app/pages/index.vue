@@ -9,13 +9,6 @@ interface ServiceCard {
 
 const array: ServiceCard[] = [
   {
-    title: "Wiki",
-    text: "My wiki, containing information about me, my website, and an abundance of other things.",
-    link: "https://wiki.hthompson.dev/",
-    icon: "mdi-wikipedia",
-    type: "service",
-  },
-  {
     title: "Image Gallery",
     text: "Publicly hosts an assortment of images, videos, gifs, and so on.",
     link: "https://images.hthompson.dev/",
