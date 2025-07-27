@@ -1,5 +1,13 @@
 <script setup lang="ts">
-const array = [
+interface SocialLink {
+  title: string;
+  text: string;
+  link: string;
+  icon: string;
+  color: string;
+}
+
+const array: SocialLink[] = [
   {
     title: "Bluesky",
     text: "My Bluesky account.",
@@ -32,38 +40,50 @@ const array = [
 </script>
 
 <template>
-  <div>
-    <h1 class="text-h4">My Links</h1>
-    <br />
-    <v-container class="button-links">
+  <v-container class="button-links">
+    <v-sheet class="rounded pb-6">
+      <h1 class="text-h4 mb-5 text-center">My Links</h1>
+      <p class="text-body-1 text-center mb-6">
+        Connect with me on various social media platforms and explore my work.
+      </p>
+    </v-sheet>
+
+    <v-sheet class="rounded pb-6 mt-6">
       <v-row>
         <v-col v-for="item in array" :key="item.title" cols="12" sm="6" md="4">
           <v-card
             class="card-button"
             :href="item.link"
+            rel="noopener noreferrer"
             target="_blank"
             elevation="6"
             variant="outlined"
             :color="item.color"
           >
-            <v-card-title class="text-center">
+            <v-card-title
+              class="text-center d-flex align-center justify-center ga-2"
+            >
               <v-icon :icon="item.icon" />
               {{ item.title }}
             </v-card-title>
             <v-card-item>
-              <v-card-text class="text-body-1 text-left">
+              <v-card-text class="text-body-1 text-center">
                 {{ item.text }}
               </v-card-text>
             </v-card-item>
           </v-card>
         </v-col>
       </v-row>
-    </v-container>
-  </div>
+    </v-sheet>
+  </v-container>
 </template>
 
 <style scoped>
-v-img {
-  text-align: center;
+.card-button {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-button:hover {
+  transform: translateY(-2px);
 }
 </style>

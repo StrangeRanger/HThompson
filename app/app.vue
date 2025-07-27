@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
-
-const menu = ref(false);
+const menu: Ref<boolean> = ref(false);
 </script>
 
 <template>
@@ -9,8 +7,10 @@ const menu = ref(false);
     <v-app>
       <span class="bg" />
       <v-app-bar class="py-1 px-6 toolbar" :elevation="3" color="#141414">
-        <v-toolbar-title class="a-href-link">
-          <NuxtLink to="/">HThompson</NuxtLink>
+        <v-toolbar-title>
+          <NuxtLink to="/" class="text-decoration-none text-white">
+            <span class="text-h5 font-weight-bold">HThompson</span>
+          </NuxtLink>
         </v-toolbar-title>
 
         <v-spacer />
@@ -29,18 +29,22 @@ const menu = ref(false);
           max-width="980px"
           rounded
         >
-          <!-- Markup shared across all pages, ex: NavBar -->
           <NuxtPage />
         </v-sheet>
       </v-main>
 
       <v-footer :elevation="3" color="#141414" class="justify-center">
-        <i>
+        <small>
           Site made by
-          <a href="https://github.com/StrangeRanger" target="_blank"
-            >Hunter T.</a
+          <a
+            href="https://github.com/StrangeRanger"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-decoration-none"
           >
-        </i>
+            Hunter T.
+          </a>
+        </small>
       </v-footer>
     </v-app>
   </NuxtLayout>

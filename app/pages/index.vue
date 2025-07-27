@@ -1,5 +1,12 @@
 <script setup lang="ts">
-const array = [
+interface ServiceCard {
+  title: string;
+  text: string;
+  link: string;
+  icon: string;
+}
+
+const array: ServiceCard[] = [
   {
     title: "Wiki",
     text: "My wiki, containing information about me, my website, and an abundance of other things.",
@@ -33,7 +40,7 @@ const array = [
   {
     title: "Project Tracker",
     text: "A comprehensive list of projects I'm working on, have completed, or have abandoned.",
-    link: "https://wiki.hthompson.dev/en/project-tracker/",
+    link: "/project-tracker",
     icon: "mdi-source-branch",
   },
   {
@@ -52,27 +59,32 @@ const array = [
 </script>
 
 <template>
-  <div>
-    <h1 class="text-h4">Welcome to HThompson</h1>
-    <br />
-    <p class="text-left">
-      I'm Hunter, and this is the central hub of my online presence. Here, you
-      can explore my projects, view my professional portfolio, use the services
-      I host, and discover more about who I am and what I do. Feel free to
-      browse around and enjoy your visit!
-    </p>
-    <br />
-    <v-container class="button-links">
+  <v-container>
+    <v-sheet class="rounded pb-6">
+      <h1 class="text-h4 mb-5">Welcome to HThompson</h1>
+      <p class="text-left text-body-1">
+        I'm Hunter, and this is the central hub of my online presence. Here, you
+        can explore my projects, view my professional portfolio, use the
+        services I host, and discover more about who I am and what I do. Feel
+        free to browse around and enjoy your visit!
+      </p>
+    </v-sheet>
+    <v-sheet class="button-links rounded pb-6 mt-6">
       <v-row>
         <v-col v-for="item in array" :key="item.title" cols="12" sm="6" md="4">
           <v-card
             class="card-button"
             :href="item.link"
-            target="_blank"
-            elevation="6"
+            :target="item.link.startsWith('http') ? '_blank' : '_self'"
+            :rel="
+              item.link.startsWith('http') ? 'noopener noreferrer' : undefined
+            "
+            elevation="4"
             variant="outlined"
           >
-            <v-card-title class="text-center">
+            <v-card-title
+              class="text-center d-flex align-center justify-center ga-2"
+            >
               <v-icon :icon="item.icon" />
               {{ item.title }}
             </v-card-title>
@@ -84,6 +96,16 @@ const array = [
           </v-card>
         </v-col>
       </v-row>
-    </v-container>
-  </div>
+    </v-sheet>
+  </v-container>
 </template>
+
+<style scoped>
+.card-button {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-button:hover {
+  transform: translateY(-2px);
+}
+</style>
