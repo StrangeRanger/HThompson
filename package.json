@@ -27,7 +27,7 @@
     "@nuxt/eslint": "^1.7.1",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0",
-    "eslint": "^9.29.0",
+    "eslint": "^9.32.0",
     "prettier": "^3.5.3",
     "vite-plugin-vuetify": "^2.1.1",
     "vuetify": "^3.9.2"
