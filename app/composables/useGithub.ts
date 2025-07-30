@@ -27,6 +27,7 @@ export async function fetchAllPublicRepos(
               .map((repo: any) => {
                 const status: repoStatus = getRepoStatus(repo);
                 return {
+                  id: repo.id,
                   name: capitalizeWords(repo.name.replace(/-/g, " ")),
                   private: repo.private,
                   url: repo.html_url,
@@ -88,6 +89,7 @@ export async function fetchAllPublicGists(
                   : "No description";
 
                 return {
+                  id: gist.id,
                   name: capitalizeWords(
                     firstFile
                       .replace(/-/g, " ")

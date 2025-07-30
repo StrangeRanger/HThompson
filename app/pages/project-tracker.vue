@@ -4,6 +4,7 @@ import type {
   TableHeader,
   BadgeDescription,
 } from "~~/types/github";
+import { useRoute } from 'vue-router';
 
 const username = "StrangeRanger";
 const repoProjects: GithubProject[] = await fetchAllPublicRepos(username);
@@ -110,6 +111,8 @@ const badgeDescriptions: BadgeDescription[] = [
   },
 ];
 
+const route = useRoute();
+
 // For debugging purposes, you can log the fetched repositories and gists.
 // console.log(repoProjects);
 // console.log(gists);
@@ -139,29 +142,39 @@ const badgeDescriptions: BadgeDescription[] = [
         :sort-by="[{ key: 'type', order: 'desc' }]"
         :items-per-page="-1"
         :loading="!githubProjects.length"
-        loading-text="Loading projects..."
+        loading-text="Loading projects... (may have encountered API rate limits)"
         class="table-border text-left"
         striped="even"
         hide-default-footer
       >
-        <template #item.name="{ item }">
-          <a
-            :href="item.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-decoration-none"
-            >{{ item.name }}</a
+        <template #item="{ item }">
+          <tr
+            :key="item.id"
+            :id="`project-${item.id}`"
+            :class="{ highlighted: route.hash === `#project-${item.id}` }"
           >
-        </template>
-        <template #item.status="{ item }">
-          <v-chip :color="getStatusColors(item.status)" variant="outlined">{{
-            item.status
-          }}</v-chip>
-        </template>
-        <template #item.lastCommitRelative="{ item }">
-          <v-chip color="white" variant="outlined">{{
-            item.lastCommitRelative
-          }}</v-chip>
+            <td>
+              <a
+                :href="item.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-decoration-none"
+                >{{ item.name }}</a
+              >
+            </td>
+            <td>{{ item.type }}</td>
+            <td>
+              <v-chip :color="getStatusColors(item.status)" variant="outlined">{{
+                item.status
+              }}</v-chip>
+            </td>
+            <td>
+              <v-chip color="white" variant="outlined">{{
+                item.lastCommitRelative
+              }}</v-chip>
+            </td>
+            <td>{{ item.description }}</td>
+          </tr>
         </template>
       </v-data-table-virtual>
     </v-sheet>
@@ -198,5 +211,14 @@ const badgeDescriptions: BadgeDescription[] = [
 <style scoped>
 .table-border {
   border: 1px solid #666464;
+}
+
+.highlighted {
+  background-color: #385872 !important; /* Light blue for better contrast */
+  transition: background 0.5s;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 </style>
