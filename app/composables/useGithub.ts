@@ -15,7 +15,7 @@ export async function fetchAllPublicRepos(
     let hasNextPage: boolean = true;
 
     while (hasNextPage) {
-      const { data } = await useFetch(
+      const { data, error } = await useFetch(
         `https://api.github.com/users/${username}/repos`,
         {
           params: {
@@ -23,6 +23,12 @@ export async function fetchAllPublicRepos(
             page,
           },
           transform: (response: any) => {
+            // Ensure response is an array before processing.
+            if (!Array.isArray(response)) {
+              console.warn("API response is not an array:", response);
+              return [];
+            }
+
             return response
               .map((repo: any) => {
                 const status: repoStatus = getRepoStatus(repo);
@@ -44,8 +50,19 @@ export async function fetchAllPublicRepos(
         },
       );
 
+      // Check for errors or invalid data.
+      if (error.value) {
+        console.error("Error from GitHub API:", error.value);
+        break;
+      }
+
+      if (!data.value || !Array.isArray(data.value)) {
+        console.warn("Invalid data received from API:", data.value);
+        break;
+      }
+
       repos.push(...data.value);
-      hasNextPage = data.value && data.value.length === 100; // If we received 100 items, there might be more.
+      hasNextPage = data.value.length === 100; // If we received 100 items, there might be more.
       page++;
     }
 
@@ -66,7 +83,7 @@ export async function fetchAllPublicGists(
     let hasNextPage: boolean = true;
 
     while (hasNextPage) {
-      const { data } = await useFetch(
+      const { data, error } = await useFetch(
         `https://api.github.com/users/${username}/gists`,
         {
           params: {
@@ -74,6 +91,12 @@ export async function fetchAllPublicGists(
             page,
           },
           transform: (response: any) => {
+            // Ensure response is an array before processing
+            if (!Array.isArray(response)) {
+              console.warn("API response is not an array:", response);
+              return [];
+            }
+
             return response
               .map((gist: any) => {
                 const status: repoStatus = getGistStatus(gist);
@@ -111,8 +134,19 @@ export async function fetchAllPublicGists(
         },
       );
 
+      // Check for errors or invalid data
+      if (error.value) {
+        console.error("Error from GitHub API:", error.value);
+        break;
+      }
+
+      if (!data.value || !Array.isArray(data.value)) {
+        console.warn("Invalid data received from API:", data.value);
+        break;
+      }
+
       gists.push(...data.value);
-      hasNextPage = data.value && data.value.length === 100; // If we received 100 items, there might be more.
+      hasNextPage = data.value.length === 100; // If we received 100 items, there might be more.
       page++;
     }
 
