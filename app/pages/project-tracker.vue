@@ -4,7 +4,7 @@ import type {
   TableHeader,
   BadgeDescription,
 } from "~~/types/github";
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
 
 const username = "StrangeRanger";
 const repoProjects: GithubProject[] = await fetchAllPublicRepos(username);
@@ -164,9 +164,11 @@ const route = useRoute();
             </td>
             <td>{{ item.type }}</td>
             <td>
-              <v-chip :color="getStatusColors(item.status)" variant="outlined">{{
-                item.status
-              }}</v-chip>
+              <v-chip
+                :color="getStatusColors(item.status)"
+                variant="outlined"
+                >{{ item.status }}</v-chip
+              >
             </td>
             <td>
               <v-chip color="white" variant="outlined">{{
