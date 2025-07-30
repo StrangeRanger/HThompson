@@ -7,9 +7,93 @@ import type {
 import { useRoute } from "vue-router";
 
 const username = "StrangeRanger";
-const repoProjects: GithubProject[] = await fetchAllPublicRepos(username);
-const gists: GithubProject[] = await fetchAllPublicGists(username);
-const githubProjects: GithubProject[] = [...repoProjects, ...gists];
+
+// Store the final transformed data directly.
+const githubProjects = ref<GithubProject[]>([]);
+const loading = ref(true);
+
+// Function to fetch all repositories with pagination and transform immediately
+async function fetchAllRepos(): Promise<GithubProject[]> {
+  const allRepos: any[] = [];
+  let page = 1;
+  let hasMore = true;
+
+  while (hasMore) {
+    try {
+      const data = await $fetch<any[]>(
+        `https://api.github.com/users/${username}/repos`,
+        {
+          query: { per_page: 100, page },
+        },
+      );
+
+      if (!Array.isArray(data)) {
+        console.warn("Repos response is not an array:", data);
+        break;
+      }
+
+      allRepos.push(...data);
+      hasMore = data.length === 100;
+      page++;
+    } catch (error) {
+      console.error("Error fetching repos:", error);
+      break;
+    }
+  }
+
+  // Transform immediately after fetching
+  return transformRepoData(allRepos);
+}
+
+// Function to fetch all gists with pagination and transform immediately
+async function fetchAllGists(): Promise<GithubProject[]> {
+  const allGists: any[] = [];
+  let page = 1;
+  let hasMore = true;
+
+  while (hasMore) {
+    try {
+      const data = await $fetch<any[]>(
+        `https://api.github.com/users/${username}/gists`,
+        {
+          query: { per_page: 100, page },
+        },
+      );
+
+      if (!Array.isArray(data)) {
+        console.warn("Gists response is not an array:", data);
+        break;
+      }
+
+      allGists.push(...data);
+      hasMore = data.length === 100;
+      page++;
+    } catch (error) {
+      console.error("Error fetching gists:", error);
+      break;
+    }
+  }
+
+  // Transform immediately after fetching.
+  return transformGistData(allGists);
+}
+
+// Fetch and transform data once on component mount.
+onMounted(async () => {
+  try {
+    const [repoProjects, gistProjects] = await Promise.all([
+      fetchAllRepos(),
+      fetchAllGists(),
+    ]);
+
+    // Set the final data once.
+    githubProjects.value = [...repoProjects, ...gistProjects];
+  } catch (error) {
+    console.error("Error fetching GitHub data:", error);
+  } finally {
+    loading.value = false;
+  }
+});
 
 const headers: TableHeader[] = [
   { title: "Project Name", key: "name", sortable: true },
@@ -112,10 +196,6 @@ const badgeDescriptions: BadgeDescription[] = [
 ];
 
 const route = useRoute();
-
-// For debugging purposes, you can log the fetched repositories and gists.
-// console.log(repoProjects);
-// console.log(gists);
 </script>
 
 <template>
