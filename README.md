@@ -12,10 +12,6 @@ HThompson is a personal website and landing page built with Nuxt 4 and Vuetify. 
 - Built with Nuxt 4, TypeScript, and Vuetify
 - Analytics and performance optimizations
 
-## Demo
-
-Visit the live site: [hthompson.dev](https://hthompson.dev)
-
 ## Technologies Used
 
 - [Nuxt 4](https://nuxt.com/)
