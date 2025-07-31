@@ -6,8 +6,8 @@ import type {
 } from "~~/types/github";
 
 const username: string = "StrangeRanger";
-const githubProjects: GithubProject[] = ref<GithubProject[]>([]);
-const loading: boolean = ref(true);
+const githubProjects = ref<GithubProject[]>([]);
+const loading = ref(true);
 
 async function fetchAllRepos(): Promise<GithubProject[]> {
   const allRepos: any[] = [];
@@ -81,6 +81,22 @@ async function fetchAllGists(): Promise<GithubProject[]> {
   }
 }
 
+function handleHashScroll() {
+  const hash = route.hash;
+  if (hash) {
+    // Wait a bit to ensure the browser has fully rendered the page.
+    setTimeout(() => {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+    }, 100);
+  }
+}
+
 onMounted(async () => {
   try {
     const [repoProjects, gistProjects] = await Promise.all([
@@ -93,6 +109,9 @@ onMounted(async () => {
     console.error("Error fetching GitHub data:", error);
   } finally {
     loading.value = false;
+
+    await nextTick(); // Ensure DOM is updated before scrolling.
+    handleHashScroll();
   }
 });
 
