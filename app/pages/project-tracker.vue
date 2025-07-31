@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import type {
-  GithubProject,
-  TableHeader,
-  BadgeDescription,
-} from "~~/types/github";
-import { useRoute } from "vue-router";
+import type {BadgeDescription, GithubProject, TableHeader,} from "~~/types/github";
+import {useRoute} from "vue-router";
 
 const username = "StrangeRanger";
 
@@ -42,7 +38,12 @@ async function fetchAllRepos(): Promise<GithubProject[]> {
   }
 
   // Transform immediately after fetching
-  return transformRepoData(allRepos);
+  try {
+    return transformRepoData(allRepos);
+  } catch (error) {
+    console.error("Error transforming repo data:", error);
+    return [];
+  }
 }
 
 // Function to fetch all gists with pagination and transform immediately
@@ -75,7 +76,12 @@ async function fetchAllGists(): Promise<GithubProject[]> {
   }
 
   // Transform immediately after fetching.
-  return transformGistData(allGists);
+  try {
+    return transformGistData(allGists);
+  } catch (error) {
+    console.error("Error transforming gist data:", error);
+    return [];
+  }
 }
 
 // Fetch and transform data once on component mount.
@@ -216,13 +222,13 @@ const route = useRoute();
     </v-sheet>
 
     <v-sheet class="rounded pb-6 mt-3">
-      <v-data-table-virtual
+      <v-data-table
         :headers="headers"
         :items="githubProjects"
         :sort-by="[{ key: 'type', order: 'desc' }]"
         :items-per-page="-1"
-        :loading="!githubProjects.length"
-        loading-text="Loading projects... (may have encountered API rate limits)"
+        :loading="loading"
+        loading-text="Loading projects..."
         class="table-border text-left"
         striped="even"
         hide-default-footer
@@ -258,7 +264,7 @@ const route = useRoute();
             <td>{{ item.description }}</td>
           </tr>
         </template>
-      </v-data-table-virtual>
+      </v-data-table>
     </v-sheet>
 
     <v-divider class="my-12" />
