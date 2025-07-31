@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import type {BadgeDescription, GithubProject, TableHeader,} from "~~/types/github";
-import {useRoute} from "vue-router";
+import type {
+  BadgeDescription,
+  GithubProject,
+  TableHeader,
+} from "~~/types/github";
 
-const username = "StrangeRanger";
+const username: string = "StrangeRanger";
+const githubProjects: GithubProject[] = ref<GithubProject[]>([]);
+const loading: boolean = ref(true);
 
-// Store the final transformed data directly.
-const githubProjects = ref<GithubProject[]>([]);
-const loading = ref(true);
-
-// Function to fetch all repositories with pagination and transform immediately
 async function fetchAllRepos(): Promise<GithubProject[]> {
   const allRepos: any[] = [];
-  let page = 1;
-  let hasMore = true;
+  let page: number = 1;
+  let hasMore: boolean = true;
 
   while (hasMore) {
     try {
@@ -37,7 +37,6 @@ async function fetchAllRepos(): Promise<GithubProject[]> {
     }
   }
 
-  // Transform immediately after fetching
   try {
     return transformRepoData(allRepos);
   } catch (error) {
@@ -46,11 +45,10 @@ async function fetchAllRepos(): Promise<GithubProject[]> {
   }
 }
 
-// Function to fetch all gists with pagination and transform immediately
 async function fetchAllGists(): Promise<GithubProject[]> {
   const allGists: any[] = [];
-  let page = 1;
-  let hasMore = true;
+  let page: number = 1;
+  let hasMore: boolean = true;
 
   while (hasMore) {
     try {
@@ -75,7 +73,6 @@ async function fetchAllGists(): Promise<GithubProject[]> {
     }
   }
 
-  // Transform immediately after fetching.
   try {
     return transformGistData(allGists);
   } catch (error) {
@@ -84,7 +81,6 @@ async function fetchAllGists(): Promise<GithubProject[]> {
   }
 }
 
-// Fetch and transform data once on component mount.
 onMounted(async () => {
   try {
     const [repoProjects, gistProjects] = await Promise.all([
@@ -92,7 +88,6 @@ onMounted(async () => {
       fetchAllGists(),
     ]);
 
-    // Set the final data once.
     githubProjects.value = [...repoProjects, ...gistProjects];
   } catch (error) {
     console.error("Error fetching GitHub data:", error);
@@ -302,7 +297,7 @@ const route = useRoute();
 }
 
 .highlighted {
-  background-color: #385872 !important; /* Light blue for better contrast */
+  background-color: #385872 !important;
   transition: background 0.5s;
 }
 
