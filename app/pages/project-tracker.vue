@@ -1,14 +1,119 @@
 <script setup lang="ts">
 import type {
+  BadgeDescription,
   GithubProject,
   TableHeader,
-  BadgeDescription,
 } from "~~/types/github";
 
-const username = "StrangeRanger";
-const repoProjects: GithubProject[] = await fetchAllPublicRepos(username);
-const gists: GithubProject[] = await fetchAllPublicGists(username);
-const githubProjects: GithubProject[] = [...repoProjects, ...gists];
+const username: string = "StrangeRanger";
+const githubProjects = ref<GithubProject[]>([]);
+const loading = ref(true);
+
+async function fetchAllRepos(): Promise<GithubProject[]> {
+  const allRepos: any[] = [];
+  let page: number = 1;
+  let hasMore: boolean = true;
+
+  while (hasMore) {
+    try {
+      const data = await $fetch<any[]>(
+        `https://api.github.com/users/${username}/repos`,
+        {
+          query: { per_page: 100, page },
+        },
+      );
+
+      if (!Array.isArray(data)) {
+        console.warn("Repos response is not an array:", data);
+        break;
+      }
+
+      allRepos.push(...data);
+      hasMore = data.length === 100;
+      page++;
+    } catch (error) {
+      console.error("Error fetching repos:", error);
+      break;
+    }
+  }
+
+  try {
+    return transformRepoData(allRepos);
+  } catch (error) {
+    console.error("Error transforming repo data:", error);
+    return [];
+  }
+}
+
+async function fetchAllGists(): Promise<GithubProject[]> {
+  const allGists: any[] = [];
+  let page: number = 1;
+  let hasMore: boolean = true;
+
+  while (hasMore) {
+    try {
+      const data = await $fetch<any[]>(
+        `https://api.github.com/users/${username}/gists`,
+        {
+          query: { per_page: 100, page },
+        },
+      );
+
+      if (!Array.isArray(data)) {
+        console.warn("Gists response is not an array:", data);
+        break;
+      }
+
+      allGists.push(...data);
+      hasMore = data.length === 100;
+      page++;
+    } catch (error) {
+      console.error("Error fetching gists:", error);
+      break;
+    }
+  }
+
+  try {
+    return transformGistData(allGists);
+  } catch (error) {
+    console.error("Error transforming gist data:", error);
+    return [];
+  }
+}
+
+function handleHashScroll() {
+  const hash = route.hash;
+  if (hash) {
+    // Wait a bit to ensure the browser has fully rendered the page.
+    setTimeout(() => {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+    }, 100);
+  }
+}
+
+onMounted(async () => {
+  try {
+    const [repoProjects, gistProjects] = await Promise.all([
+      fetchAllRepos(),
+      fetchAllGists(),
+    ]);
+
+    githubProjects.value = [...repoProjects, ...gistProjects];
+  } catch (error) {
+    console.error("Error fetching GitHub data:", error);
+  } finally {
+    loading.value = false;
+
+    await nextTick(); // Ensure DOM is updated before scrolling.
+    handleHashScroll();
+  }
+});
 
 const headers: TableHeader[] = [
   { title: "Project Name", key: "name", sortable: true },
@@ -110,9 +215,7 @@ const badgeDescriptions: BadgeDescription[] = [
   },
 ];
 
-// For debugging purposes, you can log the fetched repositories and gists.
-// console.log(repoProjects);
-// console.log(gists);
+const route = useRoute();
 </script>
 
 <template>
@@ -133,37 +236,49 @@ const badgeDescriptions: BadgeDescription[] = [
     </v-sheet>
 
     <v-sheet class="rounded pb-6 mt-3">
-      <v-data-table-virtual
+      <v-data-table
         :headers="headers"
         :items="githubProjects"
         :sort-by="[{ key: 'type', order: 'desc' }]"
         :items-per-page="-1"
-        :loading="!githubProjects.length"
+        :loading="loading"
         loading-text="Loading projects..."
         class="table-border text-left"
         striped="even"
         hide-default-footer
       >
-        <template #item.name="{ item }">
-          <a
-            :href="item.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-decoration-none"
-            >{{ item.name }}</a
+        <template #item="{ item }">
+          <tr
+            :key="item.id"
+            :id="`project-${item.id}`"
+            :class="{ highlighted: route.hash === `#project-${item.id}` }"
           >
+            <td>
+              <a
+                :href="item.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-decoration-none"
+                >{{ item.name }}</a
+              >
+            </td>
+            <td>{{ item.type }}</td>
+            <td>
+              <v-chip
+                :color="getStatusColors(item.status)"
+                variant="outlined"
+                >{{ item.status }}</v-chip
+              >
+            </td>
+            <td>
+              <v-chip color="white" variant="outlined">{{
+                item.lastCommitRelative
+              }}</v-chip>
+            </td>
+            <td>{{ item.description }}</td>
+          </tr>
         </template>
-        <template #item.status="{ item }">
-          <v-chip :color="getStatusColors(item.status)" variant="outlined">{{
-            item.status
-          }}</v-chip>
-        </template>
-        <template #item.lastCommitRelative="{ item }">
-          <v-chip color="white" variant="outlined">{{
-            item.lastCommitRelative
-          }}</v-chip>
-        </template>
-      </v-data-table-virtual>
+      </v-data-table>
     </v-sheet>
 
     <v-divider class="my-12" />
@@ -198,5 +313,14 @@ const badgeDescriptions: BadgeDescription[] = [
 <style scoped>
 .table-border {
   border: 1px solid #666464;
+}
+
+.highlighted {
+  background-color: #385872 !important;
+  transition: background 0.5s;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 </style>

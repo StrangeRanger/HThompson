@@ -1,6 +1,6 @@
 # HThompson
 
-[![Project Tracker](https://img.shields.io/badge/repo%20status-Project%20Tracker-lightgrey)](https://hthompson.dev/project-tracker)
+[![Project Tracker](https://img.shields.io/badge/repo%20status-Project%20Tracker-lightgrey)](https://hthompson.dev/project-tracker#project-611022081) [![GitHub License](https://img.shields.io/github/license/StrangeRanger/HThompson)](LICENSE)
 
 HThompson is a personal website and landing page built with Nuxt 4 and Vuetify. It serves as project tracker, link to services I host, and information hub for me.
 
@@ -11,10 +11,6 @@ HThompson is a personal website and landing page built with Nuxt 4 and Vuetify. 
 - About, links, and policy pages
 - Built with Nuxt 4, TypeScript, and Vuetify
 - Analytics and performance optimizations
-
-## Demo
-
-Visit the live site: [hthompson.dev](https://hthompson.dev)
 
 ## Technologies Used
 
@@ -38,25 +34,25 @@ Visit the live site: [hthompson.dev](https://hthompson.dev)
 - [pnpm](https://pnpm.io/)
 
 ### Installation
+
 ```bash
 pnpm install
 ```
 
 ### Development
+
 ```bash
 pnpm dev
 ```
 
 ### Build for Production
+
 ```bash
 pnpm build
 ```
 
 ### Preview Production Build
+
 ```bash
 pnpm preview
 ```
-
-## 📄 License
-
-This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
