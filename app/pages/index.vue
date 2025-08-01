@@ -66,9 +66,9 @@ const array: ServiceCard[] = [
       <h1 class="text-h4 mb-5">Welcome to HThompson</h1>
       <p class="text-left text-body-1">
         I'm Hunter, and this is the central hub of my online presence. Here, you
-        can explore my projects, view my professional portfolio, use the
-        services I host, and discover more about who I am and what I do. Feel
-        free to browse around and enjoy your visit!
+        can track my current projects, access the services I host, explore my
+        documentation and tools, and learn more about who I am and what I do.
+        Feel free to browse around and enjoy your visit!
       </p>
     </v-sheet>
 

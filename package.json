@@ -32,5 +32,5 @@
     "vite-plugin-vuetify": "^2.1.1",
     "vuetify": "^3.9.2"
   },
-  "packageManager": "pnpm@10.13.1"
+  "packageManager": "pnpm@10.14.0"
 }
