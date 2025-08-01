@@ -58,7 +58,7 @@ A modern personal website serving as my digital hub and online presence. Built w
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v22+ recommended)
-- [pnpm](https://pnpm.io/)
+- [pnpm](https://pnpm.io/) (10.14.0+)
 
 ### Installation
 
