@@ -99,6 +99,10 @@ pnpm format
 
 The development server will be available at `http://localhost:3000` with hot-reload enabled for rapid development.
 
+## Support and Issues
+
+Please use [GitHub Issues](https://github.com/StrangeRanger/HThompson/issues) for bug reports and feature requests.
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
