@@ -9,13 +9,6 @@ interface SocialLink {
 
 const array: SocialLink[] = [
   {
-    title: "Bluesky",
-    text: "My Bluesky account.",
-    link: "https://bsky.app/profile/hthompson.dev",
-    icon: "mdi-account",
-    color: "#4f9bd9",
-  },
-  {
     title: "Twitter (X)",
     text: "My Twitter (X) account.",
     link: "https://x.com/_Hunter_T_",
