@@ -29,7 +29,7 @@
     "@typescript-eslint/parser": "^8.40.0",
     "eslint": "^9.33.0",
     "prettier": "^3.5.3",
-    "vite-plugin-vuetify": "^2.1.1",
+    "vite-plugin-vuetify": "^2.1.2",
     "vuetify": "^3.9.5"
   },
   "packageManager": "pnpm@10.14.0"
