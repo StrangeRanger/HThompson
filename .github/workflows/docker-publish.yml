@@ -38,7 +38,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           tags: ${{ vars.DOCKERHUB_USERNAME }}/hthompson:latest
           labels: org.opencontainers.image.source=${{ github.repository }}
           cache-from: type=gha
