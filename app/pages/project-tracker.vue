@@ -4,6 +4,7 @@ import type {
   GithubProject,
   TableHeader,
 } from "~~/types/github";
+import DOMPurify from "dompurify";
 
 const username: string = "StrangeRanger";
 const githubProjects = ref<GithubProject[]>([]);
@@ -95,6 +96,13 @@ function handleHashScroll() {
       }
     }, 100);
   }
+}
+
+function getSafeDescription(description: string): string {
+  if (import.meta.client) {
+    return DOMPurify.sanitize(description);
+  }
+  return description;
 }
 
 onMounted(async () => {
@@ -249,8 +257,8 @@ const route = useRoute();
       >
         <template #item="{ item }">
           <tr
-            :key="item.id"
             :id="`project-${item.id}`"
+            :key="item.id"
             :class="{ highlighted: route.hash === `#project-${item.id}` }"
           >
             <td>
@@ -302,7 +310,8 @@ const route = useRoute();
                 {{ item.statusBadge }}
               </v-chip>
             </td>
-            <td v-html="item.description" />
+            <!-- eslint-disable-next-line vue/no-v-html -->
+            <td v-html="getSafeDescription(item.description)" />
           </tr>
         </tbody>
       </v-table>
