@@ -1,0 +1,11 @@
+services:
+  hthompson:
+    image: strangeranger/hthompson:latest
+    ports:
+      - "3005:3000"
+    restart: unless-stopped
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
