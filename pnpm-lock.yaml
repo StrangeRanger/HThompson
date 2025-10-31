@@ -32,7 +32,7 @@ importers:
     devDependencies:
       '@nuxt/devtools':
         specifier: ^3.0.0
-        version: 3.0.0(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.2))
+        version: 3.0.1(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.2))
       '@nuxt/eslint':
         specifier: ^1.9.0
         version: 1.10.0(@typescript-eslint/utils@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.2))(@vue/compiler-sfc@3.5.22)(eslint-import-resolver-node@0.3.9)(eslint@9.38.0(jiti@2.6.1))(magicast@0.3.5)(typescript@5.9.2)(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
@@ -513,8 +513,8 @@ packages:
     resolution: {integrity: sha512-5XUvZuffe3KetyhbWwd4n2ktd7wraocCYw10tlM+/u/95iAz29GjNiuNxbCD1T6Bn1MyGc4QLVNKOWhzJkVFAw==}
     engines: {node: ^14.16.0 || >=16.0.0}
 
-  '@netlify/open-api@2.41.0':
-    resolution: {integrity: sha512-e9eGmWs0AAJF5jxRlr6FJyfyftY3sj5IXyT26QF6vHXK5rzZNpJHhFenszKtuVFhUgScJeOfCOucvodqfKAzeg==}
+  '@netlify/open-api@2.42.0':
+    resolution: {integrity: sha512-oHFCCo5FigIZcni/IioNKPwL9jC2++RUnHHfHFOhXKyLDGB8x93cU03N15RuZhG92+VM6dOzhM4WDEDeG6hXcQ==}
     engines: {node: '>=14.8.0'}
 
   '@netlify/runtime-utils@1.3.1':
@@ -563,12 +563,17 @@ packages:
     peerDependencies:
       vite: '>=6.0'
 
+  '@nuxt/devtools-kit@3.0.1':
+    resolution: {integrity: sha512-BSSgpdawKuUw/y3iPOhskodjWr5/vbeiyDOarTzRWX2JmdF34dFeyEot2UwOvkEYgD2/wdxy+U5f0bp4pfcU0g==}
+    peerDependencies:
+      vite: '>=6.0'
+
   '@nuxt/devtools-wizard@2.7.0':
     resolution: {integrity: sha512-iWuWR0U6BRpF7D6xrgq9ZkQ6ajsw2EA/gVmbU9V5JPKRUtV6DVpCPi+h34VFNeQ104Sf531XgvT0sl3h93AjXA==}
     hasBin: true
 
-  '@nuxt/devtools-wizard@3.0.0':
-    resolution: {integrity: sha512-yt0bLxc7FYfFl0fms+NRc+c2KqMm3k4tq+cru4hTtf0t4Svkwh32SPZ+IO8rqwWg1k4oULkt5f8WIp57chq3TA==}
+  '@nuxt/devtools-wizard@3.0.1':
+    resolution: {integrity: sha512-JXiSUPSv0VRttZYu7toYcAWPYv9gLBkm7jnM9BW1cRGWvrbPTorP0ecJjVorIVvq+rsyxbxzYt5wUIkyf2kfCA==}
     hasBin: true
 
   '@nuxt/devtools@2.7.0':
@@ -577,11 +582,15 @@ packages:
     peerDependencies:
       vite: '>=6.0'
 
-  '@nuxt/devtools@3.0.0':
-    resolution: {integrity: sha512-JHqQRLBAFrSREqnFE5VojCBwCHngi6BEc1W66abF0i2qZhXmQNc4aVcpc1c30oQFF8CqYwS+lOqdTVWEwueozQ==}
+  '@nuxt/devtools@3.0.1':
+    resolution: {integrity: sha512-7J9t2wZtO9P2vqye4owjwryZ6cxPORjYGfrhv8QDAZ8bLrsbEUrgceBGI/sJl4fj/Ptgpn+BK8SjHW+oFflDqQ==}
     hasBin: true
     peerDependencies:
+      '@vitejs/devtools': '*'
       vite: '>=6.0'
+    peerDependenciesMeta:
+      '@vitejs/devtools':
+        optional: true
 
   '@nuxt/eslint-config@1.10.0':
     resolution: {integrity: sha512-6Ry+sV5FaTBg3a0l+4gcxuz0IsQG5dSF6OxHNDlDx2yTygMOxeCn6vdc2Cz/e4LtYGvwZIlhH9wVlnWnD3+G+Q==}
@@ -3049,8 +3058,8 @@ packages:
   magicast@0.3.5:
     resolution: {integrity: sha512-L0WhttDl+2BOsybvEOLK7fW3UA0OQ0IQ2d6Zl2x/a6vVRs3bAY0ECOSHHeL5jD+SbOpOCUEi0y1DgHEn9Qn1AQ==}
 
-  magicast@0.5.0:
-    resolution: {integrity: sha512-D0cxqnb8DpO66P4LkD9ME6a4AhRK6A+xprXksD5vtsJN6G4zbzdI10vDaWCIyj3eLwjNZrQxUYB20FDhKrMEKQ==}
+  magicast@0.5.1:
+    resolution: {integrity: sha512-xrHS24IxaLrvuo613F719wvOIv9xPHFWQHuvGUBmPnCA/3MQxKI3b+r7n1jAoDHmsbC5bRhTZYR77invLAxVnw==}
 
   marky@1.3.0:
     resolution: {integrity: sha512-ocnPZQLNpvbedwTy9kNrQEsknEfgvcLMvOtz3sFeWApDq1MXH1TqkCIx58xlpESsfwQOnuBO9beyQuNGzVvuhQ==}
@@ -3898,8 +3907,8 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
-  simple-git@3.28.0:
-    resolution: {integrity: sha512-Rs/vQRwsn1ILH1oBUy8NucJlXmnnLeLCfcvbSehkPzbv3wwoFWIdtfd6Ndo6ZPhlPsCZ60CPI4rxurnwAa+a2w==}
+  simple-git@3.29.0:
+    resolution: {integrity: sha512-PEBgFYc8plTys6/XuxinxAJ+6CbXVh+xxsBTOEXw/uYBd3sYlGGoyB12nX5rRPGsFrdnnZWb81qluSl7a83HtA==}
 
   sirv@3.0.2:
     resolution: {integrity: sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==}
@@ -4030,8 +4039,8 @@ packages:
     peerDependencies:
       postcss: ^8.4.32
 
-  superjson@2.2.3:
-    resolution: {integrity: sha512-ay3d+LW/S6yppKoTz3Bq4mG0xrS5bFwfWEBmQfbC7lt5wmtk+Obq0TxVuA9eYRirBTQb1K3eEpBRHMQEo0WyVw==}
+  superjson@2.2.5:
+    resolution: {integrity: sha512-zWPTX96LVsA/eVYnqOM2+ofcdPqdS1dAF1LN4TS2/MWuUpfitd9ctTa87wt4xrYnZnkLtS69xpBdSxVBP5Rm6w==}
     engines: {node: '>=16'}
 
   supports-color@10.2.2:
@@ -5100,7 +5109,7 @@ snapshots:
       write-file-atomic: 6.0.0
     optional: true
 
-  '@netlify/open-api@2.41.0':
+  '@netlify/open-api@2.42.0':
     optional: true
 
   '@netlify/runtime-utils@1.3.1':
@@ -5180,9 +5189,9 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/devtools-kit@3.0.0(magicast@0.5.0)(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))':
+  '@nuxt/devtools-kit@3.0.1(magicast@0.5.1)(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))':
     dependencies:
-      '@nuxt/kit': 4.2.0(magicast@0.5.0)
+      '@nuxt/kit': 4.2.0(magicast@0.5.1)
       execa: 8.0.1
       vite: 7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)
     transitivePeerDependencies:
@@ -5199,12 +5208,12 @@ snapshots:
       prompts: 2.4.2
       semver: 7.7.3
 
-  '@nuxt/devtools-wizard@3.0.0':
+  '@nuxt/devtools-wizard@3.0.1':
     dependencies:
       consola: 3.4.2
       diff: 8.0.2
       execa: 8.0.1
-      magicast: 0.5.0
+      magicast: 0.5.1
       pathe: 2.0.3
       pkg-types: 2.3.0
       prompts: 2.4.2
@@ -5236,7 +5245,7 @@ snapshots:
       perfect-debounce: 1.0.0
       pkg-types: 2.3.0
       semver: 7.7.3
-      simple-git: 3.28.0
+      simple-git: 3.29.0
       sirv: 3.0.2
       structured-clone-es: 1.0.0
       tinyglobby: 0.2.15
@@ -5251,11 +5260,11 @@ snapshots:
       - utf-8-validate
       - vue
 
-  '@nuxt/devtools@3.0.0(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.2))':
+  '@nuxt/devtools@3.0.1(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.2))':
     dependencies:
-      '@nuxt/devtools-kit': 3.0.0(magicast@0.5.0)(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
-      '@nuxt/devtools-wizard': 3.0.0
-      '@nuxt/kit': 4.2.0(magicast@0.5.0)
+      '@nuxt/devtools-kit': 3.0.1(magicast@0.5.1)(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
+      '@nuxt/devtools-wizard': 3.0.1
+      '@nuxt/kit': 4.2.0(magicast@0.5.1)
       '@vue/devtools-core': 7.7.7(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.2))
       '@vue/devtools-kit': 7.7.7
       birpc: 2.6.1
@@ -5270,19 +5279,19 @@ snapshots:
       is-installed-globally: 1.0.0
       launch-editor: 2.12.0
       local-pkg: 1.1.2
-      magicast: 0.5.0
+      magicast: 0.5.1
       nypm: 0.6.2
       ohash: 2.0.11
       pathe: 2.0.3
       perfect-debounce: 2.0.0
       pkg-types: 2.3.0
       semver: 7.7.3
-      simple-git: 3.28.0
+      simple-git: 3.29.0
       sirv: 3.0.2
       structured-clone-es: 1.0.0
       tinyglobby: 0.2.15
       vite: 7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)
-      vite-plugin-inspect: 11.3.3(@nuxt/kit@4.2.0(magicast@0.5.0))(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
+      vite-plugin-inspect: 11.3.3(@nuxt/kit@4.2.0(magicast@0.5.1))(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
       vite-plugin-vue-tracer: 1.0.1(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.2))
       which: 5.0.0
       ws: 8.18.3
@@ -5411,9 +5420,9 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/kit@4.2.0(magicast@0.5.0)':
+  '@nuxt/kit@4.2.0(magicast@0.5.1)':
     dependencies:
-      c12: 3.3.1(magicast@0.5.0)
+      c12: 3.3.1(magicast@0.5.1)
       consola: 3.4.2
       defu: 6.1.4
       destr: 2.0.5
@@ -6461,7 +6470,7 @@ snapshots:
       mitt: 3.0.1
       perfect-debounce: 1.0.0
       speakingurl: 14.0.1
-      superjson: 2.2.3
+      superjson: 2.2.5
 
   '@vue/devtools-shared@7.7.7':
     dependencies:
@@ -6745,7 +6754,7 @@ snapshots:
     optionalDependencies:
       magicast: 0.3.5
 
-  c12@3.3.1(magicast@0.5.0):
+  c12@3.3.1(magicast@0.5.1):
     dependencies:
       chokidar: 4.0.3
       confbox: 0.2.2
@@ -6760,7 +6769,7 @@ snapshots:
       pkg-types: 2.3.0
       rc9: 2.1.2
     optionalDependencies:
-      magicast: 0.5.0
+      magicast: 0.5.1
 
   cac@6.7.14: {}
 
@@ -7965,7 +7974,7 @@ snapshots:
       '@babel/types': 7.28.5
       source-map-js: 1.2.1
 
-  magicast@0.5.0:
+  magicast@0.5.1:
     dependencies:
       '@babel/parser': 7.28.5
       '@babel/types': 7.28.5
@@ -8055,7 +8064,7 @@ snapshots:
 
   netlify@13.3.5:
     dependencies:
-      '@netlify/open-api': 2.41.0
+      '@netlify/open-api': 2.42.0
       lodash-es: 4.17.21
       micro-api-client: 3.3.0
       node-fetch: 3.3.2
@@ -9163,7 +9172,7 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  simple-git@3.28.0:
+  simple-git@3.29.0:
     dependencies:
       '@kwsites/file-exists': 1.1.1
       '@kwsites/promise-deferred': 1.1.1
@@ -9283,7 +9292,7 @@ snapshots:
       postcss: 8.5.6
       postcss-selector-parser: 7.1.0
 
-  superjson@2.2.3:
+  superjson@2.2.5:
     dependencies:
       copy-anything: 4.0.5
 
@@ -9671,7 +9680,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-inspect@11.3.3(@nuxt/kit@4.2.0(magicast@0.5.0))(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
+  vite-plugin-inspect@11.3.3(@nuxt/kit@4.2.0(magicast@0.5.1))(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
     dependencies:
       ansis: 4.2.0
       debug: 4.4.3
@@ -9684,7 +9693,7 @@ snapshots:
       vite: 7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)
       vite-dev-rpc: 1.1.0(vite@7.1.12(@types/node@24.5.1)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
     optionalDependencies:
-      '@nuxt/kit': 4.2.0(magicast@0.5.0)
+      '@nuxt/kit': 4.2.0(magicast@0.5.1)
     transitivePeerDependencies:
       - supports-color
 
