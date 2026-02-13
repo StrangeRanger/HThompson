@@ -9,7 +9,7 @@ COPY . .
 RUN pnpm build && pnpm prune --prod --ignore-scripts
 
 # ---- Runtime ----
-FROM node:24-slim AS runtime
+FROM node:24-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
 
