@@ -1,15 +1,18 @@
 # ---- Build ----
-FROM node:24-slim AS build
+FROM node:25-alpine AS build
 WORKDIR /app
 ENV CI=true
 
 COPY package.json pnpm-lock.yaml ./
-RUN corepack enable && pnpm install --frozen-lockfile
+RUN PNPM_VERSION=$(node -p "require('./package.json').packageManager") \
+  && PNPM_VERSION=${PNPM_VERSION#pnpm@} \
+  && npm install -g pnpm@"$PNPM_VERSION" \
+  && pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm build && pnpm prune --prod --ignore-scripts
 
 # ---- Runtime ----
-FROM node:24-slim AS runtime
+FROM node:25-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
 
