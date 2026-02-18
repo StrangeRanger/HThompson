@@ -20,9 +20,9 @@ on:
 permissions:
   contents: read
 
+# Prevent multiple runs from building/pushing at the same time for the same ref (branch). 
+# If a new commit lands, cancel the in-progress run and build the newest commit instead.
 concurrency:
-  # Prevent multiple runs from building/pushing at the same time for the same ref (branch). 
-  # If a new commit lands, cancel the in-progress run and build the newest commit instead.
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
@@ -65,15 +65,15 @@ jobs:
           cache-from: type=gha,scope=hthompson-${{ matrix.arch }}
           cache-to: type=gha,mode=max,scope=hthompson-${{ matrix.arch }}
 
+  # This job creates the single "user-facing" tag `:latest` as a multi-arch manifest list.
+  #                                                                                       
+  # Why this exists:                                                                      
+  # - The `build` job pushes *two separate images*:                                       
+  #     hthompson:amd64 (linux/amd64 image)                                              
+  #     hthompson:arm64 (linux/arm64 image)                                              
+  # - Clients expect `hthompson:latest` to "just work" on their platform.                 
+  # - A manifest list (OCI image index) lets `:latest` point to the correct arch image.
   manifest:
-    # This job creates the single "user-facing" tag `:latest` as a multi-arch manifest list.
-    #                                                                                       
-    # Why this exists:                                                                      
-    # - The `build` job pushes *two separate images*:                                       
-    #     hthompson:amd64 (linux/amd64 image)                                              
-    #     hthompson:arm64 (linux/arm64 image)                                              
-    # - Clients expect `hthompson:latest` to "just work" on their platform.                 
-    # - A manifest list (OCI image index) lets `:latest` point to the correct arch image.
     needs: build
     runs-on: ubuntu-24.04
     steps:
@@ -86,10 +86,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
 
+      # Create/push `:latest` as a manifest list that references the two arch tags.       
+      # After this, `docker pull ...:latest` will pull amd64 on x86_64 machines           
+      # and arm64 on ARM machines automatically.
       - name: Create and push multi-arch manifest
-        # Create/push `:latest` as a manifest list that references the two arch tags.       
-        # After this, `docker pull ...:latest` will pull amd64 on x86_64 machines           
-        # and arm64 on ARM machines automatically.
         run: |
           docker buildx imagetools create \
             -t "${{ vars.DOCKERHUB_USERNAME }}/hthompson:latest" \
