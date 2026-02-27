@@ -1,8 +1,0 @@
-node_modules
-.pnpm-store
-.nuxt
-.output
-.git
-.DS_Store
-.vscode
-.idea

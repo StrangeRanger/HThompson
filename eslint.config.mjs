@@ -1,46 +1,18 @@
-// @ts-check
-import withNuxt from "./.nuxt/eslint.config.mjs";
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 
-export default withNuxt(
-  // Configuration for TypeScript files
-  {
-    files: ["**/*.ts", "**/*.tsx"],
-    languageOptions: {
-      parser: await import("@typescript-eslint/parser"),
-      globals: {
-        defineNuxtConfig: "readonly",
-      },
-    },
-  },
-  // Configuration for Vue files
-  {
-    files: ["**/*.vue"],
-    languageOptions: {
-      parserOptions: {
-        parser: "@typescript-eslint/parser",
-        extraFileExtensions: [".vue"],
-      },
-    },
-    rules: {
-      // Allow Vuetify's v-slot syntax with modifiers
-      "vue/valid-v-slot": "off",
-    },
-  },
-  // Global rules
-  {
-    rules: {
-      "vue/html-self-closing": [
-        "warn",
-        {
-          html: {
-            void: "always",
-          },
-          svg: "always",
-          math: "always",
-        },
-      ],
-      // Allow v-html for trusted content
-      "vue/no-v-html": "warn",
-    },
-  },
-);
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+]);
+
+export default eslintConfig;

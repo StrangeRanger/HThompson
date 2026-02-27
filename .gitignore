@@ -1,15 +1,47 @@
-# Created by https://www.toptal.com/developers/gitignore/api/webstorm,visualstudiocode,node,vuejs,nuxtjs
-# Edit at https://www.toptal.com/developers/gitignore?templates=webstorm,visualstudiocode,node,vuejs,nuxtjs
+# Created by https://www.toptal.com/developers/gitignore/api/node,webstorm,visualstudiocode,react,nextjs
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,webstorm,visualstudiocode,react,nextjs
+
+### NextJS ###
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
 
 ### Node ###
 # Logs
 logs
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 lerna-debug.log*
-.pnpm-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
@@ -50,7 +82,6 @@ jspm_packages/
 web_modules/
 
 # TypeScript cache
-*.tsbuildinfo
 
 # Optional npm cache directory
 .npm
@@ -141,16 +172,18 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
-### NuxtJS ###
-# Generated dirs
-.nuxt-*
-.output
-.gen
+### react ###
+.DS_*
+**/*.backup.*
+**/*.back.*
 
-# Node dependencies
 node_modules
 
-# System files
+*.sublime*
+
+psd
+thumb
+sketch
 
 ### VisualStudioCode ###
 .vscode/*
@@ -170,13 +203,6 @@ node_modules
 # Ignore all local history of files
 .history
 .ionide
-
-### Vuejs ###
-# Recommended template: Node.gitignore
-
-dist/
-npm-debug.log
-yarn-error.log
 
 ### WebStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -291,7 +317,4 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
 .idea/**/azureSettings.xml
 
-# End of https://www.toptal.com/developers/gitignore/api/webstorm,visualstudiocode,node,vuejs,nuxtjs
-
-## Secret Files
-turnstile.secretKey
+# End of https://www.toptal.com/developers/gitignore/api/node,webstorm,visualstudiocode,react,nextjs
