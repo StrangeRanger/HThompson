@@ -1,7 +1,6 @@
 node_modules
 .pnpm-store
-.nuxt
-.output
+.next
 .git
 .DS_Store
 .vscode

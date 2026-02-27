@@ -7,11 +7,11 @@ on:
     paths:
       - ".github/workflows/docker-publish.yml"
       - "app/**"
+      - "lib/**"
       - "public/**"
-      - "server/**"
-      - "types/**"
       - "Dockerfile"
-      - "nuxt.config.ts"
+      - "next.config.ts"
+      - "next-env.d.ts"
       - "package.json"
       - "pnpm-lock.yaml"
       - "tsconfig.json"
@@ -23,8 +23,6 @@ env:
 permissions:
   contents: read
 
-# Prevent multiple runs from building/pushing at the same time for the same ref (branch). 
-# If a new commit lands, cancel the in-progress run and build the newest commit instead.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -43,7 +41,7 @@ jobs:
 
     runs-on: ${{ matrix.runner }}
 
-    steps:      
+    steps:
       - name: Login to Docker Hub
         uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
         with:
@@ -64,18 +62,15 @@ jobs:
         uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
         with:
           push: true
-          # Attaches an SBOM attestation (software bill of materials). (Supply-chain metadata)
           sbom: true
-          # Attaches a SLSA provenance attestation (how this image was built). (Supply-chain metadata)
           provenance: mode=max
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ env.REGISTRY_IMAGE }}
           outputs: type=image,push-by-digest=true,name-canonical=true,push=true
-          ## The `scope=` keeps amd64 and arm64 caches from colliding with each other. 
           cache-from: type=gha,scope=hthompson-${{ matrix.arch }}
           cache-to: type=gha,mode=max,scope=hthompson-${{ matrix.arch }}
-      
+
       - name: Save digest to file
         run: |
           echo "${{ steps.buildpush.outputs.digest }}" > digest-${{ matrix.arch }}.txt

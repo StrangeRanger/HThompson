@@ -1,36 +1,29 @@
 {
   "name": "hthompson",
-  "version": "3",
+  "version": "4",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "format": "prettier --write .",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "@mdi/font": "^7.4.47",
-    "@nuxtjs/seo": "^3.0.3",
-    "@vueuse/core": "^14.0.0",
-    "nuxt": "^4.0.3",
-    "nuxt-security": "^2.3.0",
-    "vue": "^3.5.18",
-    "vue-matomo": "^4.2.0"
+    "next": "^15.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^3.0.0",
-    "@nuxt/eslint": "^1.9.0",
-    "@typescript-eslint/eslint-plugin": "^8.38.0",
-    "@typescript-eslint/parser": "^8.40.0",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
     "eslint": "^9.39.3",
+    "eslint-config-next": "^15.2.0",
     "prettier": "^3.5.3",
-    "vite-plugin-vuetify": "^2.1.2",
-    "vuetify": "^3.9.5"
+    "typescript": "^5.8.2"
   },
   "packageManager": "pnpm@10.30.3"
 }
