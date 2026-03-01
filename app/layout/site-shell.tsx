@@ -1,22 +1,13 @@
 "use client";
 
 import { MouseEvent, useState } from "react";
-import { NavType } from "@/app/lib/definitions";
-import NextLink from "next/link";
 import Image from "next/image";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import { NavType } from "@/app/lib/definitions";
+import SiteHeader from "@/app/layout/site-header";
+import SiteNavMenu from "@/app/layout/site-nav-menu";
 
 interface SiteShellProps {
   children: React.ReactNode;
@@ -39,11 +30,11 @@ export default function SiteShell({ children }: SiteShellProps) {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const menuOpen = Boolean(menuAnchorEl);
 
-  function toggleMenu(event: MouseEvent<HTMLElement>) {
+  function handleMenuOpen(event: MouseEvent<HTMLElement>) {
     setMenuAnchorEl(event.currentTarget);
   }
 
-  function toggleMenuClose() {
+  function handleMenuClose() {
     setMenuAnchorEl(null);
   }
 
@@ -68,88 +59,13 @@ export default function SiteShell({ children }: SiteShellProps) {
         }}
       />
 
-      <AppBar>
-        <Toolbar
-          sx={{
-            minHeight: 64,
-            px: { xs: 2, sm: 3 }, // TODO: Verify purpose
-            justifyContent: "space-between",
-          }}
-        >
-          <Link
-            component={NextLink}
-            href="/public"
-            underline="none"
-            color="inherit"
-            variant="h5"
-          >
-            HThompson
-          </Link>
-          <Button
-            variant="outlined"
-            color="inherit"
-            onClick={toggleMenu}
-            sx={{
-              borderColor: "divider",
-            }}
-          >
-            Menu
-          </Button>
-        </Toolbar>
-      </AppBar>
-
-      <Menu
-        id="site-menu"
+      <SiteHeader onMenuOpen={handleMenuOpen} />
+      <SiteNavMenu
         anchorEl={menuAnchorEl}
         open={menuOpen}
-        onClose={toggleMenuClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        slotProps={{
-          paper: {
-            sx: {
-              width: { xs: "min(64vw, 280px)", sm: 280 }, // TODO: Verify purpose
-              p: 2,
-              borderLeft: "1px solid",
-              borderColor: "divider",
-              backgroundColor: "rgba(24, 24, 24, 0.98)",
-            },
-          },
-        }}
-      >
-        <Typography
-          color="text.secondary"
-          sx={{ px: 1.5, paddingBottom: 1.5, fontWeight: 500 }}
-        >
-          Navigation
-        </Typography>
-        <List disablePadding sx={{ mt: 1, display: "grid", gap: 1 }}>
-          {navItems.map((item) => (
-            <ListItem key={item.name} disablePadding>
-              <ListItemButton
-                component={item.external ? "a" : NextLink}
-                href={item.href}
-                onClick={toggleMenuClose}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
-                sx={{
-                  border: "1px solid",
-                  borderColor: "divider",
-                  borderRadius: 2.5,
-                }}
-              >
-                <ListItemText primary={item.name} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Menu>
+        onClose={handleMenuClose}
+        navItems={navItems}
+      />
 
       {/*TODO: Verify purpose of xs*/}
       <Box component="main" sx={{ px: { xs: 2, sm: 3 }, py: { xs: 4, sm: 6 } }}>
