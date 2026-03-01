@@ -7,13 +7,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Menu from "@mui/material/Menu";
 import Typography from "@mui/material/Typography";
-import { NavType } from "@/app/lib/definitions";
+import { NavItem } from "@/app/lib/definitions";
 
 interface SiteNavMenuProps {
   anchorEl: HTMLElement | null;
   open: boolean;
   onClose: () => void;
-  navItems: NavType[];
+  navItems: NavItem[];
 }
 
 export default function SiteNavMenu({

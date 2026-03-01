@@ -5,7 +5,7 @@ import Image from "next/image";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
-import { NavType } from "@/app/lib/definitions";
+import { NavItem } from "@/app/lib/definitions";
 import SiteHeader from "@/app/layout/site-header";
 import SiteNavMenu from "@/app/layout/site-nav-menu";
 
@@ -13,7 +13,7 @@ interface SiteShellProps {
   children: React.ReactNode;
 }
 
-const navItems: NavType[] = [
+const navItems: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "Project Tracker", href: "/project-tracker" },
   { name: "About", href: "/about" },
