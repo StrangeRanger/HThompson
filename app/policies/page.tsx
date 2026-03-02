@@ -15,14 +15,14 @@ import {
   TableRow,
 } from "@mui/material";
 
-export default function PrivacyPolicy() {
-  interface SubprocessorTable {
-    row: number;
-    subprocessor: string;
-    location: string;
-    service: string;
-  }
+interface SubprocessorTable {
+  row: number;
+  subprocessor: string;
+  location: string;
+  service: string;
+}
 
+export default function PrivacyPolicy() {
   const subprocessorsTable: SubprocessorTable[] = [
     {
       row: 1,
@@ -39,21 +39,8 @@ export default function PrivacyPolicy() {
     },
   ];
 
-  function MatomoOptOut(): React.ReactElement | null {
-    if (process.env.NODE_ENV === "development") {
-      return null;
-    }
-
-    return (
-      <>
-        <Script
-          src="https://analytics.hthompson.dev/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=auto&showIntro=1"
-          strategy="afterInteractive"
-        />
-        <Box id="matomo-opt-out" />
-      </>
-    );
-  }
+  const shouldRenderMatomoOptOut: boolean =
+    process.env.NODE_ENV !== "development";
 
   return (
     <Box>
@@ -131,10 +118,18 @@ export default function PrivacyPolicy() {
           Opt Out
         </Typography>
         <Alert severity="info" sx={{ mb: 4 }}>
-          If you don't see the opt out box below, please refresh the page or
-          disable your ad blocker.
+          If you don&apos;t see the opt out box below, please refresh the page
+          or disable your ad blocker.
         </Alert>
-        <MatomoOptOut />
+        {shouldRenderMatomoOptOut ? (
+          <>
+            <Script
+              src="https://analytics.hthompson.dev/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=auto&showIntro=1"
+              strategy="afterInteractive"
+            />
+            <Box id="matomo-opt-out" />
+          </>
+        ) : null}
       </Box>
 
       <Box sx={{ my: 3 }}>
@@ -206,8 +201,8 @@ export default function PrivacyPolicy() {
           in this Policy. I will also retain and use this information as
           necessary for the purposes set out in this Policy and to the extent
           necessary to comply with my legal obligations, resolve disputes,
-          enforce my agreements and protect HThompson's legal rights. I also
-          collect and maintain aggregated, anonymized or pseudonymized
+          enforce my agreements and protect HThompson&apos;s legal rights. I
+          also collect and maintain aggregated, anonymized or pseudonymized
           information which I may retain indefinitely to protect the safety and
           security of my Site, improve my Services or comply with legal
           obligations.
