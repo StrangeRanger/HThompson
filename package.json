@@ -2,6 +2,7 @@
   "name": "hthompson",
   "version": "4-alpha",
   "private": true,
+  "packageManager": "pnpm@10.30.3",
   "scripts": {
     "dev": "next dev --port 3001",
     "build": "next build",
