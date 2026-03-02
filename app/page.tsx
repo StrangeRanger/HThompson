@@ -6,15 +6,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Divider } from "@mui/material";
 
-export default function Home() {
-  interface ServiceCard {
-    title: string;
-    body: string;
-    link: string;
-    icon: string;
-    type: "service" | "doc-and-tools";
-  }
+interface ServiceCard {
+  title: string;
+  body: string;
+  link: string;
+  icon: string;
+  type: "service" | "doc-and-tools";
+}
 
+export default function Home() {
   const itemArray: ServiceCard[] = [
     {
       title: "Image Gallery",

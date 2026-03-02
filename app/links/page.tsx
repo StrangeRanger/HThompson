@@ -5,15 +5,15 @@ import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import CardContent from "@mui/material/CardContent";
 
-export default function MyLinks() {
-  interface SocialLink {
-    title: string;
-    body: string;
-    link: string;
-    icon: string;
-    color: string;
-  }
+interface SocialLink {
+  title: string;
+  body: string;
+  link: string;
+  icon: string;
+  color: string;
+}
 
+export default function MyLinks() {
   const socialLinks: SocialLink[] = [
     {
       title: "Twitter (X)",
