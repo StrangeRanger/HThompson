@@ -23,7 +23,7 @@ export default function SiteHeader({ onMenuOpen }: SiteHeaderProps) {
       >
         <Link
           component={NextLink}
-          href="/public"
+          href="/"
           underline="none"
           color="inherit"
           variant="h5"
