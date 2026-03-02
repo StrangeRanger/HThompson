@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import {Divider} from "@mui/material";
+import { Divider } from "@mui/material";
 
 export default function Home() {
   interface ServiceCard {
@@ -142,7 +142,7 @@ export default function Home() {
           systems like my image gallery, to privacy-focused utilities like
           PrivateBin, and developer tools like RSS Bridge for generating feeds.
         </Typography>
-        <Grid container spacing={3} >
+        <Grid container spacing={3}>
           {serviceCards.map((item) => (
             <Grid key={item.title} size={{ xs: 12, sm: 6, lg: 4 }}>
               <Card variant="outlined">
