@@ -67,10 +67,10 @@ export default function Home() {
     },
   ];
 
-  const docAndToolsCards: ServiceCard[] = itemArray.filter(
+  const docAndToolsItems: ServiceCard[] = itemArray.filter(
     (item) => item.type === "doc-and-tools",
   );
-  const serviceCards: ServiceCard[] = itemArray.filter(
+  const serviceItems: ServiceCard[] = itemArray.filter(
     (item) => item.type === "service",
   );
 
@@ -103,7 +103,7 @@ export default function Home() {
           real-time project status updates.
         </Typography>
         <Grid container spacing={3}>
-          {docAndToolsCards.map((item) => (
+          {docAndToolsItems.map((item) => (
             <Grid key={item.title} size={{ xs: 12, sm: 6, lg: 4 }}>
               <Card variant="outlined">
                 <Button
@@ -143,7 +143,7 @@ export default function Home() {
           PrivateBin, and developer tools like RSS Bridge for generating feeds.
         </Typography>
         <Grid container spacing={3}>
-          {serviceCards.map((item) => (
+          {serviceItems.map((item) => (
             <Grid key={item.title} size={{ xs: 12, sm: 6, lg: 4 }}>
               <Card variant="outlined">
                 <Button
