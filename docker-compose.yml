@@ -1,7 +1,6 @@
 services:
   hthompson:
-#    image: strangeranger/hthompson:latest
-    image: hthompson:25-alpine
+    image: strangeranger/hthompson:latest
     container_name: hthompson
     restart: unless-stopped
     ports:
