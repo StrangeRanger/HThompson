@@ -111,7 +111,7 @@ const theme = createTheme({
       defaultProps: {
         variant: "outlined",
       },
-    }
+    },
   },
 });
 
