@@ -20,18 +20,10 @@ export interface BadgeDescription {
   description: string;
 }
 
-export interface ServiceCard {
+export interface TableHeader {
   title: string;
-  text: string;
-  link: string;
-  type: "service" | "doc-and-tools";
-}
-
-export interface SocialLink {
-  title: string;
-  text: string;
-  link: string;
-  color: string;
+  key: string;
+  sortable: boolean;
 }
 
 export type RepoStatus =
