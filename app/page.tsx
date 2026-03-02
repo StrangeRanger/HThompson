@@ -105,7 +105,7 @@ export default function Home() {
         <Grid container spacing={3}>
           {docAndToolsItems.map((item) => (
             <Grid key={item.title} size={{ xs: 12, sm: 6, lg: 4 }}>
-              <Card variant="outlined">
+              <Card>
                 <Button
                   href={item.link}
                   sx={{
@@ -145,7 +145,7 @@ export default function Home() {
         <Grid container spacing={3}>
           {serviceItems.map((item) => (
             <Grid key={item.title} size={{ xs: 12, sm: 6, lg: 4 }}>
-              <Card variant="outlined">
+              <Card>
                 <Button
                   href={item.link}
                   sx={{
