@@ -29,7 +29,7 @@ const navItems: NavItem[] = [
 
 export default function SiteShell({ children }: SiteShellProps) {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
-  const menuOpen = Boolean(menuAnchorEl);
+  const menuOpen: boolean = Boolean(menuAnchorEl);
 
   function handleMenuOpen(event: MouseEvent<HTMLElement>) {
     setMenuAnchorEl(event.currentTarget);
