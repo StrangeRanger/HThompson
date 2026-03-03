@@ -1,6 +1,6 @@
 "use client";
 
-import { MouseEvent } from "react";
+import type { MouseEvent } from "react";
 import NextLink from "next/link";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";

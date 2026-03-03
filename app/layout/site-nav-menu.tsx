@@ -7,7 +7,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Menu from "@mui/material/Menu";
 import Typography from "@mui/material/Typography";
-import { NavItem } from "@/app/lib/definitions";
+import type { NavItem } from "@/app/lib/definitions";
 
 interface SiteNavMenuProps {
   anchorEl: HTMLElement | null;

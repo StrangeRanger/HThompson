@@ -1,11 +1,12 @@
 "use client";
 
-import { MouseEvent, useState } from "react";
+import type { MouseEvent } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
-import { NavItem } from "@/app/lib/definitions";
+import type { NavItem } from "@/app/lib/definitions";
 import SiteHeader from "@/app/layout/site-header";
 import SiteNavMenu from "@/app/layout/site-nav-menu";
 
