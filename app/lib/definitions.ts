@@ -14,16 +14,22 @@ export interface GithubProject {
   url: string;
 }
 
-export interface BadgeDescription {
-  row: number;
-  statusBadge: RepoStatus;
-  description: string;
-}
-
 export interface TableHeader {
   title: string;
   key: string;
   sortable: boolean;
+}
+
+export interface GithubRepo {
+  name: string;
+  topics: string[];
+  archived: boolean;
+  pushed_at: string;
+}
+
+export interface GithubGist {
+  description: string | null;
+  updated_at: string;
 }
 
 export type RepoStatus =
