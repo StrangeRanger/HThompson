@@ -4,7 +4,7 @@ export interface NavItem {
   external?: boolean;
 }
 
-export interface GithubProject {
+export interface TrackedProject {
   id: string | number;
   name: string;
   type: string;
@@ -14,14 +14,14 @@ export interface GithubProject {
   url: string;
 }
 
-export interface GithubRepo {
+export interface GithubRepoStatusInput {
   name: string;
   topics: string[];
   archived: boolean;
   pushed_at: string;
 }
 
-export interface GithubGist {
+export interface GithubGistStatusInput {
   description: string | null;
   updated_at: string;
 }
