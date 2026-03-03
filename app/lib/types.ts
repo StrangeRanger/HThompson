@@ -14,12 +14,6 @@ export interface GithubProject {
   url: string;
 }
 
-export interface TableHeader {
-  title: string;
-  key: string;
-  sortable: boolean;
-}
-
 export interface GithubRepo {
   name: string;
   topics: string[];
