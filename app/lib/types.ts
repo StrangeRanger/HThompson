@@ -10,6 +10,7 @@ export interface TrackedProject {
   type: string;
   status: RepoStatus;
   lastCommitRelative: string;
+  lastCommitTimestamp: number;
   description: string;
   url: string;
 }

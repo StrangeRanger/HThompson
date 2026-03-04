@@ -152,7 +152,12 @@ export default function ProjectTracker() {
         return <StatusBadge status={status} />;
       },
     },
-    { field: "lastCommitRelative", headerName: "Last Commit", width: 180 },
+    {
+      field: "lastCommitTimestamp",
+      headerName: "Last Commit",
+      width: 180,
+      renderCell: (params) => params.row.lastCommitRelative,
+    },
     { field: "description", headerName: "Description", flex: 2, minWidth: 300 },
   ];
 

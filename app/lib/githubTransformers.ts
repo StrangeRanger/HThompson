@@ -47,6 +47,7 @@ export function transformRepoData(
         type: repo.fork ? "Fork" : "Repo",
         status: status,
         lastCommitRelative: formatTimeSinceLastCommit(repo.pushed_at),
+        lastCommitTimestamp: new Date(repo.pushed_at).getTime(),
       };
     })
     .filter((repo) => !repo.private); // Filter out private repositories
@@ -86,6 +87,7 @@ export function transformGistData(
         type: "Gist",
         status: status,
         lastCommitRelative: formatTimeSinceLastCommit(gist.updated_at),
+        lastCommitTimestamp: new Date(gist.updated_at).getTime(),
       };
     })
     .filter((gist) => gist.public); // Filter out private gists
