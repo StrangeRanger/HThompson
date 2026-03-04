@@ -6,6 +6,8 @@ A modern personal website serving as my digital hub and online presence. Built w
 
 **Live Site:** [hthompson.dev](https://hthompson.dev)
 
+**NEEDS UPDATE**: Updates to listed technologies and tech stack need to be made.
+
 ## Features
 
 ### Landing Page
