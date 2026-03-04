@@ -1,19 +1,6 @@
-export type repoStatus =
-  | "personal"
-  | "active"
-  | "maintained"
-  | "inactive"
-  | "finished"
-  | "unsupported"
-  | "concept"
-  | "wip"
-  | "suspended"
-  | "abandoned"
-  | "archived"
-  | "moved"
-  | "unspecified"
-  | "unknown";
-const hardCodedStatuses: Record<string, repoStatus> = {
+import type { GithubRepoStatusInput, RepoStatus } from "@/app/lib/types";
+
+const hardCodedStatuses: Record<string, RepoStatus> = {
   "fafb-powershell-tool": "abandoned",
   "web-note-app": "abandoned",
   "periodic-table": "abandoned",
@@ -21,8 +8,8 @@ const hardCodedStatuses: Record<string, repoStatus> = {
   "identify-root-user-logins": "moved",
 };
 
-export const getRepoStatus = (repo: any): repoStatus => {
-  let status: repoStatus = "unknown";
+export const getRepoStatus = (repo: GithubRepoStatusInput): RepoStatus => {
+  let status: RepoStatus = "unknown";
 
   if (repo.name in hardCodedStatuses) {
     status = hardCodedStatuses[repo.name.toLowerCase()];
@@ -62,24 +49,3 @@ export const getRepoStatus = (repo: any): repoStatus => {
 
   return status;
 };
-
-export function getStatusColors(status: string): string {
-  const colorMap: Record<string, string> = {
-    personal: "teal",
-    active: "green",
-    maintained: "green-lighten-1",
-    inactive: "amber-darken-2",
-    finished: "blue",
-    unsupported: "deep-orange",
-    concept: "purple",
-    wip: "cyan",
-    suspended: "red-darken-3",
-    abandoned: "red",
-    archived: "grey-darken-1",
-    moved: "blue-darken-2",
-    unspecified: "grey-lighten-1",
-    unknown: "blue-grey-darken-1",
-  };
-
-  return colorMap[status] || "grey";
-}

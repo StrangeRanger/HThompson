@@ -1,8 +1,8 @@
-node_modules
-.pnpm-store
-.nuxt
-.output
 .git
-.DS_Store
-.vscode
-.idea
+.github
+.next
+node_modules
+npm-debug.log*
+pnpm-debug.log*
+Dockerfile*
+README.md

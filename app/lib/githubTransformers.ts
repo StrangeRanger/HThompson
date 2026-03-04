@@ -1,19 +1,41 @@
-import { getRepoStatus } from "~/composables/useRepoStatus";
-import { getGistStatus } from "~/composables/useGistStatus";
-import type { repoStatus } from "~/composables/useRepoStatus";
-import { capitalizeWords } from "~/utils/stringUtils";
-import { formatTimeSinceLastCommit } from "~/utils/dateUtils";
-import type { GithubProject } from "~~/types/github";
+import { getRepoStatus } from "@/app/lib/repoStatus";
+import { getGistStatus } from "@/app/lib/gistStatus";
+import type {
+  GithubGistStatusInput,
+  GithubRepoStatusInput,
+  RepoStatus,
+} from "@/app/lib/types";
+import { capitalizeWords } from "@/app/lib/stringUtils";
+import { formatTimeSinceLastCommit } from "@/app/lib/dateUtils";
+import type { TrackedProject } from "@/app/lib/types";
 
-export function transformRepoData(repos: any[]): GithubProject[] {
+type GithubRepoTransformInput = GithubRepoStatusInput & {
+  id: number;
+  private: boolean;
+  html_url: string;
+  description: string | null;
+  topics: string[];
+  fork: boolean;
+};
+
+type GithubGistTransformInput = GithubGistStatusInput & {
+  id: string;
+  public: boolean;
+  html_url: string;
+  files: Record<string, unknown>;
+};
+
+export function transformRepoData(
+  repos: GithubRepoTransformInput[],
+): TrackedProject[] {
   if (!Array.isArray(repos)) {
     console.warn("Repo data is not an array:", repos);
     return [];
   }
 
   return repos
-    .map((repo: any) => {
-      const status: repoStatus = getRepoStatus(repo);
+    .map((repo: GithubRepoTransformInput) => {
+      const status: RepoStatus = getRepoStatus(repo);
       return {
         id: repo.id,
         name: capitalizeWords(repo.name.replace(/-/g, " ")),
@@ -25,20 +47,23 @@ export function transformRepoData(repos: any[]): GithubProject[] {
         type: repo.fork ? "Fork" : "Repo",
         status: status,
         lastCommitRelative: formatTimeSinceLastCommit(repo.pushed_at),
+        lastCommitTimestamp: new Date(repo.pushed_at).getTime(),
       };
     })
-    .filter((repo: any) => !repo.private); // Filter out private repositories
+    .filter((repo) => !repo.private); // Filter out private repositories
 }
 
-export function transformGistData(gists: any[]): GithubProject[] {
+export function transformGistData(
+  gists: GithubGistTransformInput[],
+): TrackedProject[] {
   if (!Array.isArray(gists)) {
     console.warn("Gist data is not an array:", gists);
     return [];
   }
 
   return gists
-    .map((gist: any) => {
-      const status: repoStatus = getGistStatus(gist);
+    .map((gist) => {
+      const status: RepoStatus = getGistStatus(gist);
       const files: string[] = Object.keys(gist.files || {});
       const firstFile: string =
         files.length > 0 && files[0] !== undefined
@@ -62,7 +87,8 @@ export function transformGistData(gists: any[]): GithubProject[] {
         type: "Gist",
         status: status,
         lastCommitRelative: formatTimeSinceLastCommit(gist.updated_at),
+        lastCommitTimestamp: new Date(gist.updated_at).getTime(),
       };
     })
-    .filter((gist: any) => gist.public); // Filter out private gists
+    .filter((gist) => gist.public); // Filter out private gists
 }
