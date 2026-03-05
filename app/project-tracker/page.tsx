@@ -51,16 +51,19 @@ export default function ProjectTracker() {
         throw new Error(`GitHub failed: ${response.status}`);
       }
 
-      // TODO: Specify the type of data returned by the GitHub API for gists, and use that type instead of 'any'.
-      const data: any = await response.json();
+      const data: unknown = await response.json();
 
       if (!Array.isArray(data)) {
         console.warn("Repos response is not an array:", data);
         break;
       }
 
-      allRepos.push(...data);
-      hasMore = data.length === 100;
+      // NOTE: `response.json()` is untyped. After confirming it's an array,
+      // we assert the element shape expected by `transformRepoData`.
+      // Use a runtime type guard if stronger validation is needed.
+      const repoPage = data as Parameters<typeof transformRepoData>[0];
+      allRepos.push(...repoPage);
+      hasMore = repoPage.length === 100;
       page++;
     }
 
@@ -74,7 +77,7 @@ export default function ProjectTracker() {
 
     while (hasMore) {
       const response: Response = await fetch(
-        `https://api.github.com/users/${username}/gists`,
+        `https://api.github.com/users/${username}/gists?per_page=100&page=${page}`,
         { cache: "no-store" },
       );
 
@@ -82,16 +85,19 @@ export default function ProjectTracker() {
         throw new Error(`GitHub failed: ${response.status}`);
       }
 
-      // TODO: Specify the type of data returned by the GitHub API for gists, and use that type instead of 'any'.
-      const data: any = await response.json();
+      const data: unknown = await response.json();
 
       if (!Array.isArray(data)) {
         console.warn("Gists response is not an array:", data);
         break;
       }
 
-      allGists.push(...data);
-      hasMore = data.length === 100;
+      // NOTE: `response.json()` is untyped. After confirming it's an array,
+      // we assert the element shape expected by `transformGistData`.
+      // Use a runtime type guard if stronger validation is needed.
+      const gistPage = data as Parameters<typeof transformGistData>[0];
+      allGists.push(...gistPage);
+      hasMore = gistPage.length === 100;
       page++;
     }
 
@@ -148,7 +154,10 @@ export default function ProjectTracker() {
       headerName: "Status",
       width: 150,
       renderCell: (params) => {
-        const status = params.value as RepoStatus; // TODO: Figure out what as type does.
+        // NOTE: DataGrid cell values are broadly typed; this cast narrows the
+        // `status` cell value to our `RepoStatus` union for `StatusBadge`.
+        // Prefer typed render params if we want to avoid assertions entirely.
+        const status = params.value as RepoStatus;
         return <StatusBadge status={status} />;
       },
     },
