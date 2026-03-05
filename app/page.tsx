@@ -81,7 +81,7 @@ export default function Home() {
           Welcome to HThompson
         </Typography>
         <Typography variant="body1" sx={{ my: 4 }}>
-          I'm Hunter, and this is the central hub of my online presence. Here,
+          I&apos;m Hunter, and this is the central hub of my online presence. Here,
           you can track my current projects, access the services I host, explore
           my documentation and tools, and learn more about who I am and what I
           do. Feel free to browse around and enjoy your visit!
