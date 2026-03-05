@@ -58,6 +58,9 @@ export default function ProjectTracker() {
         break;
       }
 
+      // NOTE: `response.json()` is untyped. After confirming it's an array,
+      // we assert the element shape expected by `transformRepoData`.
+      // Use a runtime type guard if stronger validation is needed.
       const repoPage = data as Parameters<typeof transformRepoData>[0];
       allRepos.push(...repoPage);
       hasMore = repoPage.length === 100;
@@ -89,6 +92,9 @@ export default function ProjectTracker() {
         break;
       }
 
+      // NOTE: `response.json()` is untyped. After confirming it's an array,
+      // we assert the element shape expected by `transformGistData`.
+      // Use a runtime type guard if stronger validation is needed.
       const gistPage = data as Parameters<typeof transformGistData>[0];
       allGists.push(...gistPage);
       hasMore = gistPage.length === 100;
@@ -148,7 +154,10 @@ export default function ProjectTracker() {
       headerName: "Status",
       width: 150,
       renderCell: (params) => {
-        const status = params.value as RepoStatus; // TODO: Figure out what as type does.
+        // NOTE: DataGrid cell values are broadly typed; this cast narrows the
+        // `status` cell value to our `RepoStatus` union for `StatusBadge`.
+        // Prefer typed render params if we want to avoid assertions entirely.
+        const status = params.value as RepoStatus;
         return <StatusBadge status={status} />;
       },
     },
