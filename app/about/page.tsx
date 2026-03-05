@@ -34,7 +34,7 @@ export default function About() {
             <Typography variant="body1" sx={{ mb: 2 }}>
               Beyond my core studies, I have a deep fascination with the
               infinite wonders of space, which once inspired me to consider a
-              career in Astrophysics. I'm also an avid music enthusiast and
+              career in Astrophysics. I&apos;m also an avid music enthusiast and
               enjoy immersing myself in the diverse worlds of anime.
             </Typography>
             <Alert severity="info">
@@ -64,7 +64,7 @@ export default function About() {
               server, I seized this challenge as an opportunity for reinvention.
               This led to a significant rebranding: transitioning from
               randomserver.xyz to hthompson.dev. Embracing this change, I
-              redeveloped the main webpage with Vue.js, aligning the site's
+              redeveloped the main webpage with Vue.js, aligning the site&apos;s
               aesthetic with a more professional outlook.
             </Typography>
           </AccordionDetails>
