@@ -51,7 +51,7 @@ export default function MyLinks() {
         My Links
       </Typography>
       <Typography variant="body1" sx={{ my: 4, textAlign: "center" }}>
-        Connect with me on various social media platforms and explore my work.
+        Connect with me on social media and explore my work.
       </Typography>
       <Grid container spacing={3}>
         {socialLinks.map((item: SocialLink) => (
