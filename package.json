@@ -2,6 +2,9 @@
   "name": "hthompson",
   "version": "4-beta",
   "private": true,
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "packageManager": "pnpm@10.30.3",
   "scripts": {
     "dev": "next dev",
