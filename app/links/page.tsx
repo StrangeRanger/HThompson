@@ -4,13 +4,16 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import CardContent from "@mui/material/CardContent";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import MusicNoteIcon from "@mui/icons-material/MusicNote";
 
 interface SocialLink {
   id: string;
   title: string;
   body: string;
   href: string;
-  icon: string;
+  icon: React.ElementType;
   color: string;
 }
 
@@ -21,7 +24,7 @@ export default function MyLinks() {
       title: "Twitter (X)",
       body: "My Twitter (X) account.",
       href: "https://x.com/_Hunter_T_",
-      icon: "mdi-twitter",
+      icon: TwitterIcon,
       color: "#1DA1F2",
     },
     {
@@ -29,7 +32,7 @@ export default function MyLinks() {
       title: "GitHub",
       body: "My GitHub account.",
       href: "https://github.com/StrangeRanger",
-      icon: "mdi-github",
+      icon: GitHubIcon,
       color: "#ffffff",
     },
     {
@@ -37,7 +40,7 @@ export default function MyLinks() {
       title: "SoundCloud",
       body: "My SoundCloud account.",
       href: "https://soundcloud.com/SubDubZero",
-      icon: "mdi-soundcloud",
+      icon: MusicNoteIcon,
       color: "#FF5500",
     },
   ];
@@ -66,6 +69,10 @@ export default function MyLinks() {
               >
                 <CardContent>
                   <Typography variant="h6" component="h3" sx={{ mb: 2 }}>
+                    <item.icon
+                      fontSize="small"
+                      sx={{ mr: 1, verticalAlign: "text-bottom" }}
+                    />
                     {item.title}
                   </Typography>
                   <Typography variant="body2">{item.body}</Typography>
