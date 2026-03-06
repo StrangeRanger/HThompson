@@ -51,7 +51,7 @@ export default function SiteNavMenu({
         Navigation
       </Typography>
       <List sx={{ mt: 1, display: "grid", gap: 1 }}>
-        {navItems.map((item) => (
+        {navItems.map((item: NavItem) => (
           <ListItem key={item.name} disablePadding>
             <ListItemButton
               component={item.isExternal ? "a" : NextLink}
