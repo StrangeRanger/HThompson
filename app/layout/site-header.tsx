@@ -17,7 +17,6 @@ export default function SiteHeader({ onMenuOpen }: SiteHeaderProps) {
       <Toolbar
         sx={{
           minHeight: 64,
-          px: { xs: 2, sm: 3 },
           justifyContent: "space-between",
         }}
       >

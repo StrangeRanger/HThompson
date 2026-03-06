@@ -11,22 +11,21 @@ import type { NavItem } from "@/app/lib/types";
 
 interface SiteNavMenuProps {
   anchorEl: HTMLElement | null;
-  open: boolean;
+  isOpen: boolean;
   onClose: () => void;
   navItems: NavItem[];
 }
 
 export default function SiteNavMenu({
   anchorEl,
-  open,
+  isOpen,
   onClose,
   navItems,
 }: SiteNavMenuProps) {
   return (
     <Menu
-      id="site-menu"
       anchorEl={anchorEl}
-      open={open}
+      open={isOpen}
       onClose={onClose}
       anchorOrigin={{
         vertical: "bottom",
@@ -48,21 +47,18 @@ export default function SiteNavMenu({
         },
       }}
     >
-      <Typography
-        color="text.secondary"
-        sx={{ px: 1.5, paddingBottom: 1.5, fontWeight: 500 }}
-      >
+      <Typography color="text.secondary" sx={{ px: 1.5, fontWeight: 500 }}>
         Navigation
       </Typography>
-      <List disablePadding sx={{ mt: 1, display: "grid", gap: 1 }}>
-        {navItems.map((item) => (
+      <List sx={{ mt: 1, display: "grid", gap: 1 }}>
+        {navItems.map((item: NavItem) => (
           <ListItem key={item.name} disablePadding>
             <ListItemButton
-              component={item.external ? "a" : NextLink}
+              component={item.isExternal ? "a" : NextLink}
               href={item.href}
               onClick={onClose}
-              target={item.external ? "_blank" : undefined}
-              rel={item.external ? "noopener noreferrer" : undefined}
+              target={item.isExternal ? "_blank" : undefined}
+              rel={item.isExternal ? "noopener noreferrer" : undefined}
               sx={{
                 border: "1px solid",
                 borderColor: "divider",
