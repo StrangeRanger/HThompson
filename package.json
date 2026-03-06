@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:standalone": "pnpm run build && rm -rf .next/standalone/.next/static && cp -R .next/static .next/standalone/.next/static",
     "start": "next start",
+    "start:standalone": "node .next/standalone/server.js",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format": "prettier --write ."
