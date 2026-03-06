@@ -2,108 +2,72 @@
 
 [![Project Tracker](https://img.shields.io/badge/repo%20status-Project%20Tracker-lightgrey)](https://hthompson.dev/project-tracker#project-611022081)
 
-A modern personal website serving as my digital hub and online presence. Built with Nuxt 4 and Vuetify, it features live GitHub project tracking, centralized access to my hosted services, and essential information about my work and projects.
+Personal website and service hub for [hthompson.dev](https://hthompson.dev), built with Next.js and Material UI.
 
-**Live Site:** [hthompson.dev](https://hthompson.dev)
-
-**NEEDS UPDATE**: Updates to listed technologies and tech stack need to be made.
-
-## Features
-
-### Landing Page
-
-- Modern, responsive design with Vuetify components
-- Mobile-friendly approach with adaptive layouts
-- Fast loading with Nuxt 4 optimization
-
-### Project Tracker
-
-- Live GitHub repository status integration
-- Real-time project updates and statistics
-- Visual status indicators and progress tracking
-
-### Service Hub
-
-- Centralized links to hosted services
-- Easy navigation to personal projects
-- About page with professional information
-
-### Performance & Security
-
-- Cloudflare integration for production
-- Analytics tracking with Matomo
-- Comprehensive security headers and CSP
-- SEO optimizations
+> [!NOTE]
+> Status: **Beta**
+>
+> This version is functionally complete, with a few additional small changes planned before it is considered final.
 
 ## Tech Stack
 
-### Frontend
+- [Next.js](https://nextjs.org/) (App Router)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [MUI](https://mui.com/) and [MUI X Data Grid](https://mui.com/x/react-data-grid/)
+- [Emotion](https://emotion.sh/)
+- [Matomo](https://matomo.org/)
 
-- [Nuxt 4](https://nuxt.com/) - Full-stack Vue framework
-- [Vue 3](https://vuejs.org/) - Progressive JavaScript framework
-- [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
-- [Vuetify](https://vuetifyjs.com/) - Material Design component framework
+## Features
 
-### Production & Analytics
+- Responsive personal hub and navigation shell
+- Project Tracker with live GitHub repo/gist data
+- About, Links, and Policies pages
+- Security-focused headers and CSP setup
+- Standalone output for containerized deployment
 
-- [Cloudflare](https://www.cloudflare.com/) - CDN and security
-- [Matomo](https://matomo.org/) - Privacy-focused analytics
+## Routes
 
-### Development Tools
+- `/` - Home
+- `/project-tracker` - Project Tracker
+- `/about` - About
+- `/links` - Social links
+- `/policies` - Web policies
 
-- [ESLint](https://eslint.org/) - Code linting
-- [Prettier](https://prettier.io/) - Code formatting
-- [pnpm](https://pnpm.io/) - Fast package manager
+## Requirements
+
+- Node.js `>=24.0.0`
+- pnpm
 
 ## Getting Started
 
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v22+ recommended)
-- [pnpm](https://pnpm.io/) (10.14.0+)
-
-### Installation
-
 ```bash
-# Clone the repository
 git clone https://github.com/StrangeRanger/HThompson.git
 cd HThompson
-
-# Install dependencies
 pnpm install
+pnpm dev
 ```
 
-## Development
+Local URL: `http://localhost:3000`
 
-### Available Scripts
+## Scripts
 
 ```bash
-# Start development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Preview production build locally
-pnpm preview
-
-# Run linting
-pnpm lint
-
-# Fix linting issues automatically
-pnpm lint:fix
-
-# Format code with Prettier
-pnpm format
+pnpm dev               # Start dev server
+pnpm build             # Production build
+pnpm start             # Start production server
+pnpm build:standalone  # Build standalone output
+pnpm start:standalone  # Run standalone output
+pnpm lint              # Lint
+pnpm lint:fix          # Lint + auto-fix
+pnpm format            # Format code
 ```
 
-### Development Server
+## Deployment
 
-The development server will be available at `http://localhost:3000` with hot-reload enabled for rapid development.
-
-## Support and Issues
-
-Please use [GitHub Issues](https://github.com/StrangeRanger/HThompson/issues) for bug reports and feature requests.
+- Includes a multi-stage `Dockerfile`
+- Includes a hardened `docker-compose.yml` example
+- CI workflows run lint/build and Docker publishing
 
 ## License
 
