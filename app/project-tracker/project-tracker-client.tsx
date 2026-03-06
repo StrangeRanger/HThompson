@@ -35,7 +35,9 @@ type StrictProjectCol = Omit<GridColDef<TrackedProject>, "field"> & {
   field: keyof TrackedProject;
 };
 
-export default function ProjectTrackerClient({ nonce }: ProjectTrackerClientProps) {
+export default function ProjectTrackerClient({
+  nonce,
+}: ProjectTrackerClientProps) {
   const username: string = "StrangeRanger";
   const [githubProjects, setGithubProjects] = useState<TrackedProject[]>([]);
   const [loading, setLoading] = useState(true);
