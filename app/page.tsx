@@ -12,12 +12,14 @@ import RssFeedIcon from "@mui/icons-material/RssFeed";
 import SourceIcon from "@mui/icons-material/Source";
 import TerminalIcon from "@mui/icons-material/Terminal";
 import CodeIcon from "@mui/icons-material/Code";
+import NextLink from "next/link";
 
 interface ServiceCard {
   id: string;
   title: string;
   body: string;
   link: string;
+  externalLink: boolean;
   icon: React.ElementType;
   type: "service" | "doc-and-tools";
 }
@@ -36,32 +38,50 @@ interface ServiceSectionProps {
 
 function ServiceCardItem({ item, titleSpacing }: ServiceCardItemProps) {
   const Icon = item.icon;
+  const buttonSx = {
+    display: "block",
+    textAlign: "left",
+    color: "inherit",
+    p: 0,
+    borderRadius: 0,
+  };
+  const cardContent = (
+    <CardContent>
+      <Typography variant="h6" component="h3" sx={{ mb: titleSpacing }}>
+        <Icon fontSize="small" sx={{ mr: 1, verticalAlign: "text-bottom" }} />
+        {item.title}
+      </Typography>
+      <Typography variant="body2">{item.body}</Typography>
+    </CardContent>
+  );
 
   return (
-    <Grid key={item.title} size={{ xs: 12, sm: 6, lg: 4 }}>
+    <Grid key={item.id} size={{ xs: 12, sm: 6, lg: 4 }}>
       <Card>
-        {/* TODO: Use NextJS Link for href and use appropriate no*? Reference site-nav-menu for example... */}
-        <Button
-          href={item.link}
-          sx={{
-            display: "block",
-            textAlign: "left",
-            color: "inherit",
-            p: 0,
-            borderRadius: 0,
-          }}
-        >
-          <CardContent>
-            <Typography variant="h6" component="h3" sx={{ mb: titleSpacing }}>
-              <Icon
-                fontSize="small"
-                sx={{ mr: 1, verticalAlign: "text-bottom" }}
-              />
-              {item.title}
-            </Typography>
-            <Typography variant="body2">{item.body}</Typography>
-          </CardContent>
-        </Button>
+        {item.externalLink ? (
+          <Button
+            component="a"
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={buttonSx}
+          >
+            {cardContent}
+          </Button>
+        ) : (
+          <NextLink
+            href={item.link}
+            style={{
+              display: "block",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            <Button component="span" sx={buttonSx}>
+              {cardContent}
+            </Button>
+          </NextLink>
+        )}
       </Card>
     </Grid>
   );
@@ -101,6 +121,7 @@ export default function Home() {
       title: "Image Gallery",
       body: "Publicly hosts an assortment of images, videos, gifs, and so on.",
       link: "https://images.hthompson.dev/",
+      externalLink: true,
       icon: CollectionsIcon,
       type: "service",
     },
@@ -109,6 +130,7 @@ export default function Home() {
       title: "Private Bin",
       body: "A minimalist, open source online pastebin where the server has zero knowledge of pasted data.",
       link: "https://privatebin.hthompson.dev/",
+      externalLink: true,
       icon: ContentPasteIcon,
       type: "service",
     },
@@ -117,6 +139,7 @@ export default function Home() {
       title: "File Server",
       body: "Files that aren't located anywhere else on my website.",
       link: "https://files.hthompson.dev/",
+      externalLink: true,
       icon: InsertDriveFileIcon,
       type: "service",
     },
@@ -125,6 +148,7 @@ export default function Home() {
       title: "RSS Bridge",
       body: "The RSS feed for websites missing it.",
       link: "https://rss-bridge.hthompson.dev/",
+      externalLink: true,
       icon: RssFeedIcon,
       type: "service",
     },
@@ -133,6 +157,7 @@ export default function Home() {
       title: "Project Tracker",
       body: "A comprehensive list of projects I'm working on, have completed, or have abandoned.",
       link: "/project-tracker",
+      externalLink: false,
       icon: SourceIcon,
       type: "doc-and-tools",
     },
@@ -141,6 +166,7 @@ export default function Home() {
       title: "Custom Unix Terminal",
       body: "Configurations that went in to custumizing the look, feel, and functionality of my terminal.",
       link: "https://cut.hthompson.dev/",
+      externalLink: true,
       icon: TerminalIcon,
       type: "doc-and-tools",
     },
@@ -149,6 +175,7 @@ export default function Home() {
       title: "Bash Style Guide",
       body: "A style guide for writing safe, predictable, and maintainable bash scripts.",
       link: "https://bsg.hthompson.dev/",
+      externalLink: true,
       icon: CodeIcon,
       type: "doc-and-tools",
     },
