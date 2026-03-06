@@ -1,13 +1,13 @@
 export interface NavItem {
   name: string;
-  link: string;
-  externalLink?: boolean;
+  href: string;
+  isExternal?: boolean;
 }
 
 export interface TrackedProject {
   id: string | number;
   name: string;
-  type: string;
+  projectType: string;
   status: RepoStatus;
   lastCommitRelative: string;
   lastCommitTimestamp: number;

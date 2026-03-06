@@ -24,7 +24,7 @@ import { useCspNonce } from "@/app/component/csp-nonce-context";
 
 interface BadgeDescription {
   id: number;
-  statusBadge: RepoStatus;
+  status: RepoStatus;
   description: string;
 }
 
@@ -34,18 +34,18 @@ type StrictProjectCol = Omit<GridColDef<TrackedProject>, "field"> & {
 
 export default function ProjectTracker() {
   const nonce = useCspNonce();
-  const username: string = "StrangeRanger";
+  const githubUsername: string = "StrangeRanger";
   const [githubProjects, setGithubProjects] = useState<TrackedProject[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   async function fetchAllRepos(): Promise<TrackedProject[]> {
     const allRepos: Parameters<typeof transformRepoData>[0] = [];
     let page: number = 1;
-    let hasMore: boolean = true;
+    let hasMorePages: boolean = true;
 
-    while (hasMore) {
+    while (hasMorePages) {
       const response: Response = await fetch(
-        `https://api.github.com/users/${username}/repos?per_page=100&page=${page}`,
+        `https://api.github.com/users/${githubUsername}/repos?per_page=100&page=${page}`,
         { cache: "no-store" },
       );
 
@@ -65,7 +65,7 @@ export default function ProjectTracker() {
       // Use a runtime type guard if stronger validation is needed.
       const repoPage = data as Parameters<typeof transformRepoData>[0];
       allRepos.push(...repoPage);
-      hasMore = repoPage.length === 100;
+      hasMorePages = repoPage.length === 100;
       page++;
     }
 
@@ -75,11 +75,11 @@ export default function ProjectTracker() {
   async function fetchAllGists(): Promise<TrackedProject[]> {
     const allGists: Parameters<typeof transformGistData>[0] = [];
     let page: number = 1;
-    let hasMore: boolean = true;
+    let hasMorePages: boolean = true;
 
-    while (hasMore) {
+    while (hasMorePages) {
       const response: Response = await fetch(
-        `https://api.github.com/users/${username}/gists?per_page=100&page=${page}`,
+        `https://api.github.com/users/${githubUsername}/gists?per_page=100&page=${page}`,
         { cache: "no-store" },
       );
 
@@ -99,7 +99,7 @@ export default function ProjectTracker() {
       // Use a runtime type guard if stronger validation is needed.
       const gistPage = data as Parameters<typeof transformGistData>[0];
       allGists.push(...gistPage);
-      hasMore = gistPage.length === 100;
+      hasMorePages = gistPage.length === 100;
       page++;
     }
 
@@ -124,7 +124,7 @@ export default function ProjectTracker() {
   }
 
   useEffect(() => {
-    let cancelled: boolean = false;
+    let isCancelled: boolean = false;
 
     // TODO: Determine if I even need this as a separate function.
     async function run(): Promise<void> {
@@ -133,10 +133,10 @@ export default function ProjectTracker() {
           fetchAllRepos(),
           fetchAllGists(),
         ]);
-        if (!cancelled) setGithubProjects([...repos, ...gists]);
+        if (!isCancelled) setGithubProjects([...repos, ...gists]);
       } finally {
-        if (!cancelled) {
-          setLoading(false);
+        if (!isCancelled) {
+          setIsLoading(false);
           handleHashScroll();
         }
       }
@@ -144,13 +144,13 @@ export default function ProjectTracker() {
 
     run();
     return () => {
-      cancelled = true;
+      isCancelled = true;
     };
   }, []);
 
   const columns: StrictProjectCol[] = [
     { field: "name", headerName: "Project Name", flex: 1, minWidth: 200 },
-    { field: "type", headerName: "Type", width: 120 },
+    { field: "projectType", headerName: "Type", width: 120 },
     {
       field: "status",
       headerName: "Status",
@@ -175,91 +175,91 @@ export default function ProjectTracker() {
   const badgeDescriptions: BadgeDescription[] = [
     {
       id: 1,
-      statusBadge: "personal",
+      status: "personal",
       description:
         "Indicates that the project or document is tailored to my personal needs and will be updated as required. Typically, it reflects my current setup, usage, or preferences.",
     },
     {
       id: 2,
-      statusBadge: "active",
+      status: "active",
       description:
         "The project is stable and fully functional, with ongoing development and regular updates. New features and improvements are continuously being added.",
     },
     {
       id: 3,
-      statusBadge: "maintained",
+      status: "maintained",
       description:
         "The project is stable and functional, receiving updates primarily for bug fixes and minor improvements. Active development is minimal but ongoing as needed.",
     },
     {
       id: 4,
-      statusBadge: "inactive",
+      status: "inactive",
       description:
         "Development on the project has paused, but it remains in a stable and usable state. Future work may resume, but there are currently no active updates or enhancements.",
     },
     {
       id: 5,
-      statusBadge: "finished",
+      status: "finished",
       description:
         "The project is complete and fully functional. While no active development is planned, updates may occur if essential fixes or changes are necessary. Combines aspects of both Maintained and Unsupported statuses.",
     },
     {
       id: 6,
-      statusBadge: "unsupported",
+      status: "unsupported",
       description:
         "The project is stable and usable, but active development has ceased. No further updates are planned, and users may need to seek alternative maintainers or solutions if issues arise.",
     },
     // NOTE: Disabled for now, though it may be reintroduced later.
     // {
     //   id: 7,
-    //   statusBadge: "continuous",
+    //   status: "continuous",
     //   description: "The project is under ongoing development with a focus on gradual improvements and enhancements. The development pace is steady but less rapid than that of active projects, blending elements of active and maintained statuses.",
     // },
     {
       id: 7,
-      statusBadge: "concept",
+      status: "concept",
       description:
         "Represents an early-stage project or proof-of-concept with minimal implementation. Intended for demonstration, experimentation, or initial exploration without full functionality.",
     },
     {
       id: 8,
-      statusBadge: "wip",
+      status: "wip",
       description:
         "Development is actively underway, but the project has yet to reach a stable or publicly usable state. Ongoing work is focused on achieving initial functionality and stability.",
     },
     {
       id: 9,
-      statusBadge: "suspended",
+      status: "suspended",
       description:
         "Development has been temporarily halted after initial progress. The project remains in a usable state, with intentions to resume work in the future, pending circumstances.",
     },
     {
       id: 10,
-      statusBadge: "abandoned",
+      status: "abandoned",
       description:
         "The project has been discontinued and will no longer receive updates or support. Users are encouraged to seek alternatives or fork the project if continued development is desired. Assume the project has been archived.",
     },
     {
       id: 11,
-      statusBadge: "archived",
+      status: "archived",
       description:
         "The project has been officially archived, meaning it is no longer maintained or supported. It serves as a historical reference, and no further changes will be made unless specified otherwise.",
     },
     {
       id: 12,
-      statusBadge: "moved",
+      status: "moved",
       description:
         "The project has been relocated to a new repository or platform. The new location is the authoritative source, and all future updates and maintenance will occur there. Assume the project has been archived.",
     },
     {
       id: 13,
-      statusBadge: "unspecified",
+      status: "unspecified",
       description:
         "The project status is not explicitly defined or documented. This status is usually reserved for projects that don't need a specific status. For example, a <a href='https://github.com/StrangeRanger/StrangeRanger' target='_blank'>GitHub user's public profile page</a> will have this status, as it's not a traditional software project.",
     },
     {
       id: 14,
-      statusBadge: "unknown",
+      status: "unknown",
       description:
         "The project status is not known or has not been determined. This status is typically used when the project is new, lacks documentation, is a fork, or has not been categorized yet.",
     },
@@ -285,7 +285,7 @@ export default function ProjectTracker() {
             columns={columns}
             rows={githubProjects}
             autoHeight
-            loading={loading}
+            loading={isLoading}
             nonce={nonce}
           />
         </Paper>
@@ -306,13 +306,13 @@ export default function ProjectTracker() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {badgeDescriptions.map(({ id, statusBadge, description }) => (
+              {badgeDescriptions.map(({ id, status, description }) => (
                 <TableRow
                   key={id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell>
-                    <StatusBadge status={statusBadge}></StatusBadge>
+                    <StatusBadge status={status}></StatusBadge>
                   </TableCell>
                   <TableCell>{description}</TableCell>
                 </TableRow>

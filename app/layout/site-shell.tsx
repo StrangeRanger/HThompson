@@ -15,21 +15,21 @@ interface SiteShellProps {
 }
 
 const navItems: NavItem[] = [
-  { name: "Home", link: "/" },
-  { name: "Project Tracker", link: "/project-tracker" },
-  { name: "About", link: "/about" },
-  { name: "My Links", link: "/links" },
-  { name: "Web Policies", link: "/policies" },
+  { name: "Home", href: "/" },
+  { name: "Project Tracker", href: "/project-tracker" },
+  { name: "About", href: "/about" },
+  { name: "My Links", href: "/links" },
+  { name: "Web Policies", href: "/policies" },
   {
     name: "Status",
-    link: "https://status.hthompson.dev/status/hthompson",
-    externalLink: true,
+    href: "https://status.hthompson.dev/status/hthompson",
+    isExternal: true,
   },
 ];
 
 export default function SiteShell({ children }: SiteShellProps) {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
-  const menuOpen: boolean = Boolean(menuAnchorEl);
+  const isMenuOpen: boolean = Boolean(menuAnchorEl);
 
   function handleMenuOpen(event: MouseEvent<HTMLElement>) {
     setMenuAnchorEl(event.currentTarget);
@@ -63,7 +63,7 @@ export default function SiteShell({ children }: SiteShellProps) {
       <SiteHeader onMenuOpen={handleMenuOpen} />
       <SiteNavMenu
         anchorEl={menuAnchorEl}
-        open={menuOpen}
+        isOpen={isMenuOpen}
         onClose={handleMenuClose}
         navItems={navItems}
       />

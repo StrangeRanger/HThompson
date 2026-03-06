@@ -44,8 +44,8 @@ export function transformRepoData(
         description: repo.description || "No description",
         archived: repo.archived,
         topics: repo.topics || [],
-        type: repo.fork ? "Fork" : "Repo",
-        status: status,
+        projectType: repo.fork ? "Fork" : "Repo",
+        status,
         lastCommitRelative: formatTimeSinceLastCommit(repo.pushed_at),
         lastCommitTimestamp: new Date(repo.pushed_at).getTime(),
       };
@@ -84,8 +84,8 @@ export function transformGistData(
         public: gist.public,
         url: gist.html_url,
         description: cleanedDescription,
-        type: "Gist",
-        status: status,
+        projectType: "Gist",
+        status,
         lastCommitRelative: formatTimeSinceLastCommit(gist.updated_at),
         lastCommitTimestamp: new Date(gist.updated_at).getTime(),
       };

@@ -11,21 +11,21 @@ import type { NavItem } from "@/app/lib/types";
 
 interface SiteNavMenuProps {
   anchorEl: HTMLElement | null;
-  open: boolean;
+  isOpen: boolean;
   onClose: () => void;
   navItems: NavItem[];
 }
 
 export default function SiteNavMenu({
   anchorEl,
-  open,
+  isOpen,
   onClose,
   navItems,
 }: SiteNavMenuProps) {
   return (
     <Menu
       anchorEl={anchorEl}
-      open={open}
+      open={isOpen}
       onClose={onClose}
       anchorOrigin={{
         vertical: "bottom",
@@ -54,11 +54,11 @@ export default function SiteNavMenu({
         {navItems.map((item) => (
           <ListItem key={item.name} disablePadding>
             <ListItemButton
-              component={item.externalLink ? "a" : NextLink}
-              href={item.link}
+              component={item.isExternal ? "a" : NextLink}
+              href={item.href}
               onClick={onClose}
-              target={item.externalLink ? "_blank" : undefined}
-              rel={item.externalLink ? "noopener noreferrer" : undefined}
+              target={item.isExternal ? "_blank" : undefined}
+              rel={item.isExternal ? "noopener noreferrer" : undefined}
               sx={{
                 border: "1px solid",
                 borderColor: "divider",

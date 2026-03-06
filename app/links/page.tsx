@@ -9,7 +9,7 @@ interface SocialLink {
   id: string;
   title: string;
   body: string;
-  link: string;
+  href: string;
   icon: string;
   color: string;
 }
@@ -20,7 +20,7 @@ export default function MyLinks() {
       id: "twitter-x",
       title: "Twitter (X)",
       body: "My Twitter (X) account.",
-      link: "https://x.com/_Hunter_T_",
+      href: "https://x.com/_Hunter_T_",
       icon: "mdi-twitter",
       color: "#1DA1F2",
     },
@@ -28,7 +28,7 @@ export default function MyLinks() {
       id: "github",
       title: "GitHub",
       body: "My GitHub account.",
-      link: "https://github.com/StrangeRanger",
+      href: "https://github.com/StrangeRanger",
       icon: "mdi-github",
       color: "#ffffff",
     },
@@ -36,7 +36,7 @@ export default function MyLinks() {
       id: "soundcloud",
       title: "SoundCloud",
       body: "My SoundCloud account.",
-      link: "https://soundcloud.com/SubDubZero",
+      href: "https://soundcloud.com/SubDubZero",
       icon: "mdi-soundcloud",
       color: "#FF5500",
     },
@@ -55,7 +55,7 @@ export default function MyLinks() {
           <Grid key={item.id} size={{ xs: 12, sm: 6, lg: 4 }}>
             <Card sx={{ color: item.color, borderColor: item.color }}>
               <Button
-                href={item.link}
+                href={item.href}
                 sx={{
                   display: "block",
                   textAlign: "left",

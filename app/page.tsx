@@ -18,10 +18,10 @@ interface ServiceCard {
   id: string;
   title: string;
   body: string;
-  link: string;
-  externalLink: boolean;
+  href: string;
+  isExternal: boolean;
   icon: React.ElementType;
-  type: "service" | "doc-and-tools";
+  category: "service" | "doc-and-tools";
 }
 
 interface ServiceCardItemProps {
@@ -58,10 +58,10 @@ function ServiceCardItem({ item, titleSpacing }: ServiceCardItemProps) {
   return (
     <Grid key={item.id} size={{ xs: 12, sm: 6, lg: 4 }}>
       <Card>
-        {item.externalLink ? (
+        {item.isExternal ? (
           <Button
             component="a"
-            href={item.link}
+            href={item.href}
             target="_blank"
             rel="noopener noreferrer"
             sx={buttonSx}
@@ -70,7 +70,7 @@ function ServiceCardItem({ item, titleSpacing }: ServiceCardItemProps) {
           </Button>
         ) : (
           <NextLink
-            href={item.link}
+            href={item.href}
             style={{
               display: "block",
               color: "inherit",
@@ -115,77 +115,77 @@ function ServiceSection({
 }
 
 export default function Home() {
-  const itemArray: ServiceCard[] = [
+  const serviceCards: ServiceCard[] = [
     {
       id: "image-gallery",
       title: "Image Gallery",
       body: "Publicly hosts an assortment of images, videos, gifs, and so on.",
-      link: "https://images.hthompson.dev/",
-      externalLink: true,
+      href: "https://images.hthompson.dev/",
+      isExternal: true,
       icon: CollectionsIcon,
-      type: "service",
+      category: "service",
     },
     {
       id: "private-bin",
       title: "Private Bin",
       body: "A minimalist, open source online pastebin where the server has zero knowledge of pasted data.",
-      link: "https://privatebin.hthompson.dev/",
-      externalLink: true,
+      href: "https://privatebin.hthompson.dev/",
+      isExternal: true,
       icon: ContentPasteIcon,
-      type: "service",
+      category: "service",
     },
     {
       id: "file-server",
       title: "File Server",
       body: "Files that aren't located anywhere else on my website.",
-      link: "https://files.hthompson.dev/",
-      externalLink: true,
+      href: "https://files.hthompson.dev/",
+      isExternal: true,
       icon: InsertDriveFileIcon,
-      type: "service",
+      category: "service",
     },
     {
       id: "rss-bridge",
       title: "RSS Bridge",
       body: "The RSS feed for websites missing it.",
-      link: "https://rss-bridge.hthompson.dev/",
-      externalLink: true,
+      href: "https://rss-bridge.hthompson.dev/",
+      isExternal: true,
       icon: RssFeedIcon,
-      type: "service",
+      category: "service",
     },
     {
       id: "project-tracker",
       title: "Project Tracker",
       body: "A comprehensive list of projects I'm working on, have completed, or have abandoned.",
-      link: "/project-tracker",
-      externalLink: false,
+      href: "/project-tracker",
+      isExternal: false,
       icon: SourceIcon,
-      type: "doc-and-tools",
+      category: "doc-and-tools",
     },
     {
       id: "custom-unix-terminal",
       title: "Custom Unix Terminal",
       body: "Configurations that went in to custumizing the look, feel, and functionality of my terminal.",
-      link: "https://cut.hthompson.dev/",
-      externalLink: true,
+      href: "https://cut.hthompson.dev/",
+      isExternal: true,
       icon: TerminalIcon,
-      type: "doc-and-tools",
+      category: "doc-and-tools",
     },
     {
       id: "bash-style-guide",
       title: "Bash Style Guide",
       body: "A style guide for writing safe, predictable, and maintainable bash scripts.",
-      link: "https://bsg.hthompson.dev/",
-      externalLink: true,
+      href: "https://bsg.hthompson.dev/",
+      isExternal: true,
       icon: CodeIcon,
-      type: "doc-and-tools",
+      category: "doc-and-tools",
     },
   ];
 
-  const docAndToolsItems: ServiceCard[] = itemArray.filter(
-    (item: ServiceCard): boolean => item.type === "doc-and-tools",
+  const docAndToolsItems: ServiceCard[] = serviceCards.filter(
+    (item: ServiceCard): boolean => item.category === "doc-and-tools",
   );
-  const serviceItems: ServiceCard[] = itemArray.filter(
-    (item: ServiceCard): boolean => item.type === "service",
+  const serviceItems: ServiceCard[] = serviceCards.filter(
+    (item: ServiceCard): boolean => item.category === "service",
   );
 
   return (
