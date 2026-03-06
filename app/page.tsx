@@ -164,7 +164,7 @@ export default function Home() {
     {
       id: "custom-unix-terminal",
       title: "Custom Unix Terminal",
-      body: "Configurations that went in to custumizing the look, feel, and functionality of my terminal.",
+      body: "Configurations that went into customizing the look, feel, and functionality of my terminal.",
       href: "https://cut.hthompson.dev/",
       isExternal: true,
       icon: TerminalIcon,
