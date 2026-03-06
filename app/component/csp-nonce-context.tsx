@@ -10,11 +10,7 @@ interface CspNonceProviderProps {
 }
 
 export function CspNonceProvider({ children, nonce }: CspNonceProviderProps) {
-  return (
-    <CspNonceContext value={nonce}>
-      {children}
-    </CspNonceContext>
-  );
+  return <CspNonceContext value={nonce}>{children}</CspNonceContext>;
 }
 
 export function useCspNonce(): string | undefined {
