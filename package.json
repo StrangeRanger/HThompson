@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:standalone": "pnpm run build && rm -rf .next/standalone/.next/static && cp -R .next/static .next/standalone/.next/static",
+    "build:standalone": "pnpm run build && rm -rf .next/standalone/.next/static .next/standalone/public && cp -R .next/static .next/standalone/.next/static && cp -R public .next/standalone/public",
     "start": "next start",
     "start:standalone": "node .next/standalone/server.js",
     "lint": "eslint",
