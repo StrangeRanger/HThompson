@@ -5,6 +5,7 @@ import SiteShell from "@/app/layout/site-shell";
 import theme from "@/app/theme";
 import {Suspense} from "react";
 import {MatomoAnalytics} from "@/app/layout/matomo-analytics";
+import {AppRouterCacheProvider} from "@mui/material-nextjs/v16-appRouter";
 
 export const metadata: Metadata = {
   title: "HThompson",
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+      <AppRouterCacheProvider options={{ enableCssLayer: true }}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <SiteShell>{children}</SiteShell>
@@ -26,6 +28,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <MatomoAnalytics />
         </Suspense>
+      </AppRouterCacheProvider>
       </body>
     </html>
   );
