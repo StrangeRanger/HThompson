@@ -17,6 +17,7 @@ export function MatomoAnalytics() {
       siteId: MATOMO_SITE_ID,
       pathname,
       searchParams,
+      enableHeartBeatTimer: true,
     });
   }, [pathname, searchParams]);
 
