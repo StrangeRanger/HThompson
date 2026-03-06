@@ -1,15 +1,15 @@
 "use client";
 
 import { trackAppRouter } from "@socialgouv/matomo-next";
-import { usePathname, useSearchParams } from "next/navigation";
+import {ReadonlyURLSearchParams, usePathname, useSearchParams} from "next/navigation";
 import { useEffect } from "react";
 
 const MATOMO_URL = "https://analytics.hthompson.dev/";
 const MATOMO_SITE_ID = "2";
 
 export function MatomoAnalytics() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const pathname: string = usePathname();
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
 
   useEffect(() => {
     trackAppRouter({
