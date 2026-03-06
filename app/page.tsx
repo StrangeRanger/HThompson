@@ -5,73 +5,160 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Divider } from "@mui/material";
+import CollectionsIcon from "@mui/icons-material/Collections";
+import ContentPasteIcon from "@mui/icons-material/ContentPaste";
+import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
+import RssFeedIcon from "@mui/icons-material/RssFeed";
+import SourceIcon from "@mui/icons-material/Source";
+import TerminalIcon from "@mui/icons-material/Terminal";
+import CodeIcon from "@mui/icons-material/Code";
 
 interface ServiceCard {
+  id: string;
   title: string;
   body: string;
   link: string;
-  icon: string;
+  icon: React.ElementType;
   type: "service" | "doc-and-tools";
+}
+
+interface ServiceCardItemProps {
+  item: ServiceCard;
+  titleSpacing: number;
+}
+
+interface ServiceSectionProps {
+  title: string;
+  description: string;
+  items: ServiceCard[];
+  titleSpacing: number;
+}
+
+function ServiceCardItem({ item, titleSpacing }: ServiceCardItemProps) {
+  const Icon = item.icon;
+
+  return (
+    <Grid key={item.title} size={{ xs: 12, sm: 6, lg: 4 }}>
+      <Card>
+        {/* TODO: Use NextJS Link for href and use appropriate no*? Reference site-nav-menu for example... */}
+        <Button
+          href={item.link}
+          sx={{
+            display: "block",
+            textAlign: "left",
+            color: "inherit",
+            p: 0,
+            borderRadius: 0,
+          }}
+        >
+          <CardContent>
+            <Typography variant="h6" component="h3" sx={{ mb: titleSpacing }}>
+              <Icon
+                fontSize="small"
+                sx={{ mr: 1, verticalAlign: "text-bottom" }}
+              />
+              {item.title}
+            </Typography>
+            <Typography variant="body2">{item.body}</Typography>
+          </CardContent>
+        </Button>
+      </Card>
+    </Grid>
+  );
+}
+
+function ServiceSection({
+  title,
+  description,
+  items,
+  titleSpacing,
+}: ServiceSectionProps) {
+  return (
+    <Box>
+      <Typography variant="h4" component="h2" align="center" sx={{ mb: 3 }}>
+        {title}
+      </Typography>
+      <Typography variant="body1" sx={{ my: 4 }}>
+        {description}
+      </Typography>
+      <Grid container spacing={3}>
+        {items.map((item: ServiceCard) => (
+          <ServiceCardItem
+            key={item.id}
+            item={item}
+            titleSpacing={titleSpacing}
+          />
+        ))}
+      </Grid>
+    </Box>
+  );
 }
 
 export default function Home() {
   const itemArray: ServiceCard[] = [
     {
+      id: "image-gallery",
       title: "Image Gallery",
       body: "Publicly hosts an assortment of images, videos, gifs, and so on.",
       link: "https://images.hthompson.dev/",
-      icon: "mdi-view-gallery-outline",
+      icon: CollectionsIcon,
       type: "service",
     },
     {
+      id: "private-bin",
       title: "Private Bin",
       body: "A minimalist, open source online pastebin where the server has zero knowledge of pasted data.",
       link: "https://privatebin.hthompson.dev/",
-      icon: "mdi-content-paste",
+      icon: ContentPasteIcon,
       type: "service",
     },
     {
+      id: "file-server",
       title: "File Server",
       body: "Files that aren't located anywhere else on my website.",
       link: "https://files.hthompson.dev/",
-      icon: "mdi-file",
+      icon: InsertDriveFileIcon,
       type: "service",
     },
     {
+      id: "rss-bridge",
       title: "RSS Bridge",
       body: "The RSS feed for websites missing it.",
       link: "https://rss-bridge.hthompson.dev/",
-      icon: "mdi-rss",
+      icon: RssFeedIcon,
       type: "service",
     },
     {
+      id: "project-tracker",
       title: "Project Tracker",
       body: "A comprehensive list of projects I'm working on, have completed, or have abandoned.",
       link: "/project-tracker",
-      icon: "mdi-source-branch",
+      icon: SourceIcon,
       type: "doc-and-tools",
     },
     {
+      id: "custom-unix-terminal",
       title: "Custom Unix Terminal",
       body: "Configurations that went in to custumizing the look, feel, and functionality of my terminal.",
       link: "https://cut.hthompson.dev/",
-      icon: "mdi-console",
+      icon: TerminalIcon,
       type: "doc-and-tools",
     },
     {
+      id: "bash-style-guide",
       title: "Bash Style Guide",
       body: "A style guide for writing safe, predictable, and maintainable bash scripts.",
       link: "https://bsg.hthompson.dev/",
-      icon: "mdi-bash",
+      icon: CodeIcon,
       type: "doc-and-tools",
     },
   ];
 
   const docAndToolsItems: ServiceCard[] = itemArray.filter(
-    (item) => item.type === "doc-and-tools",
+    (item: ServiceCard): boolean => item.type === "doc-and-tools",
   );
   const serviceItems: ServiceCard[] = itemArray.filter(
-    (item) => item.type === "service",
+    (item: ServiceCard): boolean => item.type === "service",
   );
 
   return (
@@ -90,84 +177,21 @@ export default function Home() {
 
       <Divider sx={{ m: 6 }} />
 
-      <Box>
-        <Typography variant="h4" component="h2" align="center" sx={{ mb: 3 }}>
-          Documentation & Tools
-        </Typography>
-        <Typography variant="body1" sx={{ my: 4 }}>
-          Unlike my traditional software repositories, these are comprehensive
-          documentation projects, small web applications, and curated resources.
-          They include extensive guides, style documentation, terminal
-          customizations, and tools like the Project Tracker which dynamically
-          pulls data from my GitHub repositories using TypeScript to provide
-          real-time project status updates.
-        </Typography>
-        <Grid container spacing={3}>
-          {docAndToolsItems.map((item) => (
-            <Grid key={item.title} size={{ xs: 12, sm: 6, lg: 4 }}>
-              <Card>
-                <Button
-                  href={item.link}
-                  sx={{
-                    display: "block",
-                    textAlign: "left",
-                    color: "inherit",
-                    p: 0,
-                    borderRadius: 0,
-                  }}
-                >
-                  <CardContent>
-                    <Typography variant="h6" component="h3" sx={{ mb: 2 }}>
-                      {item.title}
-                    </Typography>
-                    <Typography variant="body2">{item.body}</Typography>
-                  </CardContent>
-                </Button>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <ServiceSection
+        title="Documentation & Tools"
+        description="Unlike my traditional software repositories, these are comprehensive documentation projects, small web applications, and curated resources. They include extensive guides, style documentation, terminal customizations, and tools like the Project Tracker which dynamically pulls data from my GitHub repositories using TypeScript to provide real-time project status updates."
+        items={docAndToolsItems}
+        titleSpacing={2}
+      />
 
       <Divider sx={{ m: 6 }} />
 
-      <Box>
-        <Typography variant="h4" align="center" sx={{ mb: 3 }}>
-          Self-Hosted Services
-        </Typography>
-        <Typography variant="body1" sx={{ my: 4 }}>
-          Below are the self-hosted services and applications I run on
-          DigitalOcean. These are web applications and tools I maintain for
-          personal use and to share with others, ranging from content management
-          systems like my image gallery, to privacy-focused utilities like
-          PrivateBin, and developer tools like RSS Bridge for generating feeds.
-        </Typography>
-        <Grid container spacing={3}>
-          {serviceItems.map((item) => (
-            <Grid key={item.title} size={{ xs: 12, sm: 6, lg: 4 }}>
-              <Card>
-                <Button
-                  href={item.link}
-                  sx={{
-                    display: "block",
-                    textAlign: "left",
-                    color: "inherit",
-                    p: 0,
-                    borderRadius: 0,
-                  }}
-                >
-                  <CardContent>
-                    <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
-                      {item.title}
-                    </Typography>
-                    <Typography variant="body2">{item.body}</Typography>
-                  </CardContent>
-                </Button>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <ServiceSection
+        title="Self-Hosted Services"
+        description="Below are the self-hosted services and applications I run on DigitalOcean. These are web applications and tools I maintain for personal use and to share with others, ranging from content management systems like my image gallery, to privacy-focused utilities like PrivateBin, and developer tools like RSS Bridge for generating feeds."
+        items={serviceItems}
+        titleSpacing={1}
+      />
     </Box>
   );
 }
