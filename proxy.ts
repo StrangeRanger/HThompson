@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 const isDev: boolean = process.env.NODE_ENV === "development";
 
-function buildContentSecurityPolicy(nonce: string): string {
-  const styleSrc: string = isDev
+function buildContentSecurityPolicy(nonce: string, pathname: string): string {
+  const isProjectTrackerRoute: boolean = pathname === "/project-tracker";
+  const styleSrc: string = isDev || isProjectTrackerRoute
     ? "style-src 'self' https: 'unsafe-inline'"
     : `style-src 'self' https: 'nonce-${nonce}'`;
 
@@ -30,7 +31,10 @@ function buildContentSecurityPolicy(nonce: string): string {
 
 export function proxy(request: NextRequest) {
   const nonce: string = Buffer.from(crypto.randomUUID()).toString("base64");
-  const contentSecurityPolicy: string = buildContentSecurityPolicy(nonce);
+  const contentSecurityPolicy: string = buildContentSecurityPolicy(
+    nonce,
+    request.nextUrl.pathname,
+  );
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
