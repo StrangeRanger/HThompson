@@ -8,6 +8,7 @@ import {
 } from "next/navigation";
 import { useEffect } from "react";
 
+// TODO: Move to environment variables?
 const MATOMO_URL = "https://analytics.hthompson.dev/";
 const MATOMO_SITE_ID = "2";
 
