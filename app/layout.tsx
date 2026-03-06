@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import { MatomoAnalytics } from "@/app/layout/matomo-analytics";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import { headers } from "next/headers";
+import { CspNonceProvider } from "@/app/layout/csp-nonce-context";
 
 export const metadata: Metadata = {
   title: "HThompson",
@@ -24,15 +25,17 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AppRouterCacheProvider options={{ enableCssLayer: true, nonce }}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <SiteShell>{children}</SiteShell>
-          </ThemeProvider>
-          <Suspense fallback={null}>
-            <MatomoAnalytics />
-          </Suspense>
-        </AppRouterCacheProvider>
+        <CspNonceProvider nonce={nonce}>
+          <AppRouterCacheProvider options={{ enableCssLayer: true, nonce }}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <SiteShell>{children}</SiteShell>
+            </ThemeProvider>
+            <Suspense fallback={null}>
+              <MatomoAnalytics />
+            </Suspense>
+          </AppRouterCacheProvider>
+        </CspNonceProvider>
       </body>
     </html>
   );
