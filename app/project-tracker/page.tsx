@@ -20,7 +20,7 @@ import {
   TableRow,
 } from "@mui/material";
 import StatusBadge from "@/app/component/status-badge";
-import { useCspNonce } from "@/app/layout/csp-nonce-context";
+import { useCspNonce } from "@/app/component/csp-nonce-context";
 
 interface BadgeDescription {
   row: number;
