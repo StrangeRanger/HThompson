@@ -15,15 +15,15 @@ interface SiteShellProps {
 }
 
 const navItems: NavItem[] = [
-  { name: "Home", href: "/" },
-  { name: "Project Tracker", href: "/project-tracker" },
-  { name: "About", href: "/about" },
-  { name: "My Links", href: "/links" },
-  { name: "Web Policies", href: "/policies" },
+  { name: "Home", link: "/" },
+  { name: "Project Tracker", link: "/project-tracker" },
+  { name: "About", link: "/about" },
+  { name: "My Links", link: "/links" },
+  { name: "Web Policies", link: "/policies" },
   {
     name: "Status",
-    href: "https://status.hthompson.dev/status/hthompson",
-    external: true,
+    link: "https://status.hthompson.dev/status/hthompson",
+    externalLink: true,
   },
 ];
 

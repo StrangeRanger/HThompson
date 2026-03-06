@@ -54,11 +54,11 @@ export default function SiteNavMenu({
         {navItems.map((item) => (
           <ListItem key={item.name} disablePadding>
             <ListItemButton
-              component={item.external ? "a" : NextLink}
-              href={item.href}
+              component={item.externalLink ? "a" : NextLink}
+              href={item.link}
               onClick={onClose}
-              target={item.external ? "_blank" : undefined}
-              rel={item.external ? "noopener noreferrer" : undefined}
+              target={item.externalLink ? "_blank" : undefined}
+              rel={item.externalLink ? "noopener noreferrer" : undefined}
               sx={{
                 border: "1px solid",
                 borderColor: "divider",

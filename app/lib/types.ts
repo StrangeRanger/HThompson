@@ -1,7 +1,7 @@
 export interface NavItem {
   name: string;
-  href: string;
-  external?: boolean;
+  link: string;
+  externalLink?: boolean;
 }
 
 export interface TrackedProject {
