@@ -3,6 +3,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import SiteShell from "@/app/layout/site-shell";
 import theme from "@/app/theme";
+import {Suspense} from "react";
+import {MatomoAnalytics} from "@/app/layout/matomo-analytics";
 
 export const metadata: Metadata = {
   title: "HThompson",
@@ -21,6 +23,9 @@ export default function RootLayout({
           <CssBaseline />
           <SiteShell>{children}</SiteShell>
         </ThemeProvider>
+        <Suspense fallback={null}>
+          <MatomoAnalytics />
+        </Suspense>
       </body>
     </html>
   );
