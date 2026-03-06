@@ -280,7 +280,6 @@ export default function ProjectTracker() {
           this page.
         </Typography>
         <Paper sx={{ width: "100%" }}>
-          {/* TODO: Ensure 'loading' is used correctly. */}
           <DataGrid
             columns={columns}
             rows={githubProjects}
