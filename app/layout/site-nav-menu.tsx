@@ -24,7 +24,6 @@ export default function SiteNavMenu({
 }: SiteNavMenuProps) {
   return (
     <Menu
-      id="site-menu"
       anchorEl={anchorEl}
       open={open}
       onClose={onClose}
@@ -48,13 +47,10 @@ export default function SiteNavMenu({
         },
       }}
     >
-      <Typography
-        color="text.secondary"
-        sx={{ px: 1.5, paddingBottom: 1.5, fontWeight: 500 }}
-      >
+      <Typography color="text.secondary" sx={{ px: 1.5, fontWeight: 500 }}>
         Navigation
       </Typography>
-      <List disablePadding sx={{ mt: 1, display: "grid", gap: 1 }}>
+      <List sx={{ mt: 1, display: "grid", gap: 1 }}>
         {navItems.map((item) => (
           <ListItem key={item.name} disablePadding>
             <ListItemButton
