@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 
 interface SubprocessorTable {
-  row: number;
+  id: number;
   subprocessor: string;
   location: string;
   service: string;
@@ -25,13 +25,13 @@ interface SubprocessorTable {
 export default function PrivacyPolicy() {
   const subprocessorsTable: SubprocessorTable[] = [
     {
-      row: 1,
+      id: 1,
       subprocessor: "DigitalOcean",
       location: "California, USA",
       service: "File and cloud hosting provider.",
     },
     {
-      row: 2,
+      id: 2,
       subprocessor: "Cloudflare",
       location:
         "Cloudflare, as a subprocessor, processes and stores user data across its global network of data centers, which means the data may be held in multiple locations worldwide.",
@@ -178,7 +178,7 @@ export default function PrivacyPolicy() {
             </TableHead>
             <TableBody>
               {subprocessorsTable.map((subprocessor: SubprocessorTable) => (
-                <TableRow key={subprocessor.row}>
+                <TableRow key={subprocessor.id}>
                   <TableCell component="th" scope="row">
                     {subprocessor.subprocessor}
                   </TableCell>

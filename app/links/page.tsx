@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import CardContent from "@mui/material/CardContent";
 
 interface SocialLink {
+  id: string;
   title: string;
   body: string;
   link: string;
@@ -16,6 +17,7 @@ interface SocialLink {
 export default function MyLinks() {
   const socialLinks: SocialLink[] = [
     {
+      id: "twitter-x",
       title: "Twitter (X)",
       body: "My Twitter (X) account.",
       link: "https://x.com/_Hunter_T_",
@@ -23,6 +25,7 @@ export default function MyLinks() {
       color: "#1DA1F2",
     },
     {
+      id: "github",
       title: "GitHub",
       body: "My GitHub account.",
       link: "https://github.com/StrangeRanger",
@@ -30,6 +33,7 @@ export default function MyLinks() {
       color: "#ffffff",
     },
     {
+      id: "soundcloud",
       title: "SoundCloud",
       body: "My SoundCloud account.",
       link: "https://soundcloud.com/SubDubZero",
@@ -48,7 +52,7 @@ export default function MyLinks() {
       </Typography>
       <Grid container spacing={3}>
         {socialLinks.map((item: SocialLink) => (
-          <Grid key={item.title} size={{ xs: 12, sm: 6, lg: 4 }}>
+          <Grid key={item.id} size={{ xs: 12, sm: 6, lg: 4 }}>
             <Card sx={{ color: item.color, borderColor: item.color }}>
               <Button
                 href={item.link}
