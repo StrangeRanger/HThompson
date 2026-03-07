@@ -98,7 +98,7 @@ export const badgeDescriptions: BadgeDescription[] = [
         <Link
           href="https://github.com/StrangeRanger/StrangeRanger"
           target="_blank"
-          rel="noreferrer"
+          rel="noreferrer noopener"
           underline="hover"
         >
           GitHub user&apos;s public profile page
