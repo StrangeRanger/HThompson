@@ -67,7 +67,7 @@ const theme = createTheme({
           scrollBehavior: "smooth",
         },
         body: {
-          minHeight: "100vh", // TODO: See if this can be removed.
+          minHeight: "100vh",
           lineHeight: 1.6,
           textRendering: "optimizeLegibility",
           WebkitFontSmoothing: "antialiased",
