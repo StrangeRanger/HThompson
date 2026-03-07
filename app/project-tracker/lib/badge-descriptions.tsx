@@ -93,7 +93,7 @@ export const badgeDescriptions: BadgeDescription[] = [
     description: (
       <>
         The project status is not explicitly defined or documented. This status
-        is usually reserved for projects that don't need a specific status. For
+        is usually reserved for projects that don&apos;t need a specific status. For
         example, a{" "}
         <Link
           href="https://github.com/StrangeRanger/StrangeRanger"
@@ -101,9 +101,9 @@ export const badgeDescriptions: BadgeDescription[] = [
           rel="noreferrer"
           underline="hover"
         >
-          GitHub user's public profile page
+          GitHub user&apos;s public profile page
         </Link>{" "}
-        will have this status, as it's not a traditional software project.
+        will have this status, as it&apos;s not a traditional software project.
       </>
     ),
   },
