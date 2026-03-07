@@ -16,10 +16,10 @@ import {
 } from "@mui/material";
 import StatusBadge from "@/app/components/status-badge";
 import { useCspNonce } from "@/app/components/csp-nonce-context";
-import NextLink from "next/link";
 import { projectTrackerColumns } from "@/app/project-tracker/components/project-tracker-columns";
 import { badgeDescriptions } from "@/app/project-tracker/lib/badge-descriptions";
 import { useProjectTracker } from "@/app/project-tracker/lib/use-project-tracker";
+import Link from "@mui/material/Link";
 
 function ProjectTrackerNoRowsOverlay({
   errorMessage,
@@ -60,8 +60,8 @@ export default function ProjectTracker() {
           will find details specifying the type of project, its current status,
           and the date of the last commit. For explanations of the badges used
           here, please refer to the{" "}
-          <NextLink href="#badge-descriptions">Badge Descriptions</NextLink>{" "}
-          section at the bottom of this page.
+          <Link href={"#badge-descriptions"}>Badge Descriptions</Link> section at
+          the bottom of this page.
         </Typography>
         <Paper sx={{ width: "100%" }}>
           <DataGrid

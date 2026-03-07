@@ -8,6 +8,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Menu from "@mui/material/Menu";
 import Typography from "@mui/material/Typography";
 import type { NavItem } from "@/app/lib/types";
+import Link from "@mui/material/Link";
 
 interface SiteNavMenuProps {
   anchorEl: HTMLElement | null;
@@ -54,7 +55,7 @@ export default function SiteNavMenu({
         {navItems.map((item: NavItem) => (
           <ListItem key={item.name} disablePadding>
             <ListItemButton
-              component={item.isExternal ? "a" : NextLink}
+              component={item.isExternal ? Link : NextLink}
               href={item.href}
               onClick={onClose}
               target={item.isExternal ? "_blank" : undefined}
