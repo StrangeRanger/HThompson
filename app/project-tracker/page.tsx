@@ -76,6 +76,7 @@ export default function ProjectTracker() {
                 <ProjectTrackerNoRowsOverlay errorMessage={errorMessage} />
               ),
             }}
+            hideFooter
           />
         </Paper>
       </Box>
