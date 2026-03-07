@@ -23,7 +23,7 @@ function handleHashScroll() {
         block: "center",
       });
     }
-  });
+  }, 100);
 }
 
 export function useProjectTracker() {
