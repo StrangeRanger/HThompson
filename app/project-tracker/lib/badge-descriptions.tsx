@@ -1,9 +1,11 @@
 import type { RepoStatus } from "@/app/lib/types";
+import type { ReactNode } from "react";
+import Link from "@mui/material/Link";
 
 interface BadgeDescription {
   id: number;
   status: RepoStatus;
-  description: string;
+  description: ReactNode;
 }
 
 export const badgeDescriptions: BadgeDescription[] = [
@@ -88,8 +90,22 @@ export const badgeDescriptions: BadgeDescription[] = [
   {
     id: 13,
     status: "unspecified",
-    description:
-      "The project status is not explicitly defined or documented. This status is usually reserved for projects that don't need a specific status. For example, a <a href='https://github.com/StrangeRanger/StrangeRanger' target='_blank'>GitHub user's public profile page</a> will have this status, as it's not a traditional software project.",
+    description: (
+      <>
+        The project status is not explicitly defined or documented. This status
+        is usually reserved for projects that don't need a specific status. For
+        example, a{" "}
+        <Link
+          href="https://github.com/StrangeRanger/StrangeRanger"
+          target="_blank"
+          rel="noreferrer"
+          underline="hover"
+        >
+          GitHub user's public profile page
+        </Link>{" "}
+        will have this status, as it's not a traditional software project.
+      </>
+    ),
   },
   {
     id: 14,
