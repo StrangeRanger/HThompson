@@ -21,6 +21,7 @@ import {
 } from "@mui/material";
 import StatusBadge from "@/app/component/status-badge";
 import { useCspNonce } from "@/app/component/csp-nonce-context";
+import NextLink from "next/link";
 
 interface BadgeDescription {
   id: number;
@@ -37,6 +38,7 @@ export default function ProjectTracker() {
   const githubUsername: string = "StrangeRanger";
   const [githubProjects, setGithubProjects] = useState<TrackedProject[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   async function fetchAllRepos(): Promise<TrackedProject[]> {
     const allRepos: Parameters<typeof transformRepoData>[0] = [];
@@ -106,34 +108,68 @@ export default function ProjectTracker() {
     return transformGistData(allGists);
   }
 
-  function handleHashScroll() {
-    const hash = window.location.hash;
+  function ProjectTrackerNoRowsOverlay({
+    errorMessage,
+  }: {
+    errorMessage: string | null;
+  }) {
+    return (
+      <Box
+        sx={{
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          px: 2,
+          textAlign: "center",
+        }}
+      >
+        <Typography color={errorMessage ? "error" : "text.secondary"}>
+          {errorMessage ?? "No rows"}
+        </Typography>
+      </Box>
+    );
+  }
 
-    if (hash) {
-      // Wait a bit to ensure the browser has fully rendered the page.
-      setTimeout(() => {
-        const element = document.querySelector(hash);
-        if (element) {
-          element.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-        }
-      }, 100);
-    }
+  function handleHashScroll() {
+    const hash: string = window.location.hash;
+
+    if (!hash) return;
+
+    const rowId: string = decodeURIComponent(hash.slice(1));
+
+    // Wait a bit to ensure the browser has fully rendered the page.
+    setTimeout(() => {
+      const selector = `[data-id="${CSS.escape(rowId)}"]`;
+      const element = document.querySelector(selector);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+    }, 100);
   }
 
   useEffect(() => {
     let isCancelled: boolean = false;
 
-    // TODO: Determine if I even need this as a separate function.
     async function run(): Promise<void> {
       try {
         const [repos, gists] = await Promise.all([
           fetchAllRepos(),
           fetchAllGists(),
         ]);
-        if (!isCancelled) setGithubProjects([...repos, ...gists]);
+        if (!isCancelled) {
+          setGithubProjects([...repos, ...gists]);
+          setErrorMessage(null);
+        }
+      } catch (error) {
+        if (!isCancelled) {
+          const message: string =
+            error instanceof Error ? error.message : "Unknown error";
+          setErrorMessage(message);
+        }
       } finally {
         if (!isCancelled) {
           setIsLoading(false);
@@ -276,16 +312,23 @@ export default function ProjectTracker() {
           on, plan to work on, and have completed. Next to each project, you
           will find details specifying the type of project, its current status,
           and the date of the last commit. For explanations of the badges used
-          here, please refer to the Badge Descriptions section at the bottom of
-          this page.
+          here, please refer to the{" "}
+          <NextLink href="#badge-descriptions">Badge Descriptions</NextLink>{" "}
+          section at the bottom of this page.
         </Typography>
         <Paper sx={{ width: "100%" }}>
           <DataGrid
             columns={columns}
             rows={githubProjects}
+            getRowId={(row: TrackedProject) => `project-${row.id}`}
             autoHeight
             loading={isLoading}
             nonce={nonce}
+            slots={{
+              noRowsOverlay: () => (
+                <ProjectTrackerNoRowsOverlay errorMessage={errorMessage} />
+              ),
+            }}
           />
         </Paper>
       </Box>
@@ -293,7 +336,13 @@ export default function ProjectTracker() {
       <Divider sx={{ my: 6 }} />
 
       <Box>
-        <Typography variant="h4" component="h2" align="center" sx={{ mb: 3 }}>
+        <Typography
+          id="badge-descriptions"
+          variant="h4"
+          component="h2"
+          align="center"
+          sx={{ mb: 3 }}
+        >
           Badge Descriptions
         </Typography>
         <TableContainer component={Paper} variant="outlined">
