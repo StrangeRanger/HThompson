@@ -8,10 +8,7 @@ import {
 function handleHashScroll() {
   const hash: string = window.location.hash;
 
-  if (!hash) {
-    console.log("No hash found in URL, skipping scroll");
-    return;
-  }
+  if (!hash) return;
 
   const rowId: string = decodeURIComponent(hash.slice(1));
 
@@ -68,8 +65,6 @@ export function useProjectTracker(username: string) {
 
   useEffect(() => {
     if (isLoading || githubProjects.length === 0) return;
-
-    console.log("Running hash scroll effect");
 
     const frameId: number = window.requestAnimationFrame(() => {
       handleHashScroll();
