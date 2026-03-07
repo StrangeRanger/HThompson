@@ -14,12 +14,12 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import StatusBadge from "@/app/component/status-badge";
-import { useCspNonce } from "@/app/component/csp-nonce-context";
-import NextLink from "next/link";
-import { projectTrackerColumns } from "@/app/project-tracker/component/columns";
-import { badgeDescriptions } from "@/app/project-tracker/lib/badges";
-import { useProjectTracker } from "@/app/project-tracker/lib/useProjectTracker";
+import StatusBadge from "@/app/components/status-badge";
+import { useCspNonce } from "@/app/components/csp-nonce-context";
+import { projectTrackerColumns } from "@/app/project-tracker/components/project-tracker-columns";
+import { badgeDescriptions } from "@/app/project-tracker/lib/badge-descriptions";
+import { useProjectTracker } from "@/app/project-tracker/lib/use-project-tracker";
+import Link from "@mui/material/Link";
 
 function ProjectTrackerNoRowsOverlay({
   errorMessage,
@@ -46,9 +46,7 @@ function ProjectTrackerNoRowsOverlay({
 
 export default function ProjectTracker() {
   const nonce: string | undefined = useCspNonce();
-  const githubUsername: string = "StrangeRanger";
-  const { githubProjects, isLoading, errorMessage } =
-    useProjectTracker(githubUsername);
+  const { githubProjects, isLoading, errorMessage } = useProjectTracker();
 
   return (
     <Box>
@@ -62,7 +60,9 @@ export default function ProjectTracker() {
           will find details specifying the type of project, its current status,
           and the date of the last commit. For explanations of the badges used
           here, please refer to the{" "}
-          <NextLink href="#badge-descriptions">Badge Descriptions</NextLink>{" "}
+          <Link href={"#badge-descriptions"} underline="hover">
+            Badge Descriptions
+          </Link>{" "}
           section at the bottom of this page.
         </Typography>
         <Paper sx={{ width: "100%" }}>
@@ -78,6 +78,7 @@ export default function ProjectTracker() {
                 <ProjectTrackerNoRowsOverlay errorMessage={errorMessage} />
               ),
             }}
+            hideFooter
           />
         </Paper>
       </Box>

@@ -1,13 +1,31 @@
-import { GridColDef } from "@mui/x-data-grid";
+import type { GridColDef } from "@mui/x-data-grid";
 import type { RepoStatus, TrackedProject } from "@/app/lib/types";
-import StatusBadge from "@/app/component/status-badge";
+import StatusBadge from "@/app/components/status-badge";
+import Link from "@mui/material/Link";
 
 type StrictProjectCol = Omit<GridColDef<TrackedProject>, "field"> & {
   field: keyof TrackedProject;
 };
 
 export const projectTrackerColumns: StrictProjectCol[] = [
-  { field: "name", headerName: "Project Name", flex: 1, minWidth: 200 },
+  {
+    field: "name",
+    headerName: "Project Name",
+    flex: 1,
+    minWidth: 200,
+    renderCell: (params) => {
+      return (
+        <Link
+          href={params.row.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          underline="hover"
+        >
+          {params.value}
+        </Link>
+      );
+    },
+  },
   { field: "projectType", headerName: "Type", width: 120 },
   {
     field: "status",

@@ -1,19 +1,19 @@
-import { TrackedProject } from "@/app/lib/types";
+import type { TrackedProject } from "@/app/lib/types";
 import {
   transformGistData,
   transformRepoData,
-} from "@/app/lib/githubTransformers";
+} from "@/app/lib/github-transformers";
 
-export async function fetchAllRepos(
-  username: string,
-): Promise<TrackedProject[]> {
+const GITHUB_USERNAME: string = "StrangeRanger";
+
+export async function fetchAllRepos(): Promise<TrackedProject[]> {
   const allRepos: Parameters<typeof transformRepoData>[0] = [];
   let page: number = 1;
   let hasMorePages: boolean = true;
 
   while (hasMorePages) {
     const response: Response = await fetch(
-      `https://api.github.com/users/${username}/repos?per_page=100&page=${page}`,
+      `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&page=${page}`,
       { cache: "no-store" },
     );
 
@@ -40,16 +40,14 @@ export async function fetchAllRepos(
   return transformRepoData(allRepos);
 }
 
-export async function fetchAllGists(
-  username: string,
-): Promise<TrackedProject[]> {
+export async function fetchAllGists(): Promise<TrackedProject[]> {
   const allGists: Parameters<typeof transformGistData>[0] = [];
   let page: number = 1;
   let hasMorePages: boolean = true;
 
   while (hasMorePages) {
     const response: Response = await fetch(
-      `https://api.github.com/users/${username}/gists?per_page=100&page=${page}`,
+      `https://api.github.com/users/${GITHUB_USERNAME}/gists?per_page=100&page=${page}`,
       { cache: "no-store" },
     );
 

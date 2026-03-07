@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
-import { TrackedProject } from "@/app/lib/types";
+import type { TrackedProject } from "@/app/lib/types";
 import {
   fetchAllGists,
   fetchAllRepos,
-} from "@/app/project-tracker/lib/fetchProjects";
+} from "@/app/project-tracker/lib/fetch-projects";
 
 function handleHashScroll() {
   const hash: string = window.location.hash;
 
-  if (!hash) {
-    console.log("No hash found in URL, skipping scroll");
-    return;
-  }
+  if (!hash) return;
 
   const rowId: string = decodeURIComponent(hash.slice(1));
 
@@ -26,10 +23,10 @@ function handleHashScroll() {
         block: "center",
       });
     }
-  });
+  }, 100);
 }
 
-export function useProjectTracker(username: string) {
+export function useProjectTracker() {
   const [githubProjects, setGithubProjects] = useState<TrackedProject[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -40,8 +37,8 @@ export function useProjectTracker(username: string) {
     async function run(): Promise<void> {
       try {
         const [repos, gists] = await Promise.all([
-          fetchAllRepos(username),
-          fetchAllGists(username),
+          fetchAllRepos(),
+          fetchAllGists(),
         ]);
         if (!isCancelled) {
           setGithubProjects([...repos, ...gists]);
@@ -64,12 +61,10 @@ export function useProjectTracker(username: string) {
     return () => {
       isCancelled = true;
     };
-  }, [username]);
+  }, []);
 
   useEffect(() => {
     if (isLoading || githubProjects.length === 0) return;
-
-    console.log("Running hash scroll effect");
 
     const frameId: number = window.requestAnimationFrame(() => {
       handleHashScroll();
