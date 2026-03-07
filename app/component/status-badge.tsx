@@ -18,7 +18,7 @@ export default function StatusBadge({ status }: { status: RepoStatus }) {
         border: "1px solid",
         borderColor: color,
         borderRadius: 9999,
-        color: color,
+        color,
         fontWeight: 500,
         lineHeight: 1,
         backgroundColor: "transparent",
