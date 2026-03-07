@@ -13,7 +13,7 @@ export function getStatusColors(status: RepoStatus): string {
     suspended: "#b71c1c",
     abandoned: "#d32f2f",
     archived: "#616161",
-    moved: "#1565c0",
+    moved: "#dde42a",
     unspecified: "#9e9e9e",
     unknown: "#455a64",
   };
