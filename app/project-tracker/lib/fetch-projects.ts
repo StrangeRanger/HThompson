@@ -1,4 +1,4 @@
-import { TrackedProject } from "@/app/lib/types";
+import type { TrackedProject } from "@/app/lib/types";
 import {
   transformGistData,
   transformRepoData,

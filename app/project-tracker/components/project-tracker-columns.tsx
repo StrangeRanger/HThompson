@@ -1,4 +1,4 @@
-import { GridColDef } from "@mui/x-data-grid";
+import type { GridColDef } from "@mui/x-data-grid";
 import type { RepoStatus, TrackedProject } from "@/app/lib/types";
 import StatusBadge from "@/app/components/status-badge";
 

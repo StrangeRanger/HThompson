@@ -1,4 +1,4 @@
-import { RepoStatus } from "@/app/lib/types";
+import type { RepoStatus } from "@/app/lib/types";
 
 interface BadgeDescription {
   id: number;

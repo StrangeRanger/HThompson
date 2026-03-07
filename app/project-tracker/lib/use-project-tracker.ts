@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TrackedProject } from "@/app/lib/types";
+import type { TrackedProject } from "@/app/lib/types";
 import {
   fetchAllGists,
   fetchAllRepos,
