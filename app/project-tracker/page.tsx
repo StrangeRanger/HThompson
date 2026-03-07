@@ -60,7 +60,7 @@ export default function ProjectTracker() {
           will find details specifying the type of project, its current status,
           and the date of the last commit. For explanations of the badges used
           here, please refer to the{" "}
-          <Link href={"#badge-descriptions"}>Badge Descriptions</Link> section at
+          <Link href={"#badge-descriptions"} underline="hover">Badge Descriptions</Link> section at
           the bottom of this page.
         </Typography>
         <Paper sx={{ width: "100%" }}>
