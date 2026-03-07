@@ -64,7 +64,7 @@ const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         html: {
-          scrollBehavior: "smooth", // TODO: see if this can be removed.
+          scrollBehavior: "smooth",
         },
         body: {
           minHeight: "100vh", // TODO: See if this can be removed.
@@ -74,14 +74,14 @@ const theme = createTheme({
           MozOsxFontSmoothing: "grayscale",
         },
         "[id]": {
-          scrollMarginTop: "74px", // TODO: Verify I still need this.
+          scrollMarginTop: "74px",
         },
       },
     },
     MuiAppBar: {
       defaultProps: {
         color: "transparent",
-        position: "sticky", // TODO: Maybe make position fixed.
+        position: "sticky",
       },
       styleOverrides: {
         root: {
