@@ -46,9 +46,7 @@ function ProjectTrackerNoRowsOverlay({
 
 export default function ProjectTracker() {
   const nonce: string | undefined = useCspNonce();
-  const githubUsername: string = "StrangeRanger";
-  const { githubProjects, isLoading, errorMessage } =
-    useProjectTracker(githubUsername);
+  const { githubProjects, isLoading, errorMessage } = useProjectTracker();
 
   return (
     <Box>

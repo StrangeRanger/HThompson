@@ -26,7 +26,7 @@ function handleHashScroll() {
   });
 }
 
-export function useProjectTracker(username: string) {
+export function useProjectTracker() {
   const [githubProjects, setGithubProjects] = useState<TrackedProject[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -37,8 +37,8 @@ export function useProjectTracker(username: string) {
     async function run(): Promise<void> {
       try {
         const [repos, gists] = await Promise.all([
-          fetchAllRepos(username),
-          fetchAllGists(username),
+          fetchAllRepos(),
+          fetchAllGists(),
         ]);
         if (!isCancelled) {
           setGithubProjects([...repos, ...gists]);
@@ -61,7 +61,7 @@ export function useProjectTracker(username: string) {
     return () => {
       isCancelled = true;
     };
-  }, [username]);
+  }, []);
 
   useEffect(() => {
     if (isLoading || githubProjects.length === 0) return;
