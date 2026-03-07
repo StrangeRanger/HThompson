@@ -1,4 +1,4 @@
-import { getStatusColors } from "@/app/lib/statusColors";
+import { getStatusColors } from "@/app/lib/status-colors";
 import type { RepoStatus } from "@/app/lib/types";
 import Box from "@mui/material/Box";
 

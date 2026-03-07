@@ -1,6 +1,6 @@
 import { GridColDef } from "@mui/x-data-grid";
 import type { RepoStatus, TrackedProject } from "@/app/lib/types";
-import StatusBadge from "@/app/component/status-badge";
+import StatusBadge from "@/app/components/status-badge";
 
 type StrictProjectCol = Omit<GridColDef<TrackedProject>, "field"> & {
   field: keyof TrackedProject;

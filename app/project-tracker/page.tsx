@@ -14,12 +14,12 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import StatusBadge from "@/app/component/status-badge";
-import { useCspNonce } from "@/app/component/csp-nonce-context";
+import StatusBadge from "@/app/components/status-badge";
+import { useCspNonce } from "@/app/components/csp-nonce-context";
 import NextLink from "next/link";
-import { projectTrackerColumns } from "@/app/project-tracker/component/columns";
-import { badgeDescriptions } from "@/app/project-tracker/lib/badges";
-import { useProjectTracker } from "@/app/project-tracker/lib/useProjectTracker";
+import { projectTrackerColumns } from "@/app/project-tracker/components/project-tracker-columns";
+import { badgeDescriptions } from "@/app/project-tracker/lib/badge-descriptions";
+import { useProjectTracker } from "@/app/project-tracker/lib/use-project-tracker";
 
 function ProjectTrackerNoRowsOverlay({
   errorMessage,

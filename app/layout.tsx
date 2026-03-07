@@ -7,7 +7,7 @@ import { Suspense } from "react";
 import { MatomoAnalytics } from "@/app/layout/matomo-analytics";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import { headers } from "next/headers";
-import { CspNonceProvider } from "@/app/component/csp-nonce-context";
+import { CspNonceProvider } from "@/app/components/csp-nonce-context";
 
 export const metadata: Metadata = {
   title: "HThompson",

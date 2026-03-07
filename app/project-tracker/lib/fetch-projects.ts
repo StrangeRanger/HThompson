@@ -2,7 +2,7 @@ import { TrackedProject } from "@/app/lib/types";
 import {
   transformGistData,
   transformRepoData,
-} from "@/app/lib/githubTransformers";
+} from "@/app/lib/github-transformers";
 
 export async function fetchAllRepos(
   username: string,

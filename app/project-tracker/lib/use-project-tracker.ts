@@ -3,7 +3,7 @@ import { TrackedProject } from "@/app/lib/types";
 import {
   fetchAllGists,
   fetchAllRepos,
-} from "@/app/project-tracker/lib/fetchProjects";
+} from "@/app/project-tracker/lib/fetch-projects";
 
 function handleHashScroll() {
   const hash: string = window.location.hash;
