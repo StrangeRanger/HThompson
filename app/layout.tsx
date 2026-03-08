@@ -39,7 +39,7 @@ export default async function RootLayout({
             </ThemeProvider>
             <Suspense fallback={null}>
               <MatomoAnalytics />
-              <CloudflareRum enabled={isAllowedHost} />
+              <CloudflareRum enabled={isAllowedHost} nonce={nonce} />
             </Suspense>
           </AppRouterCacheProvider>
         </CspNonceProvider>
