@@ -3,6 +3,7 @@
 import Script from "next/script";
 import { useCspNonce } from "@/app/components/csp-nonce-context";
 
+// TODO: Move to environment variables?
 const CF_BEACON_TOKEN = "9b19e46d62334121a6ddd4133f232767";
 
 export function CloudflareRum({ enabled }: { enabled: boolean }) {
