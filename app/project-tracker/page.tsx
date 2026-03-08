@@ -73,6 +73,19 @@ export default function ProjectTracker() {
             autoHeight
             loading={isLoading}
             nonce={nonce}
+            sx={{
+              "& .MuiDataGrid-row": {
+                transition:
+                  "background-color 320ms ease, box-shadow 320ms ease",
+              },
+              "& .project-tracker-hash-target": {
+                backgroundColor: "rgba(124, 179, 255, 0.18)",
+                boxShadow: "inset 0 0 0 1px rgba(124, 179, 255, 0.45)",
+              },
+              "& .project-tracker-hash-target:hover": {
+                backgroundColor: "rgba(124, 179, 255, 0.24)",
+              },
+            }}
             slots={{
               noRowsOverlay: () => (
                 <ProjectTrackerNoRowsOverlay errorMessage={errorMessage} />

@@ -5,6 +5,9 @@ import {
   fetchAllRepos,
 } from "@/app/project-tracker/lib/fetch-projects";
 
+const HASH_TARGET_HIGHLIGHT_CLASS: string = "project-tracker-hash-target";
+const HASH_TARGET_HIGHLIGHT_DURATION_MS: number = 2800;
+
 function handleHashScroll() {
   const hash: string = window.location.hash;
 
@@ -17,11 +20,17 @@ function handleHashScroll() {
   setTimeout(() => {
     const selector = `[data-id="${CSS.escape(rowId)}"]`;
     const element = document.querySelector(selector);
+
     if (element) {
+      element.classList.add(HASH_TARGET_HIGHLIGHT_CLASS);
       element.scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
+
+      window.setTimeout(() => {
+        element.classList.remove(HASH_TARGET_HIGHLIGHT_CLASS);
+      }, HASH_TARGET_HIGHLIGHT_DURATION_MS);
     }
   }, 100);
 }
