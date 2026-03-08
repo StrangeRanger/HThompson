@@ -8,7 +8,7 @@ interface CloudflareRumProps {
 }
 
 export function CloudflareRum({ enabled, nonce }: CloudflareRumProps) {
-  if (!enabled || !nonce) return null
+  if (!enabled || !nonce) return null;
 
   return (
     <Script
