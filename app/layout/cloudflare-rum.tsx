@@ -1,6 +1,5 @@
 import Script from "next/script";
 
-// TODO: Move to environment variables?
 const CF_BEACON_TOKEN = "9b19e46d62334121a6ddd4133f232767";
 
 interface CloudflareRumProps {
