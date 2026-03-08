@@ -8,6 +8,8 @@ import { MatomoAnalytics } from "@/app/layout/matomo-analytics";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import { headers } from "next/headers";
 import { CspNonceProvider } from "@/app/components/csp-nonce-context";
+import { CloudflareRum } from "@/app/layout/cloudflare-rum";
+import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
 
 export const metadata: Metadata = {
   title: "HThompson",
@@ -19,8 +21,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const nonce: string | undefined =
-    (await headers()).get("x-nonce") ?? undefined;
+  const requestHeaders: ReadonlyHeaders = await headers();
+  const nonce: string | undefined = requestHeaders.get("x-nonce") ?? undefined;
+  const host: string | null =
+    requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host");
+  const isAllowedHost: boolean =
+    host === "hthompson.dev" || (host?.endsWith(".hthompson.dev") ?? false);
 
   return (
     <html lang="en">
@@ -33,6 +39,7 @@ export default async function RootLayout({
             </ThemeProvider>
             <Suspense fallback={null}>
               <MatomoAnalytics />
+              <CloudflareRum enabled={isAllowedHost} nonce={nonce} />
             </Suspense>
           </AppRouterCacheProvider>
         </CspNonceProvider>
