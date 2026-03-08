@@ -93,8 +93,8 @@ export const badgeDescriptions: BadgeDescription[] = [
     description: (
       <>
         The project status is not explicitly defined or documented. This status
-        is usually reserved for projects that don&apos;t need a specific status. For
-        example, a{" "}
+        is usually reserved for projects that don&apos;t need a specific status.
+        For example, a{" "}
         <Link
           href="https://github.com/StrangeRanger/StrangeRanger"
           target="_blank"
