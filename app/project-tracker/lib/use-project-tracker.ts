@@ -22,10 +22,6 @@ function handleHashScroll() {
     const element = document.querySelector(selector);
 
     if (element) {
-      const previousHighlightedRow = document.querySelector(
-        `.${HASH_TARGET_HIGHLIGHT_CLASS}`,
-      );
-
       element.classList.add(HASH_TARGET_HIGHLIGHT_CLASS);
       element.scrollIntoView({
         behavior: "smooth",
