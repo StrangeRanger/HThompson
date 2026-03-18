@@ -2,24 +2,23 @@
 # Stage 1: Dependencies installation
 # ============================================
 
-ARG NODE_VERSION=25-alpine
+ARG NODE_IMAGE='dhi.io/node:24'
+ARG NODE_DEV_IMAGE='dhi.io/node:24-debian13-dev'
 
-FROM node:${NODE_VERSION} AS dependencies
+FROM ${NODE_DEV_IMAGE} AS dependencies
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
 
 RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
-  PNPM_VERSION=$(node -p "require('./package.json').packageManager") \
-  && PNPM_VERSION=${PNPM_VERSION#pnpm@} \
-  && npm install -g pnpm@"$PNPM_VERSION" \
+  corepack enable \
   && pnpm install --frozen-lockfile
 
 # ============================================
 # Stage 2: Build Next.js application in standalone moded
 # ============================================
 
-FROM node:${NODE_VERSION} AS builder
+FROM ${NODE_DEV_IMAGE} AS builder
 WORKDIR /app
 ENV NODE_ENV=production
 
@@ -27,9 +26,7 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
 RUN --mount=type=cache,target=/app/.next/cache \
-  PNPM_VERSION=$(node -p "require('./package.json').packageManager") \
-  && PNPM_VERSION=${PNPM_VERSION#pnpm@} \
-  && npm install -g pnpm@"$PNPM_VERSION" \
+  corepack enable \
   && pnpm build \
   && pnpm prune --prod --ignore-scripts
 
@@ -37,17 +34,14 @@ RUN --mount=type=cache,target=/app/.next/cache \
 # Stage 3: Run Next.js application
 # ============================================
 
-FROM node:${NODE_VERSION} AS runner
+FROM ${NODE_IMAGE} AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 
-RUN mkdir .next
-RUN chown node:node .next
-
-COPY --from=builder --chown=node:node /app/public ./public
-COPY --from=builder --chown=node:node /app/.next/standalone ./
-COPY --from=builder --chown=node:node /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
 USER node
 EXPOSE 3000
