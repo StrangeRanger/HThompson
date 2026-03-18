@@ -2,24 +2,23 @@
 # Stage 1: Dependencies installation
 # ============================================
 
-ARG NODE_VERSION=25-alpine
+ARG NODE_VERSION_TAG=24@sha256:139b06c52d868b294ef96af34093c579c4b634d940c5cba582bdbaa1863c62a5
+ARG NODE_DEV_VERSION_TAG=24-debian13-dev@sha256:45fe5233ee11a08247af47a901f43880496e39d93cb1bbc55235f9b50883476f
 
-FROM node:${NODE_VERSION} AS dependencies
+FROM dhi.io/node:${NODE_DEV_VERSION_TAG} AS dependencies
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
 
 RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
-  PNPM_VERSION=$(node -p "require('./package.json').packageManager") \
-  && PNPM_VERSION=${PNPM_VERSION#pnpm@} \
-  && npm install -g pnpm@"$PNPM_VERSION" \
+  corepack enable \
   && pnpm install --frozen-lockfile
 
 # ============================================
 # Stage 2: Build Next.js application in standalone moded
 # ============================================
 
-FROM node:${NODE_VERSION} AS builder
+FROM dhi.io/node:${NODE_DEV_VERSION_TAG} AS builder
 WORKDIR /app
 ENV NODE_ENV=production
 
@@ -27,9 +26,7 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
 RUN --mount=type=cache,target=/app/.next/cache \
-  PNPM_VERSION=$(node -p "require('./package.json').packageManager") \
-  && PNPM_VERSION=${PNPM_VERSION#pnpm@} \
-  && npm install -g pnpm@"$PNPM_VERSION" \
+  corepack enable \
   && pnpm build \
   && pnpm prune --prod --ignore-scripts
 
@@ -37,13 +34,10 @@ RUN --mount=type=cache,target=/app/.next/cache \
 # Stage 3: Run Next.js application
 # ============================================
 
-FROM node:${NODE_VERSION} AS runner
+FROM dhi.io/node:${NODE_VERSION_TAG} AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
-
-RUN mkdir .next
-RUN chown node:node .next
 
 COPY --from=builder --chown=node:node /app/public ./public
 COPY --from=builder --chown=node:node /app/.next/standalone ./
