@@ -1,5 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "registryAliases": {
+    "dhi.io": "dhi.io"
+  },
+  "hostRules": [
+    {
+      "matchHost": "dhi.io",
+      "hostType": "docker",
+      "username": "{{ secrets.MEND_DHI_USERNAME }}",
+      "password": "{{ secrets.MEND_DHI_PASSWORD }}"
+    }
+  ],
   "extends": [
     "config:recommended",
     "mergeConfidence:all-badges",
