@@ -4,5 +4,16 @@
     "config:recommended",
     "mergeConfidence:all-badges",
     "helpers:pinGitHubActionDigests"
+  ],
+  "registryAliases": {
+    "dhi.io": "dhi.io"
+  },
+  "hostRules": [
+    {
+      "matchHost": "dhi.io",
+      "hostType": "docker",
+      "username": "{{ vars.DOCKERHUB_USERNAME }}",
+      "password": "{{ secrets.DHI_TOKEN }}"
+    }
   ]
 }
