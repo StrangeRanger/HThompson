@@ -2,10 +2,7 @@
 # Stage 1: Dependencies installation
 # ============================================
 
-ARG NODE_VERSION_TAG=24
-ARG NODE_DEV_VERSION_TAG=24-debian13-dev
-
-FROM dhi.io/node:${NODE_DEV_VERSION_TAG} AS dependencies
+FROM dhi.io/node:24-debian13-dev AS dependencies
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
@@ -18,7 +15,7 @@ RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
 # Stage 2: Build Next.js application in standalone moded
 # ============================================
 
-FROM dhi.io/node:${NODE_DEV_VERSION_TAG} AS builder
+FROM dhi.io/node:24-debian13-dev AS builder
 WORKDIR /app
 ENV NODE_ENV=production
 
@@ -34,7 +31,7 @@ RUN --mount=type=cache,target=/app/.next/cache \
 # Stage 3: Run Next.js application
 # ============================================
 
-FROM dhi.io/node:${NODE_VERSION_TAG} AS runner
+FROM dhi.io/node:24 AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
