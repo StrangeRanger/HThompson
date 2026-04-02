@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import CardActionArea from "@mui/material/CardActionArea";
 import { Divider } from "@mui/material";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
@@ -38,12 +38,11 @@ interface ServiceSectionProps {
 
 function ServiceCardItem({ item, titleSpacing }: ServiceCardItemProps) {
   const Icon = item.icon;
-  const buttonSx = {
+  const actionAreaSx = {
     display: "block",
     textAlign: "left",
     color: "inherit",
     p: 0,
-    borderRadius: 0,
   };
   const cardContent = (
     <CardContent>
@@ -57,17 +56,25 @@ function ServiceCardItem({ item, titleSpacing }: ServiceCardItemProps) {
 
   return (
     <Grid key={item.id} size={{ xs: 12, sm: 6, lg: 4 }}>
-      <Card>
+      <Card
+        sx={{
+          transition: "transform 0.2s ease, box-shadow 0.2s ease",
+          "&:hover": {
+            transform: "translateY(-4px)",
+            boxShadow: 6,
+          },
+        }}
+      >
         {item.isExternal ? (
-          <Button
+          <CardActionArea
             component="a"
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
-            sx={buttonSx}
+            sx={actionAreaSx}
           >
             {cardContent}
-          </Button>
+          </CardActionArea>
         ) : (
           <NextLink
             href={item.href}
@@ -77,9 +84,9 @@ function ServiceCardItem({ item, titleSpacing }: ServiceCardItemProps) {
               textDecoration: "none",
             }}
           >
-            <Button component="span" sx={buttonSx}>
+            <CardActionArea component="div" sx={actionAreaSx}>
               {cardContent}
-            </Button>
+            </CardActionArea>
           </NextLink>
         )}
       </Card>
