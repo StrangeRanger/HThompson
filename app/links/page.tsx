@@ -2,8 +2,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import Button from "@mui/material/Button";
 import CardContent from "@mui/material/CardContent";
+import CardActionArea from "@mui/material/CardActionArea";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
@@ -67,14 +67,14 @@ export default function MyLinks() {
                 },
               }}
             >
-              <Button
+              <CardActionArea
+                component="a"
                 href={item.href}
                 sx={{
                   display: "block",
                   textAlign: "left",
                   color: "inherit",
                   p: 0,
-                  borderRadius: 0,
                 }}
               >
                 <CardContent>
@@ -87,7 +87,7 @@ export default function MyLinks() {
                   </Typography>
                   <Typography variant="body2">{item.body}</Typography>
                 </CardContent>
-              </Button>
+              </CardActionArea>
             </Card>
           </Grid>
         ))}
