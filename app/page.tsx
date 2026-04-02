@@ -59,7 +59,7 @@ function ServiceCardItem({ item, titleSpacing }: ServiceCardItemProps) {
       <Card
         sx={{
           transition: "transform 0.2s ease, box-shadow 0.2s ease",
-          "&:hover": {
+          "&:hover, &:focus-within": {
             transform: "translateY(-4px)",
             boxShadow: 6,
           },
