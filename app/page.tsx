@@ -57,7 +57,15 @@ function ServiceCardItem({ item, titleSpacing }: ServiceCardItemProps) {
 
   return (
     <Grid key={item.id} size={{ xs: 12, sm: 6, lg: 4 }}>
-      <Card>
+      <Card
+        sx={{
+          transition: "transform 0.2s ease, box-shadow 0.2s ease",
+          "&:hover": {
+            transform: "translateY(-4px)",
+            boxShadow: 6,
+          },
+        }}
+      >
         {item.isExternal ? (
           <Button
             component="a"

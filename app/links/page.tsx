@@ -56,7 +56,17 @@ export default function MyLinks() {
       <Grid container spacing={3}>
         {socialLinks.map((item: SocialLink) => (
           <Grid key={item.id} size={{ xs: 12, sm: 6, lg: 4 }}>
-            <Card sx={{ color: item.color, borderColor: item.color }}>
+            <Card
+              sx={{
+                color: item.color,
+                borderColor: item.color,
+                transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                "&:hover": {
+                  transform: "translateY(-4px)",
+                  boxShadow: 6,
+                },
+              }}
+            >
               <Button
                 href={item.href}
                 sx={{
