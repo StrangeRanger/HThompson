@@ -69,7 +69,7 @@ export default function PrivacyPolicy() {
         </Typography>
         <List sx={{ listStyleType: "disc", pl: 4 }}>
           <ListItem sx={{ display: "list-item", py: 0 }}>
-            <Typography component="span" fontWeight="bold">
+            <Typography component="span" sx={{ fontWeight: "bold" }}>
               Contact me via email
             </Typography>
             {" — "}
@@ -81,7 +81,7 @@ export default function PrivacyPolicy() {
             </Typography>
           </ListItem>
           <ListItem sx={{ display: "list-item", py: 0 }}>
-            <Typography component="span" fontWeight="bold">
+            <Typography component="span" sx={{ fontWeight: "bold" }}>
               Usage data
             </Typography>
             {" — "}
@@ -97,7 +97,7 @@ export default function PrivacyPolicy() {
             </Typography>
           </ListItem>
           <ListItem sx={{ display: "list-item", py: 0 }}>
-            <Typography component="span" fontWeight="bold">
+            <Typography component="span" sx={{ fontWeight: "bold" }}>
               Cookies
             </Typography>
             {" — "}
@@ -218,7 +218,7 @@ export default function PrivacyPolicy() {
           at{" "}
           <Link href="mailto:privacy@hthompson.dev">privacy@hthompson.dev</Link>
           . I will{" "}
-          <Typography component="span" fontWeight="bold">
+          <Typography component="span" sx={{ fontWeight: "bold" }}>
             NEVER
           </Typography>{" "}
           sell your personal data to anyone.
