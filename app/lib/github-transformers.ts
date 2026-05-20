@@ -16,6 +16,7 @@ type GithubRepoTransformInput = GithubRepoStatusInput & {
   description: string | null;
   topics: string[];
   fork: boolean;
+  stargazers_count: number;
 };
 
 type GithubGistTransformInput = GithubGistStatusInput & {
@@ -46,6 +47,7 @@ export function transformRepoData(
         topics: repo.topics || [],
         projectType: repo.fork ? "Fork" : "Repo",
         status,
+        starCount: repo.stargazers_count,
         lastCommitRelative: formatTimeSinceLastCommit(repo.pushed_at),
         lastCommitTimestamp: new Date(repo.pushed_at).getTime(),
       };
@@ -86,6 +88,7 @@ export function transformGistData(
         description: cleanedDescription,
         projectType: "Gist",
         status,
+        starCount: null,
         lastCommitRelative: formatTimeSinceLastCommit(gist.updated_at),
         lastCommitTimestamp: new Date(gist.updated_at).getTime(),
       };

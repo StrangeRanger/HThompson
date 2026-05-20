@@ -28,6 +28,25 @@ export const projectTrackerColumns: StrictProjectCol[] = [
   },
   { field: "projectType", headerName: "Type", width: 120 },
   {
+    field: "starCount",
+    headerName: "Stars",
+    type: "number",
+    width: 100,
+    align: "left",
+    headerAlign: "left",
+    sortComparator: (valueA, valueB) => {
+      const starCountA = typeof valueA === "number" ? valueA : -1;
+      const starCountB = typeof valueB === "number" ? valueB : -1;
+
+      return starCountA - starCountB;
+    },
+    renderCell: (params) => {
+      return params.row.starCount === null
+        ? "-"
+        : params.row.starCount.toLocaleString();
+    },
+  },
+  {
     field: "status",
     headerName: "Status",
     width: 150,
