@@ -35,24 +35,21 @@ export function transformRepoData(
   }
 
   return repos
+    .filter((repo: GithubRepoTransformInput) => !repo.private)
     .map((repo: GithubRepoTransformInput) => {
       const status: RepoStatus = getRepoStatus(repo);
       return {
         id: repo.id,
         name: capitalizeWords(repo.name.replace(/-/g, " ").trim()),
-        private: repo.private,
         url: repo.html_url,
         description: repo.description || "No description",
-        archived: repo.archived,
-        topics: repo.topics || [],
         projectType: repo.fork ? "Fork" : "Repo",
         status,
         starCount: repo.stargazers_count,
         lastCommitRelative: formatTimeSinceLastCommit(repo.pushed_at),
         lastCommitTimestamp: new Date(repo.pushed_at).getTime(),
       };
-    })
-    .filter((repo) => !repo.private); // Filter out private repositories
+    });
 }
 
 export function transformGistData(
@@ -64,6 +61,7 @@ export function transformGistData(
   }
 
   return gists
+    .filter((gist) => gist.public)
     .map((gist) => {
       const status: RepoStatus = getGistStatus(gist);
       const files: string[] = Object.keys(gist.files || {});
@@ -84,7 +82,6 @@ export function transformGistData(
             .replace(/\.(py|md|bash|sh)/g, "")
             .trim(),
         ),
-        public: gist.public,
         url: gist.html_url,
         description: cleanedDescription,
         projectType: "Gist",
@@ -93,6 +90,5 @@ export function transformGistData(
         lastCommitRelative: formatTimeSinceLastCommit(gist.updated_at),
         lastCommitTimestamp: new Date(gist.updated_at).getTime(),
       };
-    })
-    .filter((gist) => gist.public); // Filter out private gists
+    });
 }
