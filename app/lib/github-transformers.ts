@@ -16,6 +16,7 @@ type GithubRepoTransformInput = GithubRepoStatusInput & {
   description: string | null;
   topics: string[];
   fork: boolean;
+  stargazers_count: number;
 };
 
 type GithubGistTransformInput = GithubGistStatusInput & {
@@ -38,7 +39,7 @@ export function transformRepoData(
       const status: RepoStatus = getRepoStatus(repo);
       return {
         id: repo.id,
-        name: capitalizeWords(repo.name.replace(/-/g, " ")),
+        name: capitalizeWords(repo.name.replace(/-/g, " ").trim()),
         private: repo.private,
         url: repo.html_url,
         description: repo.description || "No description",
@@ -46,6 +47,7 @@ export function transformRepoData(
         topics: repo.topics || [],
         projectType: repo.fork ? "Fork" : "Repo",
         status,
+        starCount: repo.stargazers_count,
         lastCommitRelative: formatTimeSinceLastCommit(repo.pushed_at),
         lastCommitTimestamp: new Date(repo.pushed_at).getTime(),
       };
@@ -79,13 +81,15 @@ export function transformGistData(
           firstFile
             .replace(/-/g, " ")
             .replace(/_/g, " ")
-            .replace(/\.(py|md|bash|sh)/g, ""),
+            .replace(/\.(py|md|bash|sh)/g, "")
+            .trim(),
         ),
         public: gist.public,
         url: gist.html_url,
         description: cleanedDescription,
         projectType: "Gist",
         status,
+        starCount: null,
         lastCommitRelative: formatTimeSinceLastCommit(gist.updated_at),
         lastCommitTimestamp: new Date(gist.updated_at).getTime(),
       };

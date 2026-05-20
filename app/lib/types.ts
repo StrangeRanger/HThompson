@@ -9,6 +9,7 @@ export interface TrackedProject {
   name: string;
   projectType: string;
   status: RepoStatus;
+  starCount: number | null;
   lastCommitRelative: string;
   lastCommitTimestamp: number;
   description: string;
