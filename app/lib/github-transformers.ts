@@ -39,7 +39,7 @@ export function transformRepoData(
       const status: RepoStatus = getRepoStatus(repo);
       return {
         id: repo.id,
-        name: capitalizeWords(repo.name.replace(/-/g, " ")),
+        name: capitalizeWords(repo.name.replace(/-/g, " ").trim()),
         private: repo.private,
         url: repo.html_url,
         description: repo.description || "No description",
@@ -81,7 +81,8 @@ export function transformGistData(
           firstFile
             .replace(/-/g, " ")
             .replace(/_/g, " ")
-            .replace(/\.(py|md|bash|sh)/g, ""),
+            .replace(/\.(py|md|bash|sh)/g, "")
+            .trim(),
         ),
         public: gist.public,
         url: gist.html_url,
