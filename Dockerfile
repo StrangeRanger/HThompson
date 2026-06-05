@@ -4,12 +4,12 @@
 
 FROM dhi.io/node:24-debian13-dev AS dependencies
 WORKDIR /app
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
-  corepack enable \
-  && pnpm install --frozen-lockfile
+  corepack pnpm install --frozen-lockfile
 
 # ============================================
 # Stage 2: Build Next.js application in standalone moded
@@ -18,14 +18,14 @@ RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
 FROM dhi.io/node:24-debian13-dev AS builder
 WORKDIR /app
 ENV NODE_ENV=production
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
 RUN --mount=type=cache,target=/app/.next/cache \
-  corepack enable \
-  && pnpm build \
-  && pnpm prune --prod --ignore-scripts
+  corepack pnpm build \
+  && corepack pnpm prune --prod --ignore-scripts
 
 # ============================================
 # Stage 3: Run Next.js application
