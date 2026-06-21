@@ -9,8 +9,8 @@ function buildContentSecurityPolicy(nonce: string): string {
 
   const directives: string[] = [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://analytics.hthompson.dev https://files.hthompson.dev https://static.cloudflareinsights.com${isDev ? " 'unsafe-eval'" : ""}`,
-    `connect-src 'self' https://analytics.hthompson.dev https://api.github.com https://cloudflareinsights.com${isDev ? " ws: http:" : ""}`,
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://analytics.hthompson.dev https://files.hthompson.dev${isDev ? " 'unsafe-eval'" : ""}`,
+    `connect-src 'self' https://analytics.hthompson.dev https://api.github.com${isDev ? " ws: http:" : ""}`,
     styleSrc,
     "style-src-attr 'unsafe-inline'",
     "img-src 'self' blob: data:",
