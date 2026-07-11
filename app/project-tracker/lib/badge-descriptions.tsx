@@ -1,6 +1,6 @@
-import type { RepoStatus } from "@/app/lib/types";
 import type { ReactNode } from "react";
 import Link from "@mui/material/Link";
+import type { RepoStatus } from "@/app/project-tracker/lib/types";
 
 interface BadgeDescription {
   id: number;

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import type { TrackedProject } from "@/app/lib/types";
 import {
   fetchAllGists,
   fetchAllRepos,
 } from "@/app/project-tracker/lib/fetch-projects";
+import type { TrackedProject } from "@/app/project-tracker/lib/types";
 
 const HASH_TARGET_HIGHLIGHT_CLASS: string = "project-tracker-hash-target";
 const HASH_TARGET_HIGHLIGHT_DURATION_MS: number = 2800;

@@ -1,4 +1,7 @@
-import type { GithubRepoStatusInput, RepoStatus } from "@/app/lib/types";
+import type {
+  GithubRepoStatusInput,
+  RepoStatus,
+} from "@/app/project-tracker/lib/types";
 
 const hardCodedStatuses: Record<string, RepoStatus> = {
   "fafb-powershell-tool": "abandoned",

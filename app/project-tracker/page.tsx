@@ -2,7 +2,6 @@
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import type { TrackedProject } from "@/app/lib/types";
 import { DataGrid } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import {
@@ -14,12 +13,13 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import StatusBadge from "@/app/components/status-badge";
+import StatusBadge from "@/app/project-tracker/components/status-badge";
 import { useCspNonce } from "@/app/components/csp-nonce-context";
 import { projectTrackerColumns } from "@/app/project-tracker/components/project-tracker-columns";
 import { badgeDescriptions } from "@/app/project-tracker/lib/badge-descriptions";
 import { useProjectTracker } from "@/app/project-tracker/lib/use-project-tracker";
 import Link from "@mui/material/Link";
+import type { TrackedProject } from "@/app/project-tracker/lib/types";
 
 function ProjectTrackerNoRowsOverlay({
   errorMessage,
