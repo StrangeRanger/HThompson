@@ -1,6 +1,6 @@
-import { getStatusColors } from "@/app/lib/status-colors";
-import type { RepoStatus } from "@/app/lib/types";
+import { getStatusColors } from "@/app/project-tracker/lib/status-colors";
 import Box from "@mui/material/Box";
+import type { RepoStatus } from "@/app/project-tracker/lib/types";
 
 export default function StatusBadge({ status }: { status: RepoStatus }) {
   const color: string = getStatusColors(status);

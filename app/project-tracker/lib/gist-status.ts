@@ -1,4 +1,7 @@
-import type { GithubGistStatusInput, RepoStatus } from "@/app/lib/types";
+import type {
+  GithubGistStatusInput,
+  RepoStatus,
+} from "@/app/project-tracker/lib/types";
 
 // NOTE: Many of the statuses aren't used in gists, but this is kept for consistency and future-proofing.
 export const getGistStatus = (gist: GithubGistStatusInput): RepoStatus => {

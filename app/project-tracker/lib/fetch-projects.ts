@@ -1,8 +1,8 @@
-import type { TrackedProject } from "@/app/lib/types";
 import {
   transformGistData,
   transformRepoData,
-} from "@/app/lib/github-transformers";
+} from "@/app/project-tracker/lib/github-transformers";
+import type { TrackedProject } from "@/app/project-tracker/lib/types";
 
 const GITHUB_USERNAME: string = "StrangeRanger";
 

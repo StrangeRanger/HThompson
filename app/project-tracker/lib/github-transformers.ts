@@ -1,13 +1,13 @@
-import { getRepoStatus } from "@/app/lib/repo-status";
-import { getGistStatus } from "@/app/lib/gist-status";
+import { getRepoStatus } from "@/app/project-tracker/lib/repo-status";
+import { getGistStatus } from "@/app/project-tracker/lib/gist-status";
+import { capitalizeWords } from "@/app/project-tracker/lib/string-utils";
+import { formatTimeSinceLastCommit } from "@/app/project-tracker/lib/date-utils";
 import type {
   GithubGistStatusInput,
   GithubRepoStatusInput,
   RepoStatus,
-} from "@/app/lib/types";
-import { capitalizeWords } from "@/app/lib/string-utils";
-import { formatTimeSinceLastCommit } from "@/app/lib/date-utils";
-import type { TrackedProject } from "@/app/lib/types";
+  TrackedProject,
+} from "@/app/project-tracker/lib/types";
 
 type GithubRepoTransformInput = GithubRepoStatusInput & {
   id: number;

@@ -1,4 +1,4 @@
-import type { RepoStatus } from "@/app/lib/types";
+import type { RepoStatus } from "@/app/project-tracker/lib/types";
 
 export function getStatusColors(status: RepoStatus): string {
   const colorMap: Record<RepoStatus, string> = {
