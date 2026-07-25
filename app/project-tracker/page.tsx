@@ -20,6 +20,8 @@ import { badgeDescriptions } from "@/app/project-tracker/lib/badge-descriptions"
 import { useProjectTracker } from "@/app/project-tracker/lib/use-project-tracker";
 import Link from "@mui/material/Link";
 import type { TrackedProject } from "@/app/project-tracker/lib/types";
+import { Header1, Header2, Paragraph } from "@/app/components/typography";
+import Stack from "@mui/material/Stack";
 
 function ProjectTrackerNoRowsOverlay({
   errorMessage,
@@ -49,12 +51,10 @@ export default function ProjectTracker() {
   const { githubProjects, isLoading, errorMessage } = useProjectTracker();
 
   return (
-    <Box>
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="h3" component="h1" align="center" sx={{ mb: 3 }}>
-          Project Tracker
-        </Typography>
-        <Typography variant="body1" sx={{ my: 4 }}>
+    <Stack component="article" spacing={6}>
+      <Stack component="section" spacing={3}>
+        <Header1 align="center">Project Tracker</Header1>
+        <Paragraph>
           This page offers a comprehensive list of all the projects I am working
           on, plan to work on, and have completed. Next to each project, you
           will find details specifying the type of project, its current status,
@@ -64,7 +64,7 @@ export default function ProjectTracker() {
             Badge Descriptions
           </Link>{" "}
           section at the bottom of this page.
-        </Typography>
+        </Paragraph>
         <Paper sx={{ width: "100%" }}>
           <DataGrid
             columns={projectTrackerColumns}
@@ -94,20 +94,14 @@ export default function ProjectTracker() {
             hideFooter
           />
         </Paper>
-      </Box>
+      </Stack>
 
       <Divider sx={{ my: 6 }} />
 
-      <Box>
-        <Typography
-          id="badge-descriptions"
-          variant="h4"
-          component="h2"
-          align="center"
-          sx={{ mb: 3 }}
-        >
+      <Stack component="section" spacing={3}>
+        <Header2 id="badge-descriptions" align="center">
           Badge Descriptions
-        </Typography>
+        </Header2>
         <TableContainer component={Paper} variant="outlined">
           <Table sx={{ minWidth: 650 }}>
             <TableHead>
@@ -131,7 +125,7 @@ export default function ProjectTracker() {
             </TableBody>
           </Table>
         </TableContainer>
-      </Box>
-    </Box>
+      </Stack>
+    </Stack>
   );
 }

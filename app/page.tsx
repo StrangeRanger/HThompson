@@ -13,6 +13,8 @@ import SourceIcon from "@mui/icons-material/Source";
 import TerminalIcon from "@mui/icons-material/Terminal";
 import CodeIcon from "@mui/icons-material/Code";
 import NextLink from "next/link";
+import Stack from "@mui/material/Stack";
+import { Header1, Header2, Paragraph } from "@/app/components/typography";
 
 interface ServiceCard {
   id: string;
@@ -46,7 +48,7 @@ function ServiceCardItem({ item, titleSpacing }: ServiceCardItemProps) {
   };
   const cardContent = (
     <CardContent>
-      <Typography variant="h6" component="h3" sx={{ mb: titleSpacing }}>
+      <Typography variant="h6" sx={{ mb: titleSpacing }}>
         <Icon fontSize="small" sx={{ mr: 1, verticalAlign: "text-bottom" }} />
         {item.title}
       </Typography>
@@ -102,12 +104,8 @@ function ServiceSection({
 }: ServiceSectionProps) {
   return (
     <Box>
-      <Typography variant="h4" component="h2" align="center" sx={{ mb: 3 }}>
-        {title}
-      </Typography>
-      <Typography variant="body1" sx={{ my: 4 }}>
-        {description}
-      </Typography>
+      <Header2 align="center">{title}</Header2>
+      <Paragraph>{description}</Paragraph>
       <Grid container spacing={3}>
         {items.map((item: ServiceCard) => (
           <ServiceCardItem
@@ -196,36 +194,38 @@ export default function Home() {
   );
 
   return (
-    <Box>
-      <Box>
-        <Typography variant="h3" component="h1" align="center" sx={{ mb: 3 }}>
-          Welcome to HThompson
-        </Typography>
-        <Typography variant="body1" sx={{ my: 4 }}>
+    <Stack component="article" spacing={6}>
+      <Stack component="section" spacing={3}>
+        <Header1 align="center">Welcome to HThompson</Header1>
+        <Paragraph>
           I&apos;m Hunter, and this is the central hub of my online presence.
           Here, you can track my current projects, access the services I host,
           explore my documentation and tools, and learn more about who I am and
           what I do. Feel free to browse around and enjoy your visit!
-        </Typography>
-      </Box>
+        </Paragraph>
+      </Stack>
 
-      <Divider sx={{ m: 6 }} />
+      <Divider />
 
-      <ServiceSection
-        title="Documentation & Tools"
-        description="Unlike my traditional software repositories, these are comprehensive documentation projects, small web applications, and curated resources. They include extensive guides, style documentation, terminal customizations, and tools like the Project Tracker which dynamically pulls data from my GitHub repositories using TypeScript to provide real-time project status updates."
-        items={docAndToolsItems}
-        titleSpacing={2}
-      />
+      <Stack component="section" spacing={3}>
+        <ServiceSection
+          title="Documentation & Tools"
+          description="Unlike my traditional software repositories, these are comprehensive documentation projects, small web applications, and curated resources. They include extensive guides, style documentation, terminal customizations, and tools like the Project Tracker which dynamically pulls data from my GitHub repositories using TypeScript to provide real-time project status updates."
+          items={docAndToolsItems}
+          titleSpacing={2}
+        />
+      </Stack>
 
-      <Divider sx={{ m: 6 }} />
+      <Divider />
 
-      <ServiceSection
-        title="Self-Hosted Services"
-        description="Below are the self-hosted services and applications I run on DigitalOcean. These are web applications and tools I maintain for personal use and to share with others, ranging from content management systems like my image gallery, to privacy-focused utilities like PrivateBin, and developer tools like RSS Bridge for generating feeds."
-        items={serviceItems}
-        titleSpacing={1}
-      />
-    </Box>
+      <Stack component="section" spacing={3}>
+        <ServiceSection
+          title="Self-Hosted Services"
+          description="Below are the self-hosted services and applications I run on DigitalOcean. These are web applications and tools I maintain for personal use and to share with others, ranging from content management systems like my image gallery, to privacy-focused utilities like PrivateBin, and developer tools like RSS Bridge for generating feeds."
+          items={serviceItems}
+          titleSpacing={1}
+        />
+      </Stack>
+    </Stack>
   );
 }

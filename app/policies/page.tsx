@@ -14,6 +14,8 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import { Header1, Header2, Paragraph } from "@/app/components/typography";
 
 interface SubprocessorTable {
   id: number;
@@ -43,30 +45,26 @@ export default function PrivacyPolicy() {
     process.env.NODE_ENV !== "development";
 
   return (
-    <Box>
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="h3" component="h1" align="center" sx={{ mb: 3 }}>
-          Privacy Policies
-        </Typography>
-        <Typography variant="body1" sx={{ my: 4 }}>
+    <Stack component="article" spacing={6}>
+      <Stack component="section" spacing={3}>
+        <Header1 align="center">Privacy Policies</Header1>
+        <Paragraph>
           This Policy describes the information I collect from you, how I use
           that information and my legal basis for doing so. It also covers
           whether and how that information may be shared and your rights and
           choices regarding the information you provide to me. This Privacy
           Policy applies to the information that I obtain through your use of
           HThompson websites including all of its subdomains.
-        </Typography>
-      </Box>
+        </Paragraph>
+      </Stack>
 
-      <Box sx={{ my: 3 }}>
-        <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
-          What I collect and Receive
-        </Typography>
-        <Typography variant="body1" sx={{ my: 4 }}>
+      <Stack component="section" spacing={3}>
+        <Header2>What I collect and Receive</Header2>
+        <Paragraph>
           In order to provide you the best possible experience on my websites, I
           need to collect and process certain information. Depending on your use
           of the Services, that may include:
-        </Typography>
+        </Paragraph>
         <List sx={{ listStyleType: "disc", pl: 4 }}>
           <ListItem sx={{ display: "list-item", py: 0 }}>
             <Typography component="span" sx={{ fontWeight: "bold" }}>
@@ -111,12 +109,10 @@ export default function PrivacyPolicy() {
             </Typography>
           </ListItem>
         </List>
-      </Box>
+      </Stack>
 
-      <Box sx={{ my: 3 }}>
-        <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
-          Opt Out
-        </Typography>
+      <Stack component="section" spacing={3}>
+        <Header2>Opt Out</Header2>
         <Alert severity="info" sx={{ mb: 4 }}>
           If you don&apos;t see the opt out box below, please refresh the page
           or disable your ad blocker.
@@ -130,13 +126,11 @@ export default function PrivacyPolicy() {
             <Box id="matomo-opt-out" />
           </>
         ) : null}
-      </Box>
+      </Stack>
 
-      <Box sx={{ my: 3 }}>
-        <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
-          Your Rights
-        </Typography>
-        <Typography variant="body1" sx={{ my: 4 }}>
+      <Stack component="section" spacing={3}>
+        <Header2>Your Rights</Header2>
+        <Paragraph>
           You have the right to be informed of Personal Data processed by
           HThompson, a right to rectification/correction, erasure and
           restriction of processing. You also have the right to ask from me a
@@ -152,21 +146,19 @@ export default function PrivacyPolicy() {
           <Link href="mailto:privacy@hthompson.dev">privacy@hthompson.dev</Link>
           . In addition, you have the right to lodge a complaint with the data
           protection authority in your jurisdiction.
-        </Typography>
-      </Box>
+        </Paragraph>
+      </Stack>
 
-      <Box sx={{ my: 3 }}>
-        <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
-          Subprocessors
-        </Typography>
-        <Typography variant="body1" sx={{ mt: 4 }}>
+      <Stack component="section" spacing={3}>
+        <Header2>Subprocessors</Header2>
+        <Paragraph>
           I use a select number of trusted external service providers for
           certain technical data processing and/or service offerings. These
           service providers are carefully selected and meet high data protection
           and security standards. I only share information with them that is
           required for the services offered. HThompson uses the following
           subprocessors to process the data collected by our websites:
-        </Typography>
+        </Paragraph>
         <TableContainer component={Paper} variant="outlined" sx={{ my: 3 }}>
           <Table>
             <TableHead>
@@ -189,13 +181,11 @@ export default function PrivacyPolicy() {
             </TableBody>
           </Table>
         </TableContainer>
-      </Box>
+      </Stack>
 
-      <Box sx={{ my: 3 }}>
-        <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
-          Data Retention
-        </Typography>
-        <Typography variant="body1" sx={{ my: 4 }}>
+      <Stack component="section" spacing={3}>
+        <Header2>Data Retention</Header2>
+        <Paragraph>
           I will retain your information as long as your account is active, as
           necessary to provide you with the services or as otherwise set forth
           in this Policy. I will also retain and use this information as
@@ -206,14 +196,12 @@ export default function PrivacyPolicy() {
           information which I may retain indefinitely to protect the safety and
           security of my Site, improve my Services or comply with legal
           obligations.
-        </Typography>
-      </Box>
+        </Paragraph>
+      </Stack>
 
-      <Box sx={{ my: 3 }}>
-        <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
-          Contact Me
-        </Typography>
-        <Typography variant="body1" sx={{ my: 4 }}>
+      <Stack component="section" spacing={3}>
+        <Header2>Contact Me</Header2>
+        <Paragraph>
           If you have questions or comments about this notice, you may email me
           at{" "}
           <Link href="mailto:privacy@hthompson.dev">privacy@hthompson.dev</Link>
@@ -222,22 +210,20 @@ export default function PrivacyPolicy() {
             NEVER
           </Typography>{" "}
           sell your personal data to anyone.
-        </Typography>
-      </Box>
+        </Paragraph>
+      </Stack>
 
-      <Box sx={{ my: 3 }}>
-        <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
-          Reusing this Privacy Policy
-        </Typography>
-        <Typography variant="body1" sx={{ my: 4 }}>
+      <Stack component="section" spacing={3}>
+        <Header2>Reusing this Privacy Policy</Header2>
+        <Paragraph>
           Before reading further, please, note that I am not a lawyer and do not
           provide legal or business advice. You are welcome to reuse and be
           inspired by this Privacy Policy (published under license CC BY) after
           making sure it complies with the way your website tracks, uses and
           discloses users information. The accuracy, completeness, adequacy of
           this privacy policy cannot be warranted or guaranteed.
-        </Typography>
-      </Box>
-    </Box>
+        </Paragraph>
+      </Stack>
+    </Stack>
   );
 }
