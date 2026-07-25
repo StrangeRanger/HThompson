@@ -7,6 +7,8 @@ import CardActionArea from "@mui/material/CardActionArea";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
+import { Header1, Paragraph } from "@/app/components/typography";
+import Stack from "@mui/material/Stack";
 
 interface SocialLink {
   id: string;
@@ -46,14 +48,14 @@ export default function MyLinks() {
   ];
 
   return (
-    <Box>
-      <Typography variant="h3" component="h1" align="center" sx={{ mb: 3 }}>
-        My Links
-      </Typography>
-      <Typography variant="body1" sx={{ my: 4, textAlign: "center" }}>
-        Connect with me on social media and explore my work.
-      </Typography>
-      <Grid container spacing={3}>
+    <Stack component="article" spacing={6}>
+      <Stack component="section" spacing={3}>
+        <Header1 align="center">My Links</Header1>
+        <Paragraph align="center">
+          Connect with me on social media and explore my work.
+        </Paragraph>
+      </Stack>
+      <Grid component="section" container spacing={3}>
         {socialLinks.map((item: SocialLink) => (
           <Grid key={item.id} size={{ xs: 12, sm: 6, lg: 4 }}>
             <Card
@@ -78,7 +80,7 @@ export default function MyLinks() {
                 }}
               >
                 <CardContent>
-                  <Typography variant="h6" component="h3" sx={{ mb: 2 }}>
+                  <Typography variant="h6" sx={{ mb: 2 }}>
                     <item.icon
                       fontSize="small"
                       sx={{ mr: 1, verticalAlign: "text-bottom" }}
@@ -92,6 +94,6 @@ export default function MyLinks() {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Stack>
   );
 }
