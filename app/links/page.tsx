@@ -1,31 +1,20 @@
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardActionArea from "@mui/material/CardActionArea";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import { Header1, Paragraph } from "@/app/components/typography";
 import Stack from "@mui/material/Stack";
-
-interface SocialLink {
-  id: string;
-  title: string;
-  body: string;
-  href: string;
-  icon: React.ElementType;
-  color: string;
-}
+import CardItem from "@/app/components/item-card";
+import type LinkCardData from "@/app/components/link-card-data";
 
 export default function MyLinks() {
-  const socialLinks: SocialLink[] = [
+  const socialLinks: LinkCardData[] = [
     {
       id: "twitter-x",
       title: "Twitter (X)",
       body: "My Twitter (X) account.",
       href: "https://x.com/_Hunter_T_",
+      isExternal: true,
       icon: TwitterIcon,
       color: "#1DA1F2",
     },
@@ -34,6 +23,7 @@ export default function MyLinks() {
       title: "GitHub",
       body: "My GitHub account.",
       href: "https://github.com/StrangeRanger",
+      isExternal: true,
       icon: GitHubIcon,
       color: "#ffffff",
     },
@@ -42,6 +32,7 @@ export default function MyLinks() {
       title: "SoundCloud",
       body: "My SoundCloud account.",
       href: "https://soundcloud.com/SubDubZero",
+      isExternal: true,
       icon: MusicNoteIcon,
       color: "#FF5500",
     },
@@ -55,43 +46,9 @@ export default function MyLinks() {
           Connect with me on social media and explore my work.
         </Paragraph>
       </Stack>
-      <Grid component="section" container spacing={3}>
-        {socialLinks.map((item: SocialLink) => (
-          <Grid key={item.id} size={{ xs: 12, sm: 6, lg: 4 }}>
-            <Card
-              sx={{
-                color: item.color,
-                borderColor: item.color,
-                transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                "&:hover, &:focus-within": {
-                  transform: "translateY(-4px)",
-                  boxShadow: 6,
-                },
-              }}
-            >
-              <CardActionArea
-                component="a"
-                href={item.href}
-                sx={{
-                  display: "block",
-                  textAlign: "left",
-                  color: "inherit",
-                  p: 0,
-                }}
-              >
-                <CardContent>
-                  <Typography variant="h6" sx={{ mb: 2 }}>
-                    <item.icon
-                      fontSize="small"
-                      sx={{ mr: 1, verticalAlign: "text-bottom" }}
-                    />
-                    {item.title}
-                  </Typography>
-                  <Typography variant="body2">{item.body}</Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
+      <Grid container spacing={3}>
+        {socialLinks.map((item: LinkCardData) => (
+          <CardItem key={item.id} item={item} titleSpacing={2} />
         ))}
       </Grid>
     </Stack>

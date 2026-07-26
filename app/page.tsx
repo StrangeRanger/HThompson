@@ -1,9 +1,5 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardActionArea from "@mui/material/CardActionArea";
 import { Divider } from "@mui/material";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
@@ -12,88 +8,16 @@ import RssFeedIcon from "@mui/icons-material/RssFeed";
 import SourceIcon from "@mui/icons-material/Source";
 import TerminalIcon from "@mui/icons-material/Terminal";
 import CodeIcon from "@mui/icons-material/Code";
-import NextLink from "next/link";
 import Stack from "@mui/material/Stack";
 import { Header1, Header2, Paragraph } from "@/app/components/typography";
-
-interface ServiceCard {
-  id: string;
-  title: string;
-  body: string;
-  href: string;
-  isExternal: boolean;
-  icon: React.ElementType;
-  category: "service" | "doc-and-tools";
-}
-
-interface ServiceCardItemProps {
-  item: ServiceCard;
-  titleSpacing: number;
-}
+import CardItem from "@/app/components/item-card";
+import type LinkCardData from "@/app/components/link-card-data";
 
 interface ServiceSectionProps {
   title: string;
   description: string;
-  items: ServiceCard[];
+  items: LinkCardData[];
   titleSpacing: number;
-}
-
-function ServiceCardItem({ item, titleSpacing }: ServiceCardItemProps) {
-  const Icon = item.icon;
-  const actionAreaSx = {
-    display: "block",
-    textAlign: "left",
-    color: "inherit",
-    p: 0,
-  };
-  const cardContent = (
-    <CardContent>
-      <Typography variant="h6" sx={{ mb: titleSpacing }}>
-        <Icon fontSize="small" sx={{ mr: 1, verticalAlign: "text-bottom" }} />
-        {item.title}
-      </Typography>
-      <Typography variant="body2">{item.body}</Typography>
-    </CardContent>
-  );
-
-  return (
-    <Grid key={item.id} size={{ xs: 12, sm: 6, lg: 4 }}>
-      <Card
-        sx={{
-          transition: "transform 0.2s ease, box-shadow 0.2s ease",
-          "&:hover, &:focus-within": {
-            transform: "translateY(-4px)",
-            boxShadow: 6,
-          },
-        }}
-      >
-        {item.isExternal ? (
-          <CardActionArea
-            component="a"
-            href={item.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={actionAreaSx}
-          >
-            {cardContent}
-          </CardActionArea>
-        ) : (
-          <NextLink
-            href={item.href}
-            style={{
-              display: "block",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            <CardActionArea component="div" sx={actionAreaSx}>
-              {cardContent}
-            </CardActionArea>
-          </NextLink>
-        )}
-      </Card>
-    </Grid>
-  );
 }
 
 function ServiceSection({
@@ -107,12 +31,8 @@ function ServiceSection({
       <Header2 align="center">{title}</Header2>
       <Paragraph>{description}</Paragraph>
       <Grid container spacing={3}>
-        {items.map((item: ServiceCard) => (
-          <ServiceCardItem
-            key={item.id}
-            item={item}
-            titleSpacing={titleSpacing}
-          />
+        {items.map((item: LinkCardData) => (
+          <CardItem key={item.id} item={item} titleSpacing={titleSpacing} />
         ))}
       </Grid>
     </Box>
@@ -120,7 +40,7 @@ function ServiceSection({
 }
 
 export default function Home() {
-  const serviceCards: ServiceCard[] = [
+  const serviceCards: LinkCardData[] = [
     {
       id: "image-gallery",
       title: "Image Gallery",
@@ -186,11 +106,11 @@ export default function Home() {
     },
   ];
 
-  const docAndToolsItems: ServiceCard[] = serviceCards.filter(
-    (item: ServiceCard): boolean => item.category === "doc-and-tools",
+  const docAndToolsItems: LinkCardData[] = serviceCards.filter(
+    (item: LinkCardData): boolean => item.category === "doc-and-tools",
   );
-  const serviceItems: ServiceCard[] = serviceCards.filter(
-    (item: ServiceCard): boolean => item.category === "service",
+  const serviceItems: LinkCardData[] = serviceCards.filter(
+    (item: LinkCardData): boolean => item.category === "service",
   );
 
   return (
