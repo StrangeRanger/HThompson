@@ -6,7 +6,7 @@ export default interface LinkCardData {
   body: string;
   href: string;
   isExternal: boolean;
-  icon: React.ElementType;
+  icon?: React.ElementType;
   category?: "service" | "doc-and-tools";
   color?: string;
 }

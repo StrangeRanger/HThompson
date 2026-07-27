@@ -22,7 +22,9 @@ export default function CardItem({ item, titleSpacing }: CardItemProps) {
   const cardContent = (
     <CardContent>
       <Typography variant="h6" sx={{ mb: titleSpacing }}>
-        <Icon fontSize="small" sx={{ mr: 1, verticalAlign: "text-bottom" }} />
+        {Icon ? (
+          <Icon fontSize="small" sx={{ mr: 1, verticalAlign: "text-bottom" }} />
+        ) : null}
         {item.title}
       </Typography>
       <Typography variant="body2">{item.body}</Typography>
