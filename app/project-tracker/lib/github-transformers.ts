@@ -46,8 +46,10 @@ export function transformRepoData(
         projectType: repo.fork ? "Fork" : "Repo",
         status,
         starCount: repo.stargazers_count,
-        lastCommitRelative: formatTimeSinceLastCommit(repo.pushed_at),
-        lastCommitTimestamp: new Date(repo.pushed_at).getTime(),
+        lastCommitRelative: formatTimeSinceLastCommit(repo.lastCommitDate),
+        lastCommitTimestamp: repo.lastCommitDate
+          ? new Date(repo.lastCommitDate).getTime()
+          : null,
       };
     });
 }
@@ -87,8 +89,10 @@ export function transformGistData(
         projectType: "Gist",
         status,
         starCount: null,
-        lastCommitRelative: formatTimeSinceLastCommit(gist.updated_at),
-        lastCommitTimestamp: new Date(gist.updated_at).getTime(),
+        lastCommitRelative: formatTimeSinceLastCommit(gist.lastCommitDate),
+        lastCommitTimestamp: gist.lastCommitDate
+          ? new Date(gist.lastCommitDate).getTime()
+          : null,
       };
     });
 }

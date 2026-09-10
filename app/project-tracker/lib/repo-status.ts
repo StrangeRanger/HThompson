@@ -19,10 +19,12 @@ export const getRepoStatus = (repo: GithubRepoStatusInput): RepoStatus => {
   } else if (repo.topics.includes("status-personal")) {
     status = "personal";
   } else if (repo.topics.includes("activity-tracked")) {
+    if (!repo.lastCommitDate) return "unknown";
+
     // Represents 90 days in milliseconds:
     //  days * hours * minutes * seconds * milliseconds
     const INACTIVE_THRESHOLD_MS: number = 90 * 24 * 60 * 60 * 1000;
-    const lastCommitDate: Date = new Date(repo.pushed_at);
+    const lastCommitDate: Date = new Date(repo.lastCommitDate);
     const currentDate: Date = new Date();
     const timeSinceLastCommit: number =
       currentDate.getTime() - lastCommitDate.getTime();

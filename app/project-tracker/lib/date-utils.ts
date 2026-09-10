@@ -1,4 +1,8 @@
-export const formatTimeSinceLastCommit = (dateString: string): string => {
+export const formatTimeSinceLastCommit = (
+  dateString: string | null,
+): string => {
+  if (!dateString) return "Unknown";
+
   const lastCommitDate: Date = new Date(dateString);
   const currentDate: Date = new Date();
   const timeDiffMs: number = currentDate.getTime() - lastCommitDate.getTime();

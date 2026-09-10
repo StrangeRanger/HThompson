@@ -22,13 +22,6 @@ function compareTextValues(valueA: unknown, valueB: unknown): number {
   );
 }
 
-function compareNumberValues(valueA: unknown, valueB: unknown): number {
-  const numberA = typeof valueA === "number" ? valueA : 0;
-  const numberB = typeof valueB === "number" ? valueB : 0;
-
-  return numberA - numberB;
-}
-
 function getNullableNumberComparator(
   sortDirection: "asc" | "desc" | null | undefined,
 ) {
@@ -100,11 +93,12 @@ export const projectTrackerColumns: StrictProjectCol[] = [
   {
     field: "lastCommitTimestamp",
     headerName: "Last Commit",
+    description: "Latest commit on the default branch, or latest gist revision",
     type: "number",
     width: 180,
     align: "left",
     headerAlign: "left",
-    sortComparator: compareNumberValues,
+    getSortComparator: getNullableNumberComparator,
     renderCell: (params) => params.row.lastCommitRelative,
   },
   {

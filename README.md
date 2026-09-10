@@ -5,9 +5,7 @@
 Personal website and service hub for [hthompson.dev](https://hthompson.dev), built with Next.js and Material UI.
 
 > [!NOTE]
-> Status: **Beta**
->
-> This version is functionally complete, with a few additional small changes planned before it is considered final.
+> This project, particularly the Project Tracker, was developed with AI assistance. It was not entirely programmed by AI.
 
 ## Tech Stack
 
@@ -21,7 +19,7 @@ Personal website and service hub for [hthompson.dev](https://hthompson.dev), bui
 ## Features
 
 - Responsive personal hub and navigation shell
-- Project Tracker with live GitHub repo/gist data
+- Project Tracker with hourly cached GitHub repo/gist data
 - About, Links, and Policies pages
 - Security-focused headers and CSP setup
 - Standalone output for containerized deployment
@@ -60,6 +58,7 @@ pnpm build:standalone  # Build standalone output
 pnpm start:standalone  # Run standalone output
 pnpm lint              # Lint
 pnpm lint:fix          # Lint + auto-fix
+pnpm test              # Project Tracker cache regression tests
 pnpm format            # Format code
 ```
 

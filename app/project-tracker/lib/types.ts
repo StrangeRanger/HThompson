@@ -5,7 +5,7 @@ export interface TrackedProject {
   status: RepoStatus;
   starCount: number | null;
   lastCommitRelative: string;
-  lastCommitTimestamp: number;
+  lastCommitTimestamp: number | null;
   description: string;
   url: string;
 }
@@ -14,12 +14,12 @@ export interface GithubRepoStatusInput {
   name: string;
   topics: string[];
   archived: boolean;
-  pushed_at: string;
+  lastCommitDate: string | null;
 }
 
 export interface GithubGistStatusInput {
   description: string | null;
-  updated_at: string;
+  lastCommitDate: string | null;
 }
 
 export type RepoStatus =
