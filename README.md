@@ -4,6 +4,9 @@
 
 Personal website and service hub for [hthompson.dev](https://hthompson.dev), built with Next.js and Material UI.
 
+> [!NOTE]
+> This project, particularly the Project Tracker, was developed with AI assistance. It was not entirely programmed by AI.
+
 ## Tech Stack
 
 - [Next.js](https://nextjs.org/) (App Router)
