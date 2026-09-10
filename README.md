@@ -4,11 +4,6 @@
 
 Personal website and service hub for [hthompson.dev](https://hthompson.dev), built with Next.js and Material UI.
 
-> [!NOTE]
-> Status: **Beta**
->
-> This version is functionally complete, with a few additional small changes planned before it is considered final.
-
 ## Tech Stack
 
 - [Next.js](https://nextjs.org/) (App Router)
