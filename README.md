@@ -21,7 +21,7 @@ Personal website and service hub for [hthompson.dev](https://hthompson.dev), bui
 ## Features
 
 - Responsive personal hub and navigation shell
-- Project Tracker with live GitHub repo/gist data
+- Project Tracker with hourly cached GitHub repo/gist data
 - About, Links, and Policies pages
 - Security-focused headers and CSP setup
 - Standalone output for containerized deployment
@@ -60,6 +60,7 @@ pnpm build:standalone  # Build standalone output
 pnpm start:standalone  # Run standalone output
 pnpm lint              # Lint
 pnpm lint:fix          # Lint + auto-fix
+pnpm test              # Project Tracker cache regression tests
 pnpm format            # Format code
 ```
 
@@ -68,6 +69,26 @@ pnpm format            # Format code
 - Includes a multi-stage `Dockerfile`
 - Includes a hardened `docker-compose.yml` example
 - CI workflows run lint/build and Docker publishing
+
+### Project Tracker cache
+
+The browser loads `/api/project-tracker`. The server fetches public GitHub
+repositories, gists, and their latest commits without an authentication token,
+then shares the result across visitors for one hour. The first request after
+expiry refreshes the cache; simultaneous requests share that refresh. No GitHub
+requests run while the page is unused.
+
+Failed refreshes preserve the last successful data and wait an hour before
+retrying. If no successful data is available yet, the endpoint returns `503`
+with a `Retry-After` header. Empty repositories still appear with an unknown
+commit date.
+
+The cache lives in memory in each server process and clears on restart. The
+single-container deployment needs no database or writable cache directory.
+Multiple server instances would each maintain their own cache. With 31 repos
+and 13 gists, a full refresh makes about 46 GitHub requests; more projects,
+server restarts, or other GitHub traffic from the same IP can still reach the
+unauthenticated rate limit.
 
 ## License
 

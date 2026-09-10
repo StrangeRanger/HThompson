@@ -1,3 +1,5 @@
+import "server-only";
+
 import {
   transformGistData,
   transformRepoData,
@@ -7,25 +9,28 @@ import type { TrackedProject } from "@/app/project-tracker/lib/types";
 const GITHUB_USERNAME: string = "StrangeRanger";
 
 async function fetchLastCommitDate(url: string): Promise<string | null> {
-  try {
-    const response = await fetch(url);
+  const response = await fetch(url, {
+    cache: "no-store",
+    signal: AbortSignal.timeout(30_000),
+  });
 
-    // Empty repositories have no commit history.
-    if (response.status === 409) return null;
-    if (!response.ok) throw new Error(`GitHub failed: ${response.status}`);
+  // Empty repositories have no commit history.
+  if (response.status === 409) return null;
+  if (!response.ok) throw new Error(`GitHub failed: ${response.status}`);
 
-    const commits = (await response.json()) as {
-      commit?: { committer?: { date?: string } };
-      committed_at?: string;
-    }[];
-    const date =
-      commits[0]?.commit?.committer?.date ?? commits[0]?.committed_at;
+  const commits = (await response.json()) as {
+    commit?: { committer?: { date?: string } };
+    committed_at?: string;
+  }[];
+  if (!Array.isArray(commits))
+    throw new Error("Invalid GitHub commit response");
+  if (commits.length === 0) return null;
 
-    return date && Number.isFinite(Date.parse(date)) ? date : null;
-  } catch (error) {
-    console.warn(`Could not fetch the last commit from ${url}:`, error);
-    return null;
+  const date = commits[0]?.commit?.committer?.date ?? commits[0]?.committed_at;
+  if (!date || !Number.isFinite(Date.parse(date))) {
+    throw new Error("Invalid GitHub commit date");
   }
+  return date;
 }
 
 export async function fetchAllRepos(): Promise<TrackedProject[]> {
@@ -39,7 +44,7 @@ export async function fetchAllRepos(): Promise<TrackedProject[]> {
   while (hasMorePages) {
     const response: Response = await fetch(
       `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&page=${page}`,
-      { cache: "no-store" },
+      { cache: "no-store", signal: AbortSignal.timeout(30_000) },
     );
 
     if (!response.ok) {
@@ -49,8 +54,7 @@ export async function fetchAllRepos(): Promise<TrackedProject[]> {
     const data: unknown = await response.json();
 
     if (!Array.isArray(data)) {
-      console.warn("Repos response is not an array:", data);
-      break;
+      throw new Error("Invalid GitHub repositories response");
     }
 
     // NOTE: `response.json()` is untyped. After confirming it's an array,
@@ -88,7 +92,7 @@ export async function fetchAllGists(): Promise<TrackedProject[]> {
   while (hasMorePages) {
     const response: Response = await fetch(
       `https://api.github.com/users/${GITHUB_USERNAME}/gists?per_page=100&page=${page}`,
-      { cache: "no-store" },
+      { cache: "no-store", signal: AbortSignal.timeout(30_000) },
     );
 
     if (!response.ok) {
@@ -98,8 +102,7 @@ export async function fetchAllGists(): Promise<TrackedProject[]> {
     const data: unknown = await response.json();
 
     if (!Array.isArray(data)) {
-      console.warn("Gists response is not an array:", data);
-      break;
+      throw new Error("Invalid GitHub gists response");
     }
 
     // NOTE: `response.json()` is untyped. After confirming it's an array,

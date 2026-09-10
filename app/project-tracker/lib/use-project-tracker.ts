@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-import {
-  fetchAllGists,
-  fetchAllRepos,
-} from "@/app/project-tracker/lib/fetch-projects";
 import type { TrackedProject } from "@/app/project-tracker/lib/types";
 
 const HASH_TARGET_HIGHLIGHT_CLASS: string = "project-tracker-hash-target";
@@ -45,12 +41,17 @@ export function useProjectTracker() {
 
     async function run(): Promise<void> {
       try {
-        const [repos, gists] = await Promise.all([
-          fetchAllRepos(),
-          fetchAllGists(),
-        ]);
+        const response = await fetch("/api/project-tracker", {
+          cache: "no-store",
+        });
+        if (!response.ok) {
+          throw new Error(
+            "Project data is temporarily unavailable. Please try again later.",
+          );
+        }
+        const projects: TrackedProject[] = await response.json();
         if (!isCancelled) {
-          setGithubProjects([...repos, ...gists]);
+          setGithubProjects(projects);
           setErrorMessage(null);
         }
       } catch (error) {
