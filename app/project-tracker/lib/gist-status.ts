@@ -11,10 +11,12 @@ export const getGistStatus = (gist: GithubGistStatusInput): RepoStatus => {
   if (description.includes("(status: personal)")) {
     status = "personal";
   } else if (description.includes("(status: activity-tracked)")) {
+    if (!gist.lastCommitDate) return "unknown";
+
     // Represents 90 days in milliseconds:
     //  days * hours * minutes * seconds * milliseconds
     const INACTIVE_THRESHOLD_MS: number = 90 * 24 * 60 * 60 * 1000;
-    const lastCommitDate: Date = new Date(gist.updated_at);
+    const lastCommitDate: Date = new Date(gist.lastCommitDate);
     const currentDate: Date = new Date();
     const timeSinceLastCommit: number =
       currentDate.getTime() - lastCommitDate.getTime();
