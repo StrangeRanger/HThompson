@@ -22,6 +22,51 @@ registerHooks({
 const { GET } = await import("../app/api/project-tracker/route.ts");
 const HOUR = 60 * 60 * 1000;
 
+function createProjectListResponse(url, failure, empty) {
+  if (failure === "list") return new Response(null, { status: 403 });
+  if (failure === "malformed-list") return Response.json({ unexpected: true });
+  if (empty) return Response.json([]);
+  if (url.includes("/repos?")) {
+    const repo = {
+      id: 1,
+      name: "example",
+      private: false,
+      html_url: "https://github.com/StrangeRanger/example",
+      description: "Example repo",
+      topics: ["activity-tracked"],
+      archived: false,
+      fork: false,
+      stargazers_count: 3,
+      pushed_at: "2026-09-01T00:00:00Z",
+    };
+    return Response.json([repo, { ...repo, id: 2, name: "empty" }]);
+  }
+  return Response.json([
+    {
+      id: "example-gist",
+      public: true,
+      html_url: "https://gist.github.com/StrangeRanger/example-gist",
+      files: { "example.py": {} },
+      description: "Example gist",
+      updated_at: "2026-09-01T00:00:00Z",
+    },
+  ]);
+}
+
+function createCommitResponse(url, failure, commitDate) {
+  assert.ok(url.endsWith("/commits?per_page=1"));
+  if (url.includes("/empty/")) return new Response(null, { status: 409 });
+  if (failure === "commit") return new Response(null, { status: 403 });
+  if (failure === "malformed-commit")
+    return Response.json({ unexpected: true });
+  const date = failure === "invalid-date" ? "invalid" : commitDate;
+  return Response.json(
+    url.includes("/gists/")
+      ? [{ committed_at: date }]
+      : [{ commit: { committer: { date } } }],
+  );
+}
+
 test("shared project tracker cache", async (t) => {
   let now = Date.now();
   let commitDate = "2025-01-01T00:00:00Z";
@@ -42,48 +87,10 @@ test("shared project tracker cache", async (t) => {
 
     if (failure === "network") throw new Error("Network unavailable");
     if (url.includes("/users/")) {
-      if (failure === "list") return new Response(null, { status: 403 });
-      if (failure === "malformed-list")
-        return Response.json({ unexpected: true });
-      if (empty) return Response.json([]);
-      if (url.includes("/repos?")) {
-        const repo = {
-          id: 1,
-          name: "example",
-          private: false,
-          html_url: "https://github.com/StrangeRanger/example",
-          description: "Example repo",
-          topics: ["activity-tracked"],
-          archived: false,
-          fork: false,
-          stargazers_count: 3,
-          pushed_at: "2026-09-01T00:00:00Z",
-        };
-        return Response.json([repo, { ...repo, id: 2, name: "empty" }]);
-      }
-      return Response.json([
-        {
-          id: "example-gist",
-          public: true,
-          html_url: "https://gist.github.com/StrangeRanger/example-gist",
-          files: { "example.py": {} },
-          description: "Example gist",
-          updated_at: "2026-09-01T00:00:00Z",
-        },
-      ]);
+      return createProjectListResponse(url, failure, empty);
     }
 
-    assert.ok(url.endsWith("/commits?per_page=1"));
-    if (url.includes("/empty/")) return new Response(null, { status: 409 });
-    if (failure === "commit") return new Response(null, { status: 403 });
-    if (failure === "malformed-commit")
-      return Response.json({ unexpected: true });
-    const date = failure === "invalid-date" ? "invalid" : commitDate;
-    return Response.json(
-      url.includes("/gists/")
-        ? [{ committed_at: date }]
-        : [{ commit: { committer: { date } } }],
-    );
+    return createCommitResponse(url, failure, commitDate);
   });
 
   await t.test(
