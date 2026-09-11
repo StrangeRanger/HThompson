@@ -30,19 +30,6 @@ export function Header2({ children, sx, ...props }: TypographyProps<"h2">) {
   );
 }
 
-export function Header3({ children, sx, ...props }: TypographyProps<"h3">) {
-  return (
-    <Typography
-      {...props}
-      component="h3"
-      variant="h5"
-      sx={[{ mt: 4, mb: 2 }, ...(sx ? (Array.isArray(sx) ? sx : [sx]) : [])]}
-    >
-      {children}
-    </Typography>
-  );
-}
-
 export function Paragraph({ children, sx, ...props }: TypographyProps<"p">) {
   return (
     <Typography
