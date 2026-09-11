@@ -1,5 +1,7 @@
-import { getRepoStatus } from "@/app/project-tracker/lib/repo-status";
-import { getGistStatus } from "@/app/project-tracker/lib/gist-status";
+import {
+  getRepoStatus,
+  getGistStatus,
+} from "@/app/project-tracker/lib/project-status";
 import { capitalizeWords } from "@/app/project-tracker/lib/string-utils";
 import { formatTimeSinceLastCommit } from "@/app/project-tracker/lib/date-utils";
 import type {

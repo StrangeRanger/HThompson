@@ -22,10 +22,8 @@ registerHooks({
 const { GET } = await import("../app/api/project-tracker/route.ts");
 const { fetchAllRepos, fetchAllGists } =
   await import("../app/project-tracker/lib/fetch-projects.ts");
-const { getRepoStatus } =
-  await import("../app/project-tracker/lib/repo-status.ts");
-const { getGistStatus } =
-  await import("../app/project-tracker/lib/gist-status.ts");
+const { getRepoStatus, getGistStatus } =
+  await import("../app/project-tracker/lib/project-status.ts");
 const HOUR = 60 * 60 * 1000;
 
 function createProjectListResponse(url, failure, empty) {
