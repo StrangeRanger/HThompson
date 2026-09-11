@@ -8,6 +8,40 @@ import type { TrackedProject } from "@/app/project-tracker/lib/types";
 
 const GITHUB_USERNAME: string = "StrangeRanger";
 
+type GithubRepo = Omit<
+  Parameters<typeof transformRepoData>[0][number],
+  "lastCommitDate"
+>;
+type GithubGist = Omit<
+  Parameters<typeof transformGistData>[0][number],
+  "lastCommitDate"
+>;
+
+async function fetchGithubPages<T>(resource: "repos" | "gists"): Promise<T[]> {
+  const items: T[] = [];
+
+  for (let page = 1; ; page++) {
+    const response = await fetch(
+      `https://api.github.com/users/${GITHUB_USERNAME}/${resource}?per_page=100&page=${page}`,
+      { cache: "no-store", signal: AbortSignal.timeout(30_000) },
+    );
+
+    if (!response.ok) {
+      throw new Error(`GitHub failed: ${response.status}`);
+    }
+
+    const data: unknown = await response.json();
+    if (!Array.isArray(data)) {
+      const label = resource === "repos" ? "repositories" : "gists";
+      throw new Error(`Invalid GitHub ${label} response`);
+    }
+
+    // The response is validated as an array; element shapes are asserted.
+    items.push(...(data as T[]));
+    if (data.length !== 100) return items;
+  }
+}
+
 async function fetchLastCommitDate(url: string): Promise<string | null> {
   const response = await fetch(url, {
     cache: "no-store",
@@ -34,37 +68,7 @@ async function fetchLastCommitDate(url: string): Promise<string | null> {
 }
 
 export async function fetchAllRepos(): Promise<TrackedProject[]> {
-  const allRepos: Omit<
-    Parameters<typeof transformRepoData>[0][number],
-    "lastCommitDate"
-  >[] = [];
-  let page: number = 1;
-  let hasMorePages: boolean = true;
-
-  while (hasMorePages) {
-    const response: Response = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&page=${page}`,
-      { cache: "no-store", signal: AbortSignal.timeout(30_000) },
-    );
-
-    if (!response.ok) {
-      throw new Error(`GitHub failed: ${response.status}`);
-    }
-
-    const data: unknown = await response.json();
-
-    if (!Array.isArray(data)) {
-      throw new Error("Invalid GitHub repositories response");
-    }
-
-    // NOTE: `response.json()` is untyped. After confirming it's an array,
-    // we assert the element shape expected by `transformRepoData`.
-    // Use a runtime type guard if stronger validation is needed.
-    const repoPage = data as typeof allRepos;
-    allRepos.push(...repoPage);
-    hasMorePages = repoPage.length === 100;
-    page++;
-  }
+  const allRepos = await fetchGithubPages<GithubRepo>("repos");
 
   const reposWithCommits = await Promise.all(
     allRepos
@@ -82,37 +86,7 @@ export async function fetchAllRepos(): Promise<TrackedProject[]> {
 }
 
 export async function fetchAllGists(): Promise<TrackedProject[]> {
-  const allGists: Omit<
-    Parameters<typeof transformGistData>[0][number],
-    "lastCommitDate"
-  >[] = [];
-  let page: number = 1;
-  let hasMorePages: boolean = true;
-
-  while (hasMorePages) {
-    const response: Response = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/gists?per_page=100&page=${page}`,
-      { cache: "no-store", signal: AbortSignal.timeout(30_000) },
-    );
-
-    if (!response.ok) {
-      throw new Error(`GitHub failed: ${response.status}`);
-    }
-
-    const data: unknown = await response.json();
-
-    if (!Array.isArray(data)) {
-      throw new Error("Invalid GitHub gists response");
-    }
-
-    // NOTE: `response.json()` is untyped. After confirming it's an array,
-    // we assert the element shape expected by `transformGistData`.
-    // Use a runtime type guard if stronger validation is needed.
-    const gistPage = data as typeof allGists;
-    allGists.push(...gistPage);
-    hasMorePages = gistPage.length === 100;
-    page++;
-  }
+  const allGists = await fetchGithubPages<GithubGist>("gists");
 
   const gistsWithCommits = await Promise.all(
     allGists
