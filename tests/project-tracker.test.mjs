@@ -20,6 +20,12 @@ registerHooks({
 });
 
 const { GET } = await import("../app/api/project-tracker/route.ts");
+const { fetchAllRepos, fetchAllGists } =
+  await import("../app/project-tracker/lib/fetch-projects.ts");
+const { getRepoStatus } =
+  await import("../app/project-tracker/lib/repo-status.ts");
+const { getGistStatus } =
+  await import("../app/project-tracker/lib/gist-status.ts");
 const HOUR = 60 * 60 * 1000;
 
 function createProjectListResponse(url, failure, empty) {
@@ -208,4 +214,189 @@ test("shared project tracker cache", async (t) => {
     assert.deepEqual(await (await GET()).json(), []);
     assert.equal(calls.length - before, 2);
   });
+});
+
+for (const [resource, fetchProjects] of [
+  ["repos", fetchAllRepos],
+  ["gists", fetchAllGists],
+]) {
+  for (const count of [0, 100, 101, 201]) {
+    test(`${resource}: paginate ${count} items before fetching public commits`, async (t) => {
+      const [template] = await createProjectListResponse(
+        `/${resource}?`,
+        null,
+        false,
+      ).json();
+      const items = Array.from({ length: count }, (_, id) => ({
+        ...template,
+        id: resource === "repos" ? id : String(id),
+        name: `example-${id}`,
+        private: id === 0,
+        public: id !== 0,
+      }));
+      const pages = [];
+      const commits = [];
+      const expectedPages = Array.from(
+        { length: Math.floor(count / 100) + 1 },
+        (_, index) => index + 1,
+      );
+
+      t.mock.method(globalThis, "fetch", async (url, options) => {
+        const parsed = new URL(url);
+        assert.equal(parsed.origin, "https://api.github.com");
+        assert.equal(options.cache, "no-store");
+        assert.ok(options.signal instanceof AbortSignal);
+
+        if (parsed.pathname === `/users/StrangeRanger/${resource}`) {
+          assert.equal(parsed.searchParams.get("per_page"), "100");
+          const page = Number(parsed.searchParams.get("page"));
+          pages.push(page);
+          assert.ok(pages.length <= expectedPages.length);
+          return Response.json(items.slice((page - 1) * 100, page * 100));
+        }
+
+        assert.deepEqual(pages, expectedPages);
+        commits.push(url);
+        return createCommitResponse(url, null, "2026-09-01T00:00:00Z");
+      });
+
+      const projects = await fetchProjects();
+      assert.deepEqual(pages, expectedPages);
+      assert.deepEqual(
+        projects.map((project) => project.id),
+        items.slice(1).map((item) => item.id),
+      );
+      assert.deepEqual(
+        commits,
+        items
+          .slice(1)
+          .map((item) =>
+            resource === "repos"
+              ? `https://api.github.com/repos/StrangeRanger/${item.name}/commits?per_page=1`
+              : `https://api.github.com/gists/${item.id}/commits?per_page=1`,
+          ),
+      );
+    });
+  }
+
+  for (const failure of ["http", "malformed", "network"]) {
+    test(`${resource}: reject ${failure} failures on later pages`, async (t) => {
+      const pages = [];
+      t.mock.method(globalThis, "fetch", async (url) => {
+        const parsed = new URL(url);
+        assert.equal(parsed.pathname, `/users/StrangeRanger/${resource}`);
+        const page = Number(parsed.searchParams.get("page"));
+        pages.push(page);
+        if (page === 1) return Response.json(Array(100).fill({}));
+        if (failure === "http") return new Response(null, { status: 403 });
+        if (failure === "malformed") return Response.json({ unexpected: true });
+        throw new Error("Network unavailable");
+      });
+
+      const message =
+        failure === "http"
+          ? "GitHub failed: 403"
+          : failure === "malformed"
+            ? `Invalid GitHub ${resource === "repos" ? "repositories" : "gists"} response`
+            : "Network unavailable";
+      await assert.rejects(fetchProjects(), { message });
+      assert.deepEqual(pages, [1, 2]);
+    });
+  }
+}
+
+test("project statuses preserve markers, precedence, and the activity boundary", (t) => {
+  const now = Date.parse("2026-09-11T00:00:00Z");
+  t.mock.timers.enable({ apis: ["Date"], now });
+  const repo = {
+    name: "example",
+    topics: [],
+    archived: false,
+    lastCommitDate: null,
+  };
+  const gist = { description: null, lastCommitDate: null };
+  const markersToTopics = (markers) =>
+    markers.map((marker) =>
+      marker === "activity-tracked" ? marker : `status-${marker}`,
+    );
+
+  const checkBoth = (markers, lastCommitDate, expected) => {
+    assert.equal(
+      getRepoStatus({
+        ...repo,
+        topics: markersToTopics(markers),
+        lastCommitDate,
+      }),
+      expected,
+    );
+    assert.equal(
+      getGistStatus({
+        ...gist,
+        description: markers.map((marker) => `(status: ${marker})`).join(" "),
+        lastCommitDate,
+      }),
+      expected,
+    );
+  };
+
+  for (const status of [
+    "personal",
+    "maintained",
+    "finished",
+    "unsupported",
+    "concept",
+    "wip",
+    "suspended",
+    "abandoned",
+    "archived",
+    "moved",
+    "unspecified",
+  ]) {
+    checkBoth([status], null, status);
+  }
+  checkBoth([], null, "unknown");
+  checkBoth(["unrecognized"], null, "unknown");
+  checkBoth(["maintained", "activity-tracked", "personal"], null, "personal");
+  checkBoth(["finished", "maintained"], null, "maintained");
+  checkBoth(["maintained", "activity-tracked"], null, "unknown");
+  assert.equal(getGistStatus(gist), "unknown");
+  assert.equal(
+    getGistStatus({ ...gist, description: "(status: Maintained)" }),
+    "unknown",
+  );
+
+  for (const [age, expected] of [
+    [0, "active"],
+    [90 * 24 * HOUR, "active"],
+    [90 * 24 * HOUR + 1, "inactive"],
+  ]) {
+    checkBoth(
+      ["maintained", "activity-tracked"],
+      new Date(now - age).toISOString(),
+      expected,
+    );
+  }
+
+  for (const [topics, expected] of [
+    [[], "archived"],
+    [["status-maintained"], "maintained"],
+    [["status-moved"], "archived"],
+    [["activity-tracked"], "unknown"],
+  ]) {
+    assert.equal(getRepoStatus({ ...repo, archived: true, topics }), expected);
+  }
+  for (const [name, expected] of [
+    ["fafb-powershell-tool", "abandoned"],
+    ["identify-root-user-logins", "moved"],
+  ]) {
+    assert.equal(
+      getRepoStatus({
+        ...repo,
+        name,
+        archived: true,
+        topics: ["status-personal"],
+      }),
+      expected,
+    );
+  }
 });
