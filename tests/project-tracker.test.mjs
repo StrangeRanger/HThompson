@@ -303,6 +303,33 @@ for (const [resource, fetchProjects] of [
   }
 }
 
+test("repository overrides match names regardless of case", () => {
+  for (const name of ["web-note-app", "Web-Note-App", "WEB-NOTE-APP"]) {
+    assert.equal(
+      getRepoStatus({
+        name,
+        topics: ["status-personal"],
+        archived: true,
+        lastCommitDate: null,
+      }),
+      "abandoned",
+      name,
+    );
+  }
+});
+
+test("repository overrides ignore inherited property names", () => {
+  for (const name of ["constructor", "toString", "__proto__"]) {
+    const repo = { name, topics: [], archived: false, lastCommitDate: null };
+    assert.equal(getRepoStatus(repo), "unknown", name);
+    assert.equal(
+      getRepoStatus({ ...repo, topics: ["status-maintained"] }),
+      "maintained",
+      name,
+    );
+  }
+});
+
 test("project statuses preserve markers, precedence, and the activity boundary", (t) => {
   const now = Date.parse("2026-09-11T00:00:00Z");
   t.mock.timers.enable({ apis: ["Date"], now });
