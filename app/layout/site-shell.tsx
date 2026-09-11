@@ -29,7 +29,6 @@ const navItems: NavItem[] = [
 
 export default function SiteShell({ children }: SiteShellProps) {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
-  const isMenuOpen: boolean = Boolean(menuAnchorEl);
 
   function handleMenuOpen(event: MouseEvent<HTMLElement>) {
     setMenuAnchorEl(event.currentTarget);
@@ -63,7 +62,6 @@ export default function SiteShell({ children }: SiteShellProps) {
       <SiteHeader onMenuOpen={handleMenuOpen} />
       <SiteNavMenu
         anchorEl={menuAnchorEl}
-        isOpen={isMenuOpen}
         onClose={handleMenuClose}
         navItems={navItems}
       />

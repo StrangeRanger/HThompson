@@ -111,9 +111,9 @@ export default function ProjectTracker() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {badgeDescriptions.map(({ id, status, description }) => (
+              {badgeDescriptions.map(({ status, description }) => (
                 <TableRow
-                  key={id}
+                  key={status}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell>

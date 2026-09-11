@@ -12,21 +12,19 @@ import Link from "@mui/material/Link";
 
 interface SiteNavMenuProps {
   anchorEl: HTMLElement | null;
-  isOpen: boolean;
   onClose: () => void;
   navItems: NavItem[];
 }
 
 export default function SiteNavMenu({
   anchorEl,
-  isOpen,
   onClose,
   navItems,
 }: SiteNavMenuProps) {
   return (
     <Menu
       anchorEl={anchorEl}
-      open={isOpen}
+      open={Boolean(anchorEl)}
       onClose={onClose}
       anchorOrigin={{
         vertical: "bottom",

@@ -32,7 +32,7 @@ export default function CardItem({ item, titleSpacing }: CardItemProps) {
   );
 
   return (
-    <Grid key={item.id} size={{ xs: 12, sm: 6, lg: 4 }}>
+    <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
       <Card
         sx={{
           color: item.color ?? "text.primary",

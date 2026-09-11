@@ -1,10 +1,7 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import StatusBadge from "@/app/project-tracker/components/status-badge";
 import Link from "@mui/material/Link";
-import type {
-  RepoStatus,
-  TrackedProject,
-} from "@/app/project-tracker/lib/types";
+import type { TrackedProject } from "@/app/project-tracker/lib/types";
 
 type StrictProjectCol = Omit<GridColDef<TrackedProject>, "field"> & {
   field: keyof TrackedProject;
@@ -82,13 +79,7 @@ export const projectTrackerColumns: StrictProjectCol[] = [
     headerName: "Status",
     width: 150,
     sortComparator: compareTextValues,
-    renderCell: (params) => {
-      // NOTE: DataGrid cell values are broadly typed; this cast narrows the
-      // `status` cell value to our `RepoStatus` union for `StatusBadge`.
-      // Prefer typed render params if we want to avoid assertions entirely.
-      const status = params.value as RepoStatus;
-      return <StatusBadge status={status} />;
-    },
+    renderCell: (params) => <StatusBadge status={params.row.status} />,
   },
   {
     field: "lastCommitTimestamp",
