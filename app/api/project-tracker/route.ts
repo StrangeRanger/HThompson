@@ -16,16 +16,19 @@ let pendingRefresh: Promise<void> | null = null;
 
 async function refreshProjects(): Promise<void> {
   try {
-    const [repos, gists] = await Promise.all([
+    // Keep the refresh shared until both requests settle, even if one fails.
+    const [repos, gists] = await Promise.allSettled([
       fetchAllRepos(),
       fetchAllGists(),
     ]);
-    cachedProjects = [...repos, ...gists];
+    if (repos.status === "rejected") throw repos.reason;
+    if (gists.status === "rejected") throw gists.reason;
+    cachedProjects = [...repos.value, ...gists.value];
+    refreshAfter = Date.now() + CACHE_DURATION_MS;
   } catch (error) {
+    // Preserve any good snapshot and let the next visit retry immediately.
     console.error("Could not refresh the project tracker:", error);
   } finally {
-    // Back off after failures too, retaining the last successful snapshot.
-    refreshAfter = Date.now() + CACHE_DURATION_MS;
     pendingRefresh = null;
   }
 }
@@ -48,9 +51,6 @@ export async function GET(): Promise<Response> {
         status: 503,
         headers: {
           "Cache-Control": "no-store",
-          "Retry-After": String(
-            Math.max(1, Math.ceil((refreshAfter - Date.now()) / 1000)),
-          ),
         },
       },
     );

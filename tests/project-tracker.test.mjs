@@ -28,6 +28,7 @@ const HOUR = 60 * 60 * 1000;
 
 function createProjectListResponse(url, failure, empty) {
   if (failure === "list") return new Response(null, { status: 403 });
+  if (failure === "unavailable") return new Response(null, { status: 503 });
   if (failure === "malformed-list") return Response.json({ unexpected: true });
   if (empty) return Response.json([]);
   if (url.includes("/repos?")) {
@@ -74,9 +75,10 @@ function createCommitResponse(url, failure, commitDate) {
 test("shared project tracker cache", async (t) => {
   let now = Date.now();
   let commitDate = "2025-01-01T00:00:00Z";
-  let failure = "list";
+  let failure = "unavailable";
   let empty = false;
   let gate = Promise.resolve();
+  let gistGate = Promise.resolve();
   const calls = [];
 
   t.mock.method(Date, "now", () => now);
@@ -88,6 +90,7 @@ test("shared project tracker cache", async (t) => {
     assert.ok(options.signal instanceof AbortSignal);
     assert.equal(options.headers, undefined, "No authentication required");
     await gate;
+    if (url.includes("/users/StrangeRanger/gists?")) await gistGate;
 
     if (failure === "network") throw new Error("Network unavailable");
     if (url.includes("/users/")) {
@@ -98,23 +101,39 @@ test("shared project tracker cache", async (t) => {
   });
 
   await t.test(
-    "cold failures return 503 and back off for an hour",
+    "cold failures return uncached 503s and the next visit retries immediately",
     async () => {
       const response = await GET();
       assert.equal(response.status, 503);
-      assert.equal(response.headers.get("Retry-After"), "3600");
+      assert.equal(response.headers.get("Retry-After"), null);
       assert.equal(response.headers.get("Cache-Control"), "no-store");
       assert.match((await response.json()).error, /temporarily unavailable/);
       assert.equal(calls.length, 2);
-      now += HOUR - 1;
       assert.equal((await GET()).status, 503);
-      assert.equal(calls.length, 2);
-      now += 1;
+      assert.equal(calls.length, 4, "The next visitor makes fresh requests");
     },
   );
 
+  await t.test("failed refreshes stay shared until both sources settle", async () => {
+    failure = "network";
+    let releaseGists;
+    gistGate = new Promise((resolve) => {
+      releaseGists = resolve;
+    });
+    const before = calls.length;
+    const first = GET();
+    // Let the repository request reject while the gist request is pending.
+    await new Promise((resolve) => setImmediate(resolve));
+    const second = GET();
+    const requestsStarted = calls.length - before;
+    releaseGists();
+    const responses = await Promise.all([first, second]);
+    assert.equal(requestsStarted, 2, "Visitors share the unfinished refresh");
+    for (const response of responses) assert.equal(response.status, 503);
+  });
+
   let snapshot;
-  await t.test("concurrent visitors share one successful refresh", async () => {
+  await t.test("concurrent visitors recover immediately with one successful refresh", async () => {
     failure = null;
     let release;
     gate = new Promise((resolve) => {
@@ -179,6 +198,7 @@ test("shared project tracker cache", async (t) => {
 
   for (const mode of [
     "list",
+    "unavailable",
     "commit",
     "network",
     "malformed-list",
@@ -186,7 +206,7 @@ test("shared project tracker cache", async (t) => {
     "invalid-date",
   ]) {
     await t.test(
-      `${mode} failure preserves the snapshot and backs off`,
+      `${mode} failure preserves the snapshot and retries on the next visit`,
       async () => {
         now += HOUR;
         failure = mode;
@@ -194,17 +214,13 @@ test("shared project tracker cache", async (t) => {
         assert.equal(response.status, 200);
         assert.deepEqual(await response.json(), snapshot);
         const afterRefresh = calls.length;
-        now += HOUR - 1;
-        for (let visit = 0; visit < 5; visit++) {
-          assert.deepEqual(await (await GET()).json(), snapshot);
-        }
-        assert.equal(calls.length, afterRefresh);
+        assert.deepEqual(await (await GET()).json(), snapshot);
+        assert.ok(calls.length > afterRefresh, "A failed refresh is retried");
       },
     );
   }
 
   await t.test("recovery can cache a valid empty project list", async () => {
-    now += HOUR;
     failure = null;
     empty = true;
     const before = calls.length;
