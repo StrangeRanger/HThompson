@@ -29,11 +29,6 @@ type GithubGistTransformInput = GithubGistStatusInput & {
 export function transformRepoData(
   repos: GithubRepoTransformInput[],
 ): TrackedProject[] {
-  if (!Array.isArray(repos)) {
-    console.warn("Repo data is not an array:", repos);
-    return [];
-  }
-
   return repos
     .filter((repo: GithubRepoTransformInput) => !repo.private)
     .map((repo: GithubRepoTransformInput) => {
@@ -57,11 +52,6 @@ export function transformRepoData(
 export function transformGistData(
   gists: GithubGistTransformInput[],
 ): TrackedProject[] {
-  if (!Array.isArray(gists)) {
-    console.warn("Gist data is not an array:", gists);
-    return [];
-  }
-
   return gists
     .filter((gist) => gist.public)
     .map((gist) => {
