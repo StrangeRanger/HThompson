@@ -59,10 +59,7 @@ export function transformGistData(
     .map((gist) => {
       const status: RepoStatus = getGistStatus(gist);
       const files: string[] = Object.keys(gist.files || {});
-      const firstFile: string =
-        files.length > 0 && files[0] !== undefined
-          ? files[0]
-          : "No files found";
+      const firstFile: string = files[0] ?? "No files found";
       const cleanedDescription = gist.description
         ? gist.description.replace(/\s*\(status:\s*[^)]*\)\s*$/i, "").trim()
         : "No description";
