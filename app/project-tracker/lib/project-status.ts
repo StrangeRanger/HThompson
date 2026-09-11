@@ -49,8 +49,9 @@ function resolveProjectStatus(
 }
 
 export const getRepoStatus = (repo: GithubRepoStatusInput): RepoStatus => {
-  if (repo.name in hardCodedStatuses) {
-    return hardCodedStatuses[repo.name.toLowerCase()];
+  const normalizedName = repo.name.toLowerCase();
+  if (Object.hasOwn(hardCodedStatuses, normalizedName)) {
+    return hardCodedStatuses[normalizedName];
   }
 
   return resolveProjectStatus((marker) => {
