@@ -1,0 +1,63 @@
+name: Daily Release
+
+on:
+  schedule:
+    - cron: "5 0 * * *"
+      timezone: America/Los_Angeles
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    # Scheduled runs use the default branch; restrict manual runs to main too.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check for changes since the latest release
+        id: changes
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
+        with:
+          script: |
+            let release;
+            try {
+              ({ data: release } = await github.rest.repos.getLatestRelease(context.repo));
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              core.info('No published release exists; creating the first release.');
+              return true;
+            }
+
+            // Resolve the tag: target_commitish may just contain "main".
+            const { data: commit } = await github.rest.repos.getCommit({
+              ...context.repo,
+              ref: release.tag_name,
+            });
+            const changed = commit.sha !== context.sha;
+            core.info(changed ? 'main has changed since the latest release.' : 'No changes to release.');
+            return changed;
+
+      - name: Determine the previous Pacific calendar date
+        if: steps.changes.outputs.result == 'true'
+        id: date
+        env:
+          TZ: America/Los_Angeles
+        run: echo "tag=$(date --date='yesterday' +%Y.%m.%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Publish release
+        if: steps.changes.outputs.result == 'true'
+        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1
+        with:
+          tag: ${{ steps.date.outputs.tag }}
+          name: ${{ steps.date.outputs.tag }}
+          # Release the exact main commit checked above, even if main advances.
+          commit: ${{ github.sha }}
+          generateReleaseNotes: true
+          makeLatest: true
+          skipIfReleaseExists: true
