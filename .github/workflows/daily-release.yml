@@ -52,12 +52,12 @@ jobs:
 
       - name: Publish release
         if: steps.changes.outputs.result == 'true'
-        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
         with:
-          tag: ${{ steps.date.outputs.tag }}
+          tag_name: ${{ steps.date.outputs.tag }}
           name: ${{ steps.date.outputs.tag }}
-          # Release the exact main commit checked above, even if main advances.
-          commit: ${{ github.sha }}
-          generateReleaseNotes: true
-          makeLatest: true
-          skipIfReleaseExists: true
+          # New tags use the exact main commit checked above, even if main advances.
+          # Same-date reruns update the release without moving an existing tag.
+          target_commitish: ${{ github.sha }}
+          generate_release_notes: true
+          make_latest: true
