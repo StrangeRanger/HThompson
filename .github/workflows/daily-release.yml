@@ -2,7 +2,7 @@ name: Daily Release
 
 on:
   schedule:
-    - cron: '5 0 * * *'
+    - cron: '17 0 * * *'
       timezone: "America/Los_Angeles"
   workflow_dispatch:
 
