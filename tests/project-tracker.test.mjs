@@ -114,59 +114,65 @@ test("shared project tracker cache", async (t) => {
     },
   );
 
-  await t.test("failed refreshes stay shared until both sources settle", async () => {
-    failure = "network";
-    let releaseGists;
-    gistGate = new Promise((resolve) => {
-      releaseGists = resolve;
-    });
-    const before = calls.length;
-    const first = GET();
-    // Let the repository request reject while the gist request is pending.
-    await new Promise((resolve) => setImmediate(resolve));
-    const second = GET();
-    const requestsStarted = calls.length - before;
-    releaseGists();
-    const responses = await Promise.all([first, second]);
-    assert.equal(requestsStarted, 2, "Visitors share the unfinished refresh");
-    for (const response of responses) assert.equal(response.status, 503);
-  });
+  await t.test(
+    "failed refreshes stay shared until both sources settle",
+    async () => {
+      failure = "network";
+      let releaseGists;
+      gistGate = new Promise((resolve) => {
+        releaseGists = resolve;
+      });
+      const before = calls.length;
+      const first = GET();
+      // Let the repository request reject while the gist request is pending.
+      await new Promise((resolve) => setImmediate(resolve));
+      const second = GET();
+      const requestsStarted = calls.length - before;
+      releaseGists();
+      const responses = await Promise.all([first, second]);
+      assert.equal(requestsStarted, 2, "Visitors share the unfinished refresh");
+      for (const response of responses) assert.equal(response.status, 503);
+    },
+  );
 
   let snapshot;
-  await t.test("concurrent visitors recover immediately with one successful refresh", async () => {
-    failure = null;
-    let release;
-    gate = new Promise((resolve) => {
-      release = resolve;
-    });
-    const before = calls.length;
-    const responses = Array.from({ length: 20 }, () => GET());
-    assert.equal(
-      calls.length - before,
-      2,
-      "Only one pair of list requests starts",
-    );
-    release();
-    const results = await Promise.all(responses);
-    snapshot = await results[0].json();
-    for (const response of results.slice(1)) {
-      assert.equal(response.status, 200);
-      assert.deepEqual(await response.json(), snapshot);
-    }
-    assert.equal(
-      calls.length - before,
-      5,
-      "Two lists plus three commit requests",
-    );
-    assert.equal(snapshot.length, 3);
-    assert.equal(snapshot[0].lastCommitTimestamp, Date.parse(commitDate));
-    assert.equal(
-      snapshot[1].lastCommitTimestamp,
-      null,
-      "Empty repos remain valid",
-    );
-    assert.equal(snapshot[2].lastCommitTimestamp, Date.parse(commitDate));
-  });
+  await t.test(
+    "concurrent visitors recover immediately with one successful refresh",
+    async () => {
+      failure = null;
+      let release;
+      gate = new Promise((resolve) => {
+        release = resolve;
+      });
+      const before = calls.length;
+      const responses = Array.from({ length: 20 }, () => GET());
+      assert.equal(
+        calls.length - before,
+        2,
+        "Only one pair of list requests starts",
+      );
+      release();
+      const results = await Promise.all(responses);
+      snapshot = await results[0].json();
+      for (const response of results.slice(1)) {
+        assert.equal(response.status, 200);
+        assert.deepEqual(await response.json(), snapshot);
+      }
+      assert.equal(
+        calls.length - before,
+        5,
+        "Two lists plus three commit requests",
+      );
+      assert.equal(snapshot.length, 3);
+      assert.equal(snapshot[0].lastCommitTimestamp, Date.parse(commitDate));
+      assert.equal(
+        snapshot[1].lastCommitTimestamp,
+        null,
+        "Empty repos remain valid",
+      );
+      assert.equal(snapshot[2].lastCommitTimestamp, Date.parse(commitDate));
+    },
+  );
 
   await t.test(
     "cached visits make no GitHub requests before expiry",
