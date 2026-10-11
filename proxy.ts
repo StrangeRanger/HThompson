@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isHoneypotPath } from "@/app/lib/honeypot";
 
 const isDev: boolean = process.env.NODE_ENV === "development";
 
@@ -29,6 +30,29 @@ function buildContentSecurityPolicy(nonce: string): string {
 }
 
 export function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (isHoneypotPath(pathname)) {
+    return new NextResponse(
+      request.method === "HEAD" ? null : "I'm a teapot\n",
+      {
+        status: 418,
+        headers: {
+          "Content-Type": "text/plain; charset=utf-8",
+          "Cache-Control": "no-store",
+        },
+      },
+    );
+  }
+
+  // Keep prefetches out of CSP processing after checking honeypot paths.
+  if (
+    request.headers.has("next-router-prefetch") ||
+    request.headers.get("purpose") === "prefetch"
+  ) {
+    return NextResponse.next();
+  }
+
   const nonce: string = Buffer.from(crypto.randomUUID()).toString("base64");
   const contentSecurityPolicy: string = buildContentSecurityPolicy(nonce);
 
@@ -48,13 +72,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    {
-      source: "/((?!api|_next/static|_next/image|favicon.ico).*)",
-      missing: [
-        { type: "header", key: "next-router-prefetch" },
-        { type: "header", key: "purpose", value: "prefetch" },
-      ],
-    },
-  ],
+  matcher: "/((?!api|_next/static|_next/image|favicon.ico).*)",
 };
