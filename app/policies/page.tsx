@@ -189,6 +189,15 @@ export default function PrivacyPolicy() {
             Database backups are kept for up to 7 days. A backup may contain
             records that have since been deleted from the active database.
           </ListItem>
+          <ListItem sx={{ display: "list-item", py: 0 }}>
+            I keep server security logs for as long as needed to detect and
+            investigate abuse.
+          </ListItem>
+          <ListItem sx={{ display: "list-item", py: 0 }}>
+            I keep email correspondence for as long as needed to respond to your
+            inquiry and handle any follow-up. I delete it manually when it is no
+            longer needed.
+          </ListItem>
         </List>
         <Paragraph>
           Cloudflare retention varies by service and plan. See{" "}
