@@ -1,4 +1,3 @@
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -17,27 +16,29 @@ import {
 import Stack from "@mui/material/Stack";
 import { Header1, Header2, Paragraph } from "@/app/components/typography";
 
-interface SubprocessorTable {
+interface ServiceProvider {
   id: number;
-  subprocessor: string;
+  name: string;
   location: string;
   service: string;
+  privacyPolicyUrl: string;
 }
 
 export default function PrivacyPolicy() {
-  const subprocessorsTable: SubprocessorTable[] = [
+  const serviceProviders: ServiceProvider[] = [
     {
       id: 1,
-      subprocessor: "DigitalOcean",
-      location: "California, USA",
-      service: "File and cloud hosting provider.",
+      name: "DigitalOcean",
+      location: "San Francisco, California, United States",
+      service: "Hosts my website and related services.",
+      privacyPolicyUrl: "https://www.digitalocean.com/legal/privacy-policy",
     },
     {
       id: 2,
-      subprocessor: "Cloudflare",
-      location:
-        "Cloudflare, as a subprocessor, processes and stores user data across its global network of data centers, which means the data may be held in multiple locations worldwide.",
-      service: "Web performance and security service.",
+      name: "Cloudflare",
+      location: "Global network. Data may be processed in multiple countries.",
+      service: "Website delivery, security, and traffic analytics.",
+      privacyPolicyUrl: "https://www.cloudflare.com/privacypolicy/",
     },
   ];
 
@@ -47,78 +48,80 @@ export default function PrivacyPolicy() {
   return (
     <Stack component="article" spacing={6}>
       <Stack component="section" spacing={3}>
-        <Header1 align="center">Privacy Policies</Header1>
+        <Header1 align="center">Privacy Policy</Header1>
         <Paragraph>
-          This Policy describes the information I collect from you, how I use
-          that information and my legal basis for doing so. It also covers
-          whether and how that information may be shared and your rights and
-          choices regarding the information you provide to me. This Privacy
-          Policy applies to the information that I obtain through your use of
-          HThompson websites including all of its subdomains.
+          Last updated <time dateTime="2026-11-05">November 5, 2026</time>
+        </Paragraph>
+        <Paragraph>
+          This policy covers hthompson.dev and its subdomains. It explains what
+          information I collect, how I use and retain it, who helps me process
+          it, and how you can exercise your privacy choices and rights.
         </Paragraph>
       </Stack>
 
       <Stack component="section" spacing={3}>
-        <Header2>What I collect and Receive</Header2>
+        <Header2>Matomo Analytics</Header2>
         <Paragraph>
-          In order to provide you the best possible experience on my websites, I
-          need to collect and process certain information. Depending on your use
-          of the Services, that may include:
+          I use Matomo as my primary analytics tool on hthompson.dev and most of
+          its subdomains. It helps me understand how people use the sites and
+          where I can improve them. PrivateBin (privatebin.hthompson.dev) does
+          not use Matomo.
         </Paragraph>
-        <List sx={{ listStyleType: "disc", pl: 4 }}>
-          <ListItem sx={{ display: "list-item", py: 0 }}>
-            <Typography component="span" sx={{ fontWeight: "bold" }}>
-              Contact me via email
-            </Typography>
-            {" — "}
-            <Typography component="span">
-              For example, when you ask for support, send me questions or
-              comments, or report a problem, I will collect your name, email
-              address, message, etc. I use this data solely in connection with
-              answering the queries I receive.
-            </Typography>
-          </ListItem>
-          <ListItem sx={{ display: "list-item", py: 0 }}>
-            <Typography component="span" sx={{ fontWeight: "bold" }}>
-              Usage data
-            </Typography>
-            {" — "}
-            <Typography component="span">
-              When you visit my site, I will store: the website from which you
-              visited me from, the parts of my site you visit, the date and
-              duration of your visit, your anonymized IP address, information
-              from the device (device type, operating system, screen resolution,
-              language, country you are located in, and web browser type) you
-              used during your visit, and more. I process this usage data in
-              Matomo Analytics for statistical purposes, to improve my site and
-              to recognize and stop any misuse.
-            </Typography>
-          </ListItem>
-          <ListItem sx={{ display: "list-item", py: 0 }}>
-            <Typography component="span" sx={{ fontWeight: "bold" }}>
-              Cookies
-            </Typography>
-            {" — "}
-            <Typography component="span">
-              I use cookies (small data files transferred onto computers or
-              devices by sites) for record-keeping purposes and to enhance
-              functionality on my site. You may deactivate or restrict the
-              transmission of cookies by changing the settings of your web
-              browser. Cookies that are already stored may be deleted at any
-              time.
-            </Typography>
-          </ListItem>
-        </List>
+        <Paragraph>
+          Matomo records information about visits, such as the pages you view,
+          when and how long you visit, the referring website when available, and
+          information about your browser and device. Matomo masks IPv4 and IPv6
+          addresses before storing them in its analytics database. For IPv4, it
+          replaces the last byte with zero. Matomo uses the masked IP address to
+          estimate your location.
+        </Paragraph>
       </Stack>
 
       <Stack component="section" spacing={3}>
-        <Header2>Opt Out</Header2>
-        <Alert severity="info" sx={{ mb: 4 }}>
-          If you don&apos;t see the opt out box below, please refresh the page
-          or disable your ad blocker.
-        </Alert>
+        <Header2>Cloudflare Traffic and Security</Header2>
+        <Paragraph>
+          I use Cloudflare to deliver and protect my sites. When a request
+          passes through Cloudflare, it processes your full IP address and other
+          request data. Cloudflare also generates traffic and security metrics
+          from these requests.
+        </Paragraph>
+      </Stack>
+
+      <Stack component="section" spacing={3}>
+        <Header2>Server Security Logs</Header2>
+        <Paragraph>
+          My servers record full visitor IP addresses in security logs to detect
+          and investigate abuse. These logs are separate from Matomo analytics.
+        </Paragraph>
+      </Stack>
+
+      <Stack component="section" spacing={3}>
+        <Header2>Email Correspondence</Header2>
+        <Paragraph>
+          When you email me, I receive your email address, your message, and any
+          other information you choose to include. I use this information to
+          respond to your inquiry.
+        </Paragraph>
+      </Stack>
+
+      <Stack component="section" spacing={3}>
+        <Header2>Opt out of Matomo Analytics</Header2>
+        <Paragraph>
+          Matomo may set cookies to distinguish visits and remember your opt-out
+          choice. You can manage or delete cookies in your browser settings.
+          Clearing cookies may reset your opt-out choice.
+        </Paragraph>
+        <Paragraph>
+          You can use the Matomo opt-out on this page to stop future Matomo
+          tracking in this browser on hthompson.dev. Cloudflare traffic
+          processing and server security logging still occur.
+        </Paragraph>
         {shouldRenderMatomoOptOut ? (
           <>
+            <Alert severity="info" sx={{ mb: 4 }}>
+              If the opt-out control does not appear, your browser settings or a
+              content blocker may have blocked it.
+            </Alert>
             <Script
               src="https://analytics.hthompson.dev/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=auto&showIntro=1"
               strategy="afterInteractive"
@@ -131,51 +134,40 @@ export default function PrivacyPolicy() {
       <Stack component="section" spacing={3}>
         <Header2>Your Rights</Header2>
         <Paragraph>
-          You have the right to be informed of Personal Data processed by
-          HThompson, a right to rectification/correction, erasure and
-          restriction of processing. You also have the right to ask from me a
-          structured, common and machine-readable format of Personal Data you
-          provided to me. I can only identify you via your email address and I
-          can only adhere to your request and provide information if I have
-          Personal Data about you through you having made contact with me
-          directly and/or you using my site and/or service. I cannot provide,
-          rectify or delete any data that I store on behalf of my users or
-          customers. To exercise any of the rights mentioned in this Privacy
-          Policy and/or in the event of questions or comments relating to the
-          use of Personal Data you may contact me:{" "}
+          Depending on the law that applies, you may have the right to access,
+          correct, or delete your personal data, restrict or object to its
+          processing, receive a portable copy, or lodge a complaint with a data
+          protection authority. To exercise your rights, email me at{" "}
           <Link href="mailto:privacy@hthompson.dev">privacy@hthompson.dev</Link>
-          . In addition, you have the right to lodge a complaint with the data
-          protection authority in your jurisdiction.
+          . I may ask for information needed to verify your identity or locate
+          the data your request concerns.
         </Paragraph>
       </Stack>
 
       <Stack component="section" spacing={3}>
-        <Header2>Subprocessors</Header2>
+        <Header2>Service Providers</Header2>
         <Paragraph>
-          I use a select number of trusted external service providers for
-          certain technical data processing and/or service offerings. These
-          service providers are carefully selected and meet high data protection
-          and security standards. I only share information with them that is
-          required for the services offered. HThompson uses the following
-          subprocessors to process the data collected by our websites:
+          I use the following providers to host, deliver, and protect my sites.
         </Paragraph>
         <TableContainer component={Paper} variant="outlined" sx={{ my: 3 }}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Subprocessor</TableCell>
-                <TableCell align="left">Data location and security</TableCell>
+                <TableCell>Provider</TableCell>
+                <TableCell align="left">Processing location</TableCell>
                 <TableCell align="left">Service</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {subprocessorsTable.map((subprocessor: SubprocessorTable) => (
-                <TableRow key={subprocessor.id}>
+              {serviceProviders.map((provider) => (
+                <TableRow key={provider.id}>
                   <TableCell component="th" scope="row">
-                    {subprocessor.subprocessor}
+                    <Link href={provider.privacyPolicyUrl}>
+                      {provider.name}
+                    </Link>
                   </TableCell>
-                  <TableCell align="left">{subprocessor.location}</TableCell>
-                  <TableCell align="left">{subprocessor.service}</TableCell>
+                  <TableCell align="left">{provider.location}</TableCell>
+                  <TableCell align="left">{provider.service}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -185,17 +177,25 @@ export default function PrivacyPolicy() {
 
       <Stack component="section" spacing={3}>
         <Header2>Data Retention</Header2>
+        <List sx={{ listStyleType: "disc", pl: 4 }}>
+          <ListItem sx={{ display: "list-item", py: 0 }}>
+            Individual Matomo visit records are kept for 180 days in the active
+            database.
+          </ListItem>
+          <ListItem sx={{ display: "list-item", py: 0 }}>
+            Aggregate Matomo reports are kept for 12 months.
+          </ListItem>
+          <ListItem sx={{ display: "list-item", py: 0 }}>
+            Database backups are kept for up to 7 days. A backup may contain
+            records that have since been deleted from the active database.
+          </ListItem>
+        </List>
         <Paragraph>
-          I will retain your information as long as your account is active, as
-          necessary to provide you with the services or as otherwise set forth
-          in this Policy. I will also retain and use this information as
-          necessary for the purposes set out in this Policy and to the extent
-          necessary to comply with my legal obligations, resolve disputes,
-          enforce my agreements and protect HThompson&apos;s legal rights. I
-          also collect and maintain aggregated, anonymized or pseudonymized
-          information which I may retain indefinitely to protect the safety and
-          security of my Site, improve my Services or comply with legal
-          obligations.
+          Cloudflare retention varies by service and plan. See{" "}
+          <Link href="https://www.cloudflare.com/privacypolicy/">
+            Cloudflare&apos;s privacy policy
+          </Link>{" "}
+          for how it handles the data it processes.
         </Paragraph>
       </Stack>
 
@@ -205,23 +205,7 @@ export default function PrivacyPolicy() {
           If you have questions or comments about this notice, you may email me
           at{" "}
           <Link href="mailto:privacy@hthompson.dev">privacy@hthompson.dev</Link>
-          . I will{" "}
-          <Typography component="span" sx={{ fontWeight: "bold" }}>
-            NEVER
-          </Typography>{" "}
-          sell your personal data to anyone.
-        </Paragraph>
-      </Stack>
-
-      <Stack component="section" spacing={3}>
-        <Header2>Reusing this Privacy Policy</Header2>
-        <Paragraph>
-          Before reading further, please, note that I am not a lawyer and do not
-          provide legal or business advice. You are welcome to reuse and be
-          inspired by this Privacy Policy (published under license CC BY) after
-          making sure it complies with the way your website tracks, uses and
-          discloses users information. The accuracy, completeness, adequacy of
-          this privacy policy cannot be warranted or guaranteed.
+          . I do not sell your personal data.
         </Paragraph>
       </Stack>
     </Stack>
